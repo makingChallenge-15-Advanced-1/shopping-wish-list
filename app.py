@@ -12,7 +12,7 @@ db = client.dbsparta
 
 @app.route('/')
 def home():
-   return render_template('index.html')
+    return render_template('index.html')
 
 
 #url에서 image 추출하는 함수
@@ -105,8 +105,8 @@ def wishlist_post():                              #받는 변수 : url, name, pr
                 count += 1
                 listId = count
             else:
-                 listId = count
-                 break
+                listId = count
+                break
 
     doc = {                                 #db 저장 : url, name, price, memo, status, listId
         'url': url_receive,
