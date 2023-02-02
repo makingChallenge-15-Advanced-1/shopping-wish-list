@@ -121,6 +121,20 @@
         });
     
         // DB 정보를 표시해 주는 함수들
+        function list_to_card(wishlist){        //받은 list를 카드로 만들어 화면에 추가해 주는 함수
+            for(let i = 0; i < wishlist.length; i++){
+                let image = wishlist[i]['image']
+                let url = wishlist[i]['image']
+                let name = wishlist[i]['image']
+                let price = wishlist[i]['image']
+                let status = wishlist[i]['image']
+                
+                temp_html = ``
+                // $('#cards-box').append(temp_html)
+            }
+            return
+        }
+
         function listing_all() {                //모든 정보를 보여줌
             $('#cards-box').empty()
             $.ajax({                        //ajax GET으로 list를 읽어와서 카드 생성
@@ -128,6 +142,8 @@
                 url: '/wishlist?list=All',
                 data: {},
                 success: function (response) {
+                    all_wishlist = response['all_wishlist']
+                    list_to_card(all_wishlist)
                     alert(response['msg'])  
                 }
             })
@@ -139,6 +155,8 @@
                 url: '/wishlist?list=ready',
                 data: {},
                 success: function (response) {
+                    ready_wishlist = response['ready_wishlist']
+                    list_to_card(ready_wishlist)
                     alert(response['msg']) 
                 }
             })
@@ -150,6 +168,8 @@
                 url: '/wishlist?list=refer',
                 data: {},
                 success: function (response) {
+                    refer_wishlist = response['refer_wishlist']
+                    list_to_card(refer_wishlist)
                     alert(response['msg']) 
                 }
             })
@@ -161,6 +181,8 @@
                 url: '/wishlist?list=done',
                 data: {},
                 success: function (response) {
+                    done_wishlist = response['done_wishlist']
+                    list_to_card(done_wishlist)
                     alert(response['msg']) 
                 }
             })

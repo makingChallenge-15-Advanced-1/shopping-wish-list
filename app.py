@@ -12,7 +12,7 @@ db = client.dbsparta
 
 @app.route('/')
 def home():
-    return render_template('index.html')
+   return render_template('index.html')
 
 
 #url에서 image 추출하는 함수
@@ -34,7 +34,7 @@ def image_from_url(url_receive):
 #GET API 
 #모든 db 정보 list를 return
 @app.route("/wishlist?list=All", methods=["GET"])                                          
-def wishlist_get():                               #url에서 image 추출해서 전달하기
+def wishlist_get():                               
     all_wishlist = list(db.wishlist.find({}, {'_id': False}))
     for item in all_wishlist:
         url = item['url']
@@ -44,7 +44,7 @@ def wishlist_get():                               #url에서 image 추출해서 
 
 #당장구매 db 정보 list를 return
 @app.route("/wishlist?list=ready", methods=["GET"])                                          
-def wishlist_get_ready():                               #url에서 image 추출해서 전달하기
+def wishlist_get_ready():                               
     ready_wishlist = list(db.wishlist.find({'status':'ready'}, {'_id': False}))
     for item in ready_wishlist:
         url = item['url']
@@ -54,7 +54,7 @@ def wishlist_get_ready():                               #url에서 image 추출�
 
 #보류한 db 정보 list를 return
 @app.route("/wishlist?list=refer", methods=["GET"])                                          
-def wishlist_get_refer():                               #url에서 image 추출해서 전달하기
+def wishlist_get_refer():                               
     refer_wishlist = list(db.wishlist.find({'status':'refer'}, {'_id': False}))
     for item in refer_wishlist:
         url = item['url']
@@ -64,7 +64,7 @@ def wishlist_get_refer():                               #url에서 image 추출�
 
 #구매완료 db 정보 list를 return
 @app.route("/wishlist?list=done", methods=["GET"])                                          
-def wishlist_get_done():                               #url에서 image 추출해서 전달하기
+def wishlist_get_done():                               
     done_wishlist = list(db.wishlist.find({'status':'done'}, {'_id': False}))
     for item in done_wishlist:
         url = item['url']
@@ -74,9 +74,9 @@ def wishlist_get_done():                               #url에서 image 추출�
 
 #해당 번호의 db 정보를 return
 @app.route("/wishlist/listId", methods=["GET"])        
-def wishlist_listId_get():                             #url에서 image 추출해서 전달하기
+def wishlist_listId_get():                             
     listId_receive = request.args.get('listId')
-    listId_item = db.wishlist.find_one({'listId': int(listId_receive)})
+    listId_item = db.wishlist.find_one({'listId': int(listId_receive}))
     url = listId_item['url']
     image = image_from_url(url)
     listId_item['image'] = image
@@ -105,8 +105,8 @@ def wishlist_post():                              #받는 변수 : url, name, pr
                 count += 1
                 listId = count
             else:
-                listId = count
-                break
+                 listId = count
+                 break
 
     doc = {                                 #db 저장 : url, name, price, memo, status, listId
         'url': url_receive,
@@ -153,4 +153,4 @@ def wishlist_del():
     return jsonify({'msg':'삭제 완료!'})
 
 if __name__ == '__main__':
-    app.run('0.0.0.0', port=5000, debug=True)
+   app.run('0.0.0.0', port=5000, debug=True)
