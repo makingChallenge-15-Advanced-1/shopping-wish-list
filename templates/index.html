@@ -124,7 +124,7 @@
             $('#cards-box').empty()
             $.ajax({                        //ajax GET으로 list를 읽어와서 카드 생성
                 type: 'GET',                //받는 변수 : image, url, title, price, memo, status, num
-                url: '/shop',
+                url: '/shop?list=All',
                 data: {},
                 success: function (response) {
                     alert(response['msg'])  
@@ -135,7 +135,7 @@
             $('#cards-box').empty()
             $.ajax({                        //ajax GET으로 list를 읽어와서 카드 생성
                 type: 'GET',                //받는 변수 : image, url, title, price, memo, status, num
-                url: '/shop',
+                url: '/shop?list=All',
                 data: {},
                 success: function (response) {
                     alert(response['msg']) 
@@ -147,7 +147,7 @@
             $('#cards-box').empty()
             $.ajax({                        //ajax GET으로 list를 읽어와서 카드 생성
                 type: 'GET',                //받는 변수 : image, url, title, price, memo, status, num
-                url: '/shop',
+                url: '/shop?list=All',
                 data: {},
                 success: function (response) {
                     alert(response['msg']) 
@@ -159,7 +159,7 @@
             $('#cards-box').empty()
             $.ajax({                        //ajax GET으로 list를 읽어와서 카드 생성
                 type: 'GET',                //받는 변수 : image, url, title, price, memo, status, num
-                url: '/shop',
+                url: '/shop?list=All',
                 data: {},
                 success: function (response) {
                     alert(response['msg']) 
@@ -183,8 +183,8 @@
 
         function modifying(num) {           //사용자가 수정한 내용을 db에 업데이트
             $.ajax({                        //변수: url, title, price, memo, status, num
-                type: 'POST',
-                url: '/shop/modify',
+                type: 'PUT',
+                url: '/shop/num',
                 data: {url_give: url},
                 success: function (response) {
                     alert(response['msg'])
@@ -196,7 +196,7 @@
         function deleting(num){             //특정 번호의 카드를 삭제하는 함수
             $.ajax({
                 type: 'DELETE',
-                url: '/shop',
+                url: '/shop/num',
                 data: {num_give: num},
                 success: function (response) {
                     alert(response['msg'])
