@@ -7,7 +7,7 @@ from bs4 import BeautifulSoup
 from pymongo import MongoClient
 import certifi
 ca = certifi.where()
-client = MongoClient('db 정보', 27017, tlsCAFile=ca)
+client = MongoClient('mongodb+srv://test:sparta@Cluster0.kwrmlin.mongodb.net/?retryWrites=true&w=majority', 27017, tlsCAFile=ca)
 db = client.dbsparta
 
 @app.route('/')
@@ -33,18 +33,18 @@ def image_from_url(url_receive):
 
 #GET API 
 #모든 db 정보 list를 return
-@app.route("/wishlist?list=All", methods=["GET"])                                          
-def listing_all():                               #url에서 image 추출해서 전달하기
+@app.route("/wishlist/all", methods=["GET"])
+def wishlist_get():                               
     all_wishlist = list(db.wishlist.find({}, {'_id': False}))
     for item in all_wishlist:
         url = item['url']
         image = image_from_url(url) 
         item['image'] = image
-    return jsonify({'wishlist':all_wishlist})
+    return jsonify({'all_wishlist':all_wishlist})
 
 #당장구매 db 정보 list를 return
-@app.route("/wishlist?list=ready", methods=["GET"])                                          
-def listing_ready():                               #url에서 image 추출해서 전달하기
+@app.route("/wishlist/ready", methods=["GET"])
+def wishlist_get_ready():                               
     ready_wishlist = list(db.wishlist.find({'status':'ready'}, {'_id': False}))
     for item in ready_wishlist:
         url = item['url']
@@ -53,8 +53,8 @@ def listing_ready():                               #url에서 image 추출해서
     return jsonify({'ready_wishlist':ready_wishlist})
 
 #보류한 db 정보 list를 return
-@app.route("/wishlist?list=refer", methods=["GET"])                                          
-def listing_refer():                               #url에서 image 추출해서 전달하기
+@app.route("/wishlist/refer", methods=["GET"])
+def wishlist_get_refer():                               
     refer_wishlist = list(db.wishlist.find({'status':'refer'}, {'_id': False}))
     for item in refer_wishlist:
         url = item['url']
@@ -63,19 +63,19 @@ def listing_refer():                               #url에서 image 추출해서
     return jsonify({'refer_wishlist':refer_wishlist})
 
 #구매완료 db 정보 list를 return
-@app.route("/wishlist?list=done", methods=["GET"])                                          
-def listing_done():                               #url에서 image 추출해서 전달하기
+@app.route("/wishlist/done", methods=["GET"])
+def wishlist_get_done():                               
     done_wishlist = list(db.wishlist.find({'status':'done'}, {'_id': False}))
     for item in done_wishlist:
         url = item['url']
         image = image_from_url(url) 
         item['image'] = image
-    return jsonify({'donelist':done_wishlist})
+    return jsonify({'done_wishlist':done_wishlist})
 
 #해당 번호의 db 정보를 return
 @app.route("/wishlist/listId", methods=["GET"])        
-def listId_get():                             #url에서 image 추출해서 전달하기
-    listId_receive = request.args.get('listId')
+def wishlist_listId_get():                             
+    listId_receive = request.args.get('listId_give')
     listId_item = db.wishlist.find_one({'listId': int(listId_receive)})
     url = listId_item['url']
     image = image_from_url(url)
@@ -86,7 +86,7 @@ def listId_get():                             #url에서 image 추출해서 전�
 #POST API
 #db에 새로운 정보를 추가
 @app.route("/wishlist", methods=["POST"])
-def posting():                              #받는 변수 : url, name, price, memo, status
+def wishlist_post():                              #받는 변수 : url, name, price, memo, status
     url_receive = request.form['url_give']          
     name_receive = request.form['name_give']        
     price_receive = request.form['price_give']
@@ -94,9 +94,9 @@ def posting():                              #받는 변수 : url, name, price, m
     status_receive = request.form['status_give']
 
     all_wishlist = list(db.wishlist.find({}, {'_id': False}))         #37~50 : listId 부여
-    sort_wishlist = sorted(all_wishlist, key=lambda d: d['num'])
+    sort_wishlist = sorted(all_wishlist, key=lambda d: d['listId'])
 
-    if len(sort_wishlist == 0):
+    if len(sort_wishlist) == 0:
         listId = 1
     else:
         count = 1
@@ -123,7 +123,7 @@ def posting():                              #받는 변수 : url, name, price, m
 #PUT API
 #db의 특정 정보를 수정
 @app.route("/wishlist/listId", methods=["PUT"])    #받는 변수 : url, name, price, memo, status, listId
-def modifying():
+def wishlist_modify():
     url_receive = request.form['url_give']          
     name_receive = request.form['name_give']        
     price_receive = request.form['price_give']
@@ -139,18 +139,24 @@ def modifying():
         'status' : status_receive,
         'listId' : listId_receive
     }
-    db.users.update_one({'listId':int(listId_receive)},{'$set':doc})
+    db.wishlist.update_one({'listId':int(listId_receive)},{'$set':doc})
     return jsonify({'msg':'수정 완료!'})
 
-#상태만 수정하는 API 추가 하기
+#listId에 해당하는 db의 status만 수정
+@app.route("/wishlist/listId/status", methods=["PUT"])    #받는 변수 : url, name, price, memo, status, listId
+def wishlist_modify_status():
+    status_receive = request.form['status_give']
+    listId_receive = request.form['listId_give']
+    db.wishlist.update_one({'listId':int(listId_receive)},{'$set':{'listId':listId_receive}})
+    return jsonify({'msg':'수정 완료!'})
 
 #DELETE API
 #해당 번호의 db 정보를 삭제
 @app.route("/wishlist/listId", methods=["DELETE"])
-def deleting():
+def wishlist_del():
     listId_receive = request.form['listId_give']
     db.wishlist.delete_one({'listId':int(listId_receive)})
     return jsonify({'msg':'삭제 완료!'})
 
 if __name__ == '__main__':
-    app.run('0.0.0.0', port=5000, debug=True)
+   app.run('0.0.0.0', port=5000, debug=True)
