@@ -75,7 +75,7 @@ def wishlist_get_done():
 #해당 번호의 db 정보를 return
 @app.route("/wishlist/listId", methods=["GET"])        
 def wishlist_listId_get():                             
-    listId_receive = request.args.get('listId')
+    listId_receive = request.args.get('listId_give')
     listId_item = db.wishlist.find_one({'listId': int(listId_receive}))
     url = listId_item['url']
     image = image_from_url(url)
@@ -139,10 +139,16 @@ def wishlist_modify():
         'status' : status_receive,
         'listId' : listId_receive
     }
-    db.users.update_one({'listId':int(listId_receive)},{'$set':doc})
+    db.wishlist.update_one({'listId':int(listId_receive)},{'$set':doc})
     return jsonify({'msg':'수정 완료!'})
 
-#상태만 수정하는 API 추가 하기
+#listId에 해당하는 db의 status만 수정
+@app.route("/wishlist/listId/status", methods=["PUT"])    #받는 변수 : url, name, price, memo, status, listId
+def wishlist_modify():
+    status_receive = request.form['status_give']
+    listId_receive = request.form['listId_give']
+    db.wishlist.update_one({'listId':int(listId_receive)},{'$set':{'listId':listId_receive}})
+    return jsonify({'msg':'수정 완료!'})
 
 #DELETE API
 #해당 번호의 db 정보를 삭제

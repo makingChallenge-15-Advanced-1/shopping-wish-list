@@ -195,7 +195,7 @@
             $.ajax({                      
                 type: 'POST',
                 url: '/wishlist',
-                data: {url_give: url},
+                data: {url_give: url, name_give: name, price_give: price, memo_give: memo, status_give: status},
                 success: function (response) {
                     alert(response['msg'])
                     window.location.reload()
@@ -209,15 +209,25 @@
             $.ajax({                        //변수: url, name, price, memo, status, listId
                 type: 'PUT',
                 url: '/wishlist/listId',
-                data: {url_give: url},
+                data: {url_give: url, name_give: name, price_give: price, memo_give: memo, status_give: status, listId_give: listId},
                 success: function (response) {
                     alert(response['msg'])
                     window.location.reload()
                 }
             });
         }
-        //상태만 수정하는 함수 추가하기
-
+        //상태만 수정하는 함수
+        function modifying(listId){
+            $.ajax({                        //변수: status, listId
+                type: 'PUT',
+                url: '/wishlist/listId/status',
+                data: {status_give: status, listId_give: listId},
+                success: function (response) {
+                    alert(response['msg'])
+                    window.location.reload()
+                }
+            });
+        }
 
         //특정 listId를 가진 정보를 삭제
         function deleting(listId){            
