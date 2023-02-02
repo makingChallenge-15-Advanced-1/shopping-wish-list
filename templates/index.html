@@ -304,7 +304,7 @@
 <body>
 <div class="mytitle">
     <h1><b>나만의 찜 장바구니</b></h1>
-    <button onclick="open_box()"><h4><b>상품 추가</b></h4></button>
+    <button onclick="open_posting_box()"><h4><b>상품 추가</b></h4></button>
     <div class="btn-group" role="group" aria-label="Basic outlined example">
         <button onclick="listing()" type="button" class="btn btn-outline-light">전체보기</button>
         <button onclick="listing_ready()" type="button" class="btn btn-outline-light">구매예정만</button>
@@ -315,56 +315,70 @@
 <div class="mypost" id="post-box">
     <div class="form-floating">
         <input type="title" class="form-control" id="floatingtitle" placeholder="title">
-        <label for="floatingtitle">품명</label>
+        <label for="floatingtitle">URL</label>
+    </div>
+    <div class="form-floating">
+        <input type="title" class="form-control" id="floatingtitle" placeholder="title">
+        <label for="floatingtitle">상품이름</label>
     </div>
     <div class="form-floating">
         <input type="title" class="form-control" id="floatingmodel" placeholder="title">
-        <label for="floatingtitle">모델명</label>
+        <label for="floatingtitle">가격</label>
     </div>
     <div class="form-floating">
         <input type="title" class="form-control" id="floatingmemo" placeholder="title" >
         <label for="floatingtitle">메모</label>
     </div>
-    <div class="form-floating">
-        <input type="title" class="form-control" id="floatingcount" placeholder="title">
-        <label for="floatingtitle">보유수량</label>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" id="check_done" value="구매완료">
+        <label class="form-check-label" for="check_done">구매예정</label>
     </div>
     <div class="form-check form-check-inline">
-        <input class="form-check-input" type="checkbox" id="check_done" value="구매완료">
+        <input class="form-check-input" type="radio" id="check_defer" value="보류하기">
+        <label class="form-check-label" for="check_defer">보류</label>
+    </div>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" id="check_done" value="구매완료">
         <label class="form-check-label" for="check_done">구매완료</label>
     </div>
-    <div class="form-check form-check-inline">
-        <input class="form-check-input" type="checkbox" id="check_defer" value="보류하기">
-        <label class="form-check-label" for="check_defer">보류하기</label>
-    </div>
-
     <div class="mybtns">
-        <button onclick="posting()" type="button" class="btn btn-dark">기록하기</button>
-        <button onclick="close_box()" type="button" class="btn btn-outline-dark">닫기</button>
+        <button onclick="posting()" type="button" class="btn btn-dark">등록</button>
+        <button onclick="close_posting_box()" type="button" class="btn btn-outline-dark">취소</button>
     </div>
 </div>
 
 <div class="mymodifier" id="modify-box">
     <div class="form-floating">
-        <input type="title" class="form-control" id="floatingtitle_mod" value="기존품명" placeholder="title">
-        <label for="floatingtitle">품명</label>
+        <input type="title" class="form-control" id="floatingtitle" placeholder="title">
+        <label for="floatingtitle">URL</label>
     </div>
     <div class="form-floating">
-        <input type="title" class="form-control" id="floatingmodel_mod" value="기존모델명" placeholder="title">
-        <label for="floatingtitle">모델명</label>
+        <input type="title" class="form-control" id="floatingtitle" placeholder="title">
+        <label for="floatingtitle">상품이름</label>
     </div>
     <div class="form-floating">
-        <input type="title" class="form-control" id="floatingmemo_mod"value="기존메모" placeholder="title" >
+        <input type="title" class="form-control" id="floatingmodel" placeholder="title">
+        <label for="floatingtitle">가격</label>
+    </div>
+    <div class="form-floating">
+        <input type="title" class="form-control" id="floatingmemo" placeholder="title" >
         <label for="floatingtitle">메모</label>
     </div>
-    <div class="form-floating">
-        <input type="title" class="form-control" id="floatingcount_mod" value="기존수량" placeholder="title">
-        <label for="floatingtitle">보유수량</label>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" id="check_done" value="구매완료">
+        <label class="form-check-label" for="check_done">구매예정</label>
     </div>
-
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" id="check_defer" value="보류하기">
+        <label class="form-check-label" for="check_defer">보류</label>
+    </div>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" id="check_done" value="구매완료">
+        <label class="form-check-label" for="check_done">구매완료</label>
+    </div>
     <div class="mybtns">
-        <button onclick="modifying()" type="button" class="btn btn-dark">수정하기</button>
-        <button onclick="close_modifier()" type="button" class="btn btn-outline-dark">닫기</button>
+        <button onclick="modifying()" type="button" class="btn btn-dark">수정</button>
+        <button onclick="close_modify_box()" type="button" class="btn btn-outline-dark">취소</button>
     </div>
 </div>
 
