@@ -124,7 +124,7 @@
             $('#cards-box').empty()
             $.ajax({                        //ajax GET으로 list를 읽어와서 카드 생성
                 type: 'GET',                //받는 변수 : image, url, name, price, memo, status, listId
-                url: '/shop?list=All',
+                url: '/wishlist?list=All',
                 data: {},
                 success: function (response) {
                     alert(response['msg'])  
@@ -135,7 +135,7 @@
             $('#cards-box').empty()
             $.ajax({                        //ajax GET으로 list를 읽어와서 카드 생성
                 type: 'GET',                //받는 변수 : image, url, name, price, memo, status, listId
-                url: '/shop?list=All',
+                url: '/wishlist?list=All',
                 data: {},
                 success: function (response) {
                     alert(response['msg']) 
@@ -147,7 +147,7 @@
             $('#cards-box').empty()
             $.ajax({                        //ajax GET으로 list를 읽어와서 카드 생성
                 type: 'GET',                //받는 변수 : image, url, name, price, memo, status, listId
-                url: '/shop?list=All',
+                url: '/wishlist?list=All',
                 data: {},
                 success: function (response) {
                     alert(response['msg']) 
@@ -159,7 +159,7 @@
             $('#cards-box').empty()
             $.ajax({                        //ajax GET으로 list를 읽어와서 카드 생성
                 type: 'GET',                //받는 변수 : image, url, name, price, memo, status, listId
-                url: '/shop?list=All',
+                url: '/wishlist?list=All',
                 data: {},
                 success: function (response) {
                     alert(response['msg']) 
@@ -172,7 +172,7 @@
             let url = "url"                 //변수 : url, name, price, memo, status
               $.ajax({                      
                 type: 'POST',
-                url: '/shop',
+                url: '/wishlist',
                 data: {url_give: url},
                 success: function (response) {
                     alert(response['msg'])
@@ -184,7 +184,7 @@
         function modifying(listId) {           //사용자가 수정한 내용을 db에 업데이트
             $.ajax({                        //변수: url, name, price, memo, status, listId
                 type: 'PUT',
-                url: '/shop/listId',
+                url: '/wishlist/listId',
                 data: {url_give: url},
                 success: function (response) {
                     alert(response['msg'])
@@ -196,7 +196,7 @@
         function deleting(listId){             //특정 번호의 카드를 삭제하는 함수
             $.ajax({
                 type: 'DELETE',
-                url: '/shop/listId',
+                url: '/wishlist/listId',
                 data: {listId_give: listId},
                 success: function (response) {
                     alert(response['msg'])
@@ -216,7 +216,7 @@
             $('#modify-box').empty()
             $.ajax({                            //기존 정보를 로딩해서 박스에 뿌려줌
                 type: 'GET',                    //받는 변수 : image, url, name, price, memo, status
-                url: '/shop/listId?listId_give='+listId,
+                url: '/wishlist/listId?listId_give='+listId,
                 data: {},
                 success: function (response) { 
                     alert(response['msg'])
