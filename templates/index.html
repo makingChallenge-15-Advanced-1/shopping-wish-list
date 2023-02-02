@@ -191,7 +191,11 @@
 
         //DB에 새로운 정보를 추가하는 함수
         function posting() {                
-            let url = "url"                 //변수 : url, name, price, memo, status
+            let url = $('#url_input').val()    //변수 : url, name, price, memo, status
+            let name = $('#name_input').val()
+            let price = $('#price_input').val()
+            let memo = $('#memo_input').val()
+            let status = $('#status_input').val()
             $.ajax({                      
                 type: 'POST',
                 url: '/wishlist',
@@ -205,8 +209,13 @@
 
 
         //특정 listId를 가진 사용자의 정보를 수정
-        function modifying(listId) {           
-            $.ajax({                        //변수: url, name, price, memo, status, listId
+        function modifying(listId) {          
+            let url = $('#url_modify').val()    
+            let name = $('#name_modify').val()
+            let price = $('#price_modify').val()
+            let memo = $('#memo_modify').val()
+            let status = $('#status_modify').val()   //status 부분 수정하기
+            $.ajax({                                 //변수: url, name, price, memo, status, listId
                 type: 'PUT',
                 url: '/wishlist/listId',
                 data: {url_give: url, name_give: name, price_give: price, memo_give: memo, status_give: status, listId_give: listId},
@@ -217,8 +226,9 @@
             });
         }
         //상태만 수정하는 함수
-        function modifying(listId){
-            $.ajax({                        //변수: status, listId
+        function modifying_status(listId){
+            let status = $('#status_modify').val()        //status 부분 수정하기
+            $.ajax({                                      //변수: status, listId
                 type: 'PUT',
                 url: '/wishlist/listId/status',
                 data: {status_give: status, listId_give: listId},
@@ -242,7 +252,7 @@
             });
         }
 
-        //url 형식이 맞는지 검증하는 함수
+        //url 형식이 맞는지 검증하는 함수. url 검증 버튼에서 call
         function url_certifi(){
             let url = $('#url_input').val()
             if(url == ""){
