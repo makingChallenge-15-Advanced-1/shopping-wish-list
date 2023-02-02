@@ -12,7 +12,7 @@ db = client.dbsparta
 
 @app.route('/')
 def home():
-   return render_template('index.html')
+    return render_template('index.html')
 
 
 #url에서 image 추출하는 함수
@@ -76,7 +76,7 @@ def wishlist_get_done():                               #url에서 image 추출�
 @app.route("/wishlist/listId", methods=["GET"])        
 def wishlist_listId_get():                             #url에서 image 추출해서 전달하기
     listId_receive = request.args.get('listId')
-    listId_item = db.wishlist.find_one({'listId': int(listId_receive}))
+    listId_item = db.wishlist.find_one({'listId': int(listId_receive)})
     url = listId_item['url']
     image = image_from_url(url)
     listId_item['image'] = image
@@ -105,8 +105,8 @@ def wishlist_post():                              #받는 변수 : url, name, pr
                 count += 1
                 listId = count
             else:
-                 listId = count
-                 break
+                listId = count
+                break
 
     doc = {                                 #db 저장 : url, name, price, memo, status, listId
         'url': url_receive,
@@ -153,4 +153,4 @@ def wishlist_del():
     return jsonify({'msg':'삭제 완료!'})
 
 if __name__ == '__main__':
-   app.run('0.0.0.0', port=5000, debug=True)
+    app.run('0.0.0.0', port=5000, debug=True)
