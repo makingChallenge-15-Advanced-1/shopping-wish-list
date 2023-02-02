@@ -116,7 +116,10 @@
         }
     </style>
     <script>
+        var url_verifier = 'false';
+
         $(document).ready(function(){       //페이지 로딩 시 listing_all() 함수 호출
+            url_verifier = 'false';
             listing_all();
         });
     
@@ -124,13 +127,26 @@
         function list_to_card(wishlist){        //받은 list를 카드로 만들어 화면에 추가해 주는 함수
             for(let i = 0; i < wishlist.length; i++){
                 let image = wishlist[i]['image']
-                let url = wishlist[i]['image']
-                let name = wishlist[i]['image']
-                let price = wishlist[i]['image']
-                let status = wishlist[i]['image']
-                
-                temp_html = ``
-                // $('#cards-box').append(temp_html)
+                let url = wishlist[i]['url']
+                let name = wishlist[i]['name']
+                let memo = wishlist[i]['memo']
+                let price = wishlist[i]['price']
+                let status = wishlist[i]['status']
+                console.log(url, name, price, status)
+                temp_html = `
+                      <div class="col">
+                        <div class="card">
+                          <img src="${image}" class="card-img-top" alt="...">
+                          <div class="card-body">
+                            <h5 class="card-title">"상품명 : ${name}"</h5>
+                            <p class="card-text">"메모 : ${memo}"</p>
+                            <p class="card-text">"가격 : ${price}"</p>
+                            <p class="card-text">"상태 : ${status}"</p>
+                          </div>
+                        </div>
+                      </div>
+                `
+                $('#cards-box').append(temp_html)
             }
             return
         }
@@ -139,12 +155,11 @@
             $('#cards-box').empty()
             $.ajax({                        //ajax GET으로 list를 읽어와서 카드 생성
                 type: 'GET',                //받는 변수 : image, url, name, price, memo, status, listId
-                url: '/wishlist?list=All',
+                url: '/wishlist/all',
                 data: {},
                 success: function (response) {
                     all_wishlist = response['all_wishlist']
                     list_to_card(all_wishlist)
-                    alert(response['msg'])  
                 }
             })
         }
@@ -152,12 +167,11 @@
             $('#cards-box').empty()
             $.ajax({                        //ajax GET으로 list를 읽어와서 카드 생성
                 type: 'GET',                //받는 변수 : image, url, name, price, memo, status, listId
-                url: '/wishlist?list=ready',
+                url: '/wishlist/ready',
                 data: {},
                 success: function (response) {
                     ready_wishlist = response['ready_wishlist']
                     list_to_card(ready_wishlist)
-                    alert(response['msg']) 
                 }
             })
         }
@@ -165,12 +179,11 @@
             $('#cards-box').empty()
             $.ajax({                        //ajax GET으로 list를 읽어와서 카드 생성
                 type: 'GET',                //받는 변수 : image, url, name, price, memo, status, listId
-                url: '/wishlist?list=refer',
+                url: '/wishlist/refer',
                 data: {},
                 success: function (response) {
                     refer_wishlist = response['refer_wishlist']
                     list_to_card(refer_wishlist)
-                    alert(response['msg']) 
                 }
             })
         }
@@ -178,25 +191,28 @@
             $('#cards-box').empty()
             $.ajax({                        //ajax GET으로 list를 읽어와서 카드 생성
                 type: 'GET',                //받는 변수 : image, url, name, price, memo, status, listId
-                url: '/wishlist?list=done',
+                url: '/wishlist/done',
                 data: {},
                 success: function (response) {
                     done_wishlist = response['done_wishlist']
                     list_to_card(done_wishlist)
-                    alert(response['msg']) 
                 }
             })
         }
 
 
         //DB에 새로운 정보를 추가하는 함수
-        function posting() {                
+        function posting() {
+            if (url_verifier == 'false'){
+                alert('url이 맞는지 검사해 주세요!!');
+                return
+            }
             let url = $('#url_input').val()    //변수 : url, name, price, memo, status
             let name = $('#name_input').val()
             let price = $('#price_input').val()
             let memo = $('#memo_input').val()
             let status = $('#status_input').val()
-            $.ajax({                      
+            $.ajax({
                 type: 'POST',
                 url: '/wishlist',
                 data: {url_give: url, name_give: name, price_give: price, memo_give: memo, status_give: status},
@@ -255,26 +271,31 @@
         //url 형식이 맞는지 검증하는 함수. url 검증 버튼에서 call
         function url_certifi(){
             let url = $('#url_input').val()
+
             if(url == ""){
                 alert("URL을 입력해 주세요!!")
                 return
             }
             //url 형식 검증
-            let regex = /(http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/;
+            let regex =  /^(((http(s?))\:\/\/)?)([0-9a-zA-Z\-]+\.)+[a-zA-Z]{2,6}(\:[0-9]+)?(\/\S*)?/;
+
             if (regex.test(url)) {
                 // location.href = url;     해당 url로 이동하는 식
                 alert(url)
+                url_verifier = 'true'
+                return
             }else {
-                alert("유효하지 않은 url")
+                alert("유효하지 않은 url입니다")
+                return
             }
         }
 
         //box open&close 함수들
         function open_posting_box(){            //상품 등록 박스를 open
-            $('#post-box').show()
+            $('#posting-box').show()
         }
         function close_posting_box(){           //상품 등록 박스를 close
-            $('#post-box').hide()
+            $('#posting-box').hide()
         }
 
         function open_modify_box(listId) {         //상품 수정 박스를 open
@@ -304,43 +325,40 @@
 <body>
 <div class="mytitle">
     <h1><b>나만의 찜 장바구니</b></h1>
-    <button onclick="open_box()"><h4><b>상품 추가</b></h4></button>
+    <button onclick="open_posting_box()"><h4><b>상품 추가</b></h4></button>
     <div class="btn-group" role="group" aria-label="Basic outlined example">
-        <button onclick="listing()" type="button" class="btn btn-outline-light">전체보기</button>
+        <button onclick="listing_all()" type="button" class="btn btn-outline-light">전체보기</button>
         <button onclick="listing_ready()" type="button" class="btn btn-outline-light">구매예정만</button>
         <button onclick="listing_refer()" type="button" class="btn btn-outline-light">보류만</button>
         <button onclick="listing_done()" type="button" class="btn btn-outline-light">구입완료만</button>
     </div>
 </div>
-<div class="mypost" id="post-box">
-    <div class="form-floating">
-        <input type="title" class="form-control" id="floatingtitle" placeholder="title">
-        <label for="floatingtitle">품명</label>
+<div class="mypost" id="posting-box">
+    <div class="form-floating" id="url-box">
+        <input type="text" class="form-control" id="url_input" placeholder="url">
+        <button onclick="url_certifi()">url 검증</button>
+        <label for="url_input">url</label>
     </div>
     <div class="form-floating">
-        <input type="title" class="form-control" id="floatingmodel" placeholder="title">
-        <label for="floatingtitle">모델명</label>
+        <input type="text" class="form-control" id="name_input" placeholder="name">
+        <label for="name_input">상품명</label>
     </div>
     <div class="form-floating">
-        <input type="title" class="form-control" id="floatingmemo" placeholder="title" >
-        <label for="floatingtitle">메모</label>
+        <input type="text" class="form-control" id="price_input" placeholder="price" >
+        <label for="price_input">가격</label>
     </div>
     <div class="form-floating">
-        <input type="title" class="form-control" id="floatingcount" placeholder="title">
-        <label for="floatingtitle">보유수량</label>
+        <input type="text" class="form-control" id="memo_input" placeholder="memo">
+        <label for="memo_input">메모</label>
     </div>
-    <div class="form-check form-check-inline">
-        <input class="form-check-input" type="checkbox" id="check_done" value="구매완료">
-        <label class="form-check-label" for="check_done">구매완료</label>
-    </div>
-    <div class="form-check form-check-inline">
-        <input class="form-check-input" type="checkbox" id="check_defer" value="보류하기">
-        <label class="form-check-label" for="check_defer">보류하기</label>
+    <div class="form-floating">
+        <input type="text" class="form-control" id="status_input" placeholder="status">
+        <label for="status_input">상태(ready,refer,done)</label>
     </div>
 
     <div class="mybtns">
         <button onclick="posting()" type="button" class="btn btn-dark">기록하기</button>
-        <button onclick="close_box()" type="button" class="btn btn-outline-dark">닫기</button>
+        <button onclick="close_posting_box()" type="button" class="btn btn-outline-dark">닫기</button>
     </div>
 </div>
 
