@@ -134,17 +134,17 @@
                 let status = wishlist[i]['status']
                 console.log(url, name, price, status)
                 temp_html = `
-                      <div class="col">
+                    <div class="col">
                         <div class="card">
-                          <img src="${image}" class="card-img-top" alt="...">
-                          <div class="card-body">
+                        <img src="${image}" class="card-img-top" alt="...">
+                        <div class="card-body">
                             <h5 class="card-title">"상품명 : ${name}"</h5>
                             <p class="card-text">"메모 : ${memo}"</p>
                             <p class="card-text">"가격 : ${price}"</p>
                             <p class="card-text">"상태 : ${status}"</p>
-                          </div>
                         </div>
-                      </div>
+                        </div>
+                    </div>
                 `
                 $('#cards-box').append(temp_html)
             }
@@ -328,51 +328,52 @@
     <button onclick="open_posting_box()"><h4><b>상품 추가</b></h4></button>
     <div class="btn-group" role="group" aria-label="Basic outlined example">
         <button onclick="listing_all()" type="button" class="btn btn-outline-light">전체보기</button>
-        <button onclick="listing_ready()" type="button" class="btn btn-outline-light">구매예정만</button>
-        <button onclick="listing_refer()" type="button" class="btn btn-outline-light">보류만</button>
-        <button onclick="listing_done()" type="button" class="btn btn-outline-light">구입완료만</button>
+        <button onclick="listing_ready()" type="button" class="btn btn-outline-light">구매예정📌</button>
+        <button onclick="listing_refer()" type="button" class="btn btn-outline-light">보류♻</button>
+        <button onclick="listing_done()" type="button" class="btn btn-outline-light">구매완료✅</button>
     </div>
 </div>
 <div class="mypost" id="posting-box">
     <div class="form-floating" id="url-box">
         <input type="text" class="form-control" id="url_input" placeholder="url">
         <button onclick="url_certifi()">url 검증</button>
-        <label for="url_input">url</label>
+        <label for="url_input">URL</label>
     </div>
     <div class="form-floating">
         <input type="title" class="form-control" id="floatingtitle" placeholder="title">
-        <label for="floatingtitle">품명</label>
+        <label for="floatingtitle">상품이름</label>
     </div>
     <div class="form-floating">
         <input type="title" class="form-control" id="floatingmodel" placeholder="title">
-        <label for="floatingtitle">모델명</label>
+        <label for="floatingtitle">가격</label>
     </div>
     <div class="form-floating">
         <input type="text" class="form-control" id="memo_input" placeholder="memo">
         <label for="memo_input">메모</label>
     </div>
-    <div class="form-floating">
-        <input type="title" class="form-control" id="floatingcount" placeholder="title">
-        <label for="floatingtitle">보유수량</label>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" id="check_done" value="구매완료">
+        <label class="form-check-label" for="check_done">구매예정</label>
     </div>
     <div class="form-check form-check-inline">
-        <input class="form-check-input" type="checkbox" id="check_done" value="구매완료">
+        <input class="form-check-input" type="radio" id="check_defer" value="보류하기">
+        <label class="form-check-label" for="check_defer">보류</label>
+    </div>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" id="check_done" value="구매완료">
         <label class="form-check-label" for="check_done">구매완료</label>
     </div>
-    <div class="form-check form-check-inline">
-        <input class="form-check-input" type="checkbox" id="check_defer" value="보류하기">
-        <label class="form-check-label" for="check_defer">보류하기</label>
-    </div>
     <div class="mybtns">
-        <button onclick="posting()" type="button" class="btn btn-dark">기록하기</button>
-        <button onclick="close_box()" type="button" class="btn btn-outline-dark">닫기</button>
+        <button onclick="posting()" type="button" class="btn btn-dark">등록</button>
+        <button onclick="close_box()" type="button" class="btn btn-outline-dark">취소</button>
     </div>
 </div>
 
 <div class="mymodifier" id="modify-box">
-    <div class="form-floating">
-        <input type="title" class="form-control" id="floatingtitle" placeholder="title">
-        <label for="floatingtitle">URL</label>
+    <div class="form-floating" id="url-box">
+        <input type="text" class="form-control" id="url_input" placeholder="url">
+        <button onclick="url_certifi()">url 검증</button>
+        <label for="url_input">URL</label>
     </div>
     <div class="form-floating">
         <input type="title" class="form-control" id="floatingtitle" placeholder="title">
