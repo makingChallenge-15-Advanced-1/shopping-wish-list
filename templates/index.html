@@ -242,6 +242,22 @@
             });
         }
 
+        //url 형식이 맞는지 검증하는 함수
+        function url_certifi(){
+            let url = $('#url_input').val()
+            if(url == ""){
+                alert("URL을 입력해 주세요!!")
+                return
+            }
+            //url 형식 검증
+            let regex = /(http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/;
+            if (regex.test(url)) {
+                // location.href = url;     해당 url로 이동하는 식
+                alert(url)
+            }else {
+                alert("유효하지 않은 url")
+            }
+        }
 
         //box open&close 함수들
         function open_posting_box(){            //상품 등록 박스를 open
