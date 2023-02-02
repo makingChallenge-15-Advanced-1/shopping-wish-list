@@ -117,10 +117,11 @@
     </style>
     <script>
         $(document).ready(function(){       //페이지 로딩 시 listing() 함수 호출
-          listing();
+            listing();
         });
-
-        function listing() {                //db의 정보를 카드 형식으로 보여줌
+    
+        // DB 정보를 표시해 주는 함수들
+        function listing() {                //모든 정보를 보여줌
             $('#cards-box').empty()
             $.ajax({                        //ajax GET으로 list를 읽어와서 카드 생성
                 type: 'GET',                //받는 변수 : image, url, name, price, memo, status, listId
@@ -131,35 +132,33 @@
                 }
             })
         }
-        function listing_ready() {          //당장구매 아이템만 보여주는 함수
+        function listing_ready() {          //당장구매 아이템만 보여줌
             $('#cards-box').empty()
             $.ajax({                        //ajax GET으로 list를 읽어와서 카드 생성
                 type: 'GET',                //받는 변수 : image, url, name, price, memo, status, listId
-                url: '/wishlist?list=All',
+                url: '/wishlist?list=ready',
                 data: {},
                 success: function (response) {
                     alert(response['msg']) 
                 }
             })
         }
-
-        function listing_refer() {          //보류 아이템만 보여주는 함수
+        function listing_refer() {          //보류 아이템만 보여줌
             $('#cards-box').empty()
             $.ajax({                        //ajax GET으로 list를 읽어와서 카드 생성
                 type: 'GET',                //받는 변수 : image, url, name, price, memo, status, listId
-                url: '/wishlist?list=All',
+                url: '/wishlist?list=refer',
                 data: {},
                 success: function (response) {
                     alert(response['msg']) 
                 }
             })
         }
-   
-        function listing_done() {          //구매완료 아이템만 보여주는 함수
+        function listing_done() {          //구매완료 아이템만 보여줌
             $('#cards-box').empty()
             $.ajax({                        //ajax GET으로 list를 읽어와서 카드 생성
                 type: 'GET',                //받는 변수 : image, url, name, price, memo, status, listId
-                url: '/wishlist?list=All',
+                url: '/wishlist?list=done',
                 data: {},
                 success: function (response) {
                     alert(response['msg']) 
@@ -168,7 +167,8 @@
         }
 
 
-        function posting() {                //입력한 정보를 데이터베이스에 추가하는 함수
+        //DB에 새로운 정보를 추가하는 함수
+        function posting() {                
             let url = "url"                 //변수 : url, name, price, memo, status
               $.ajax({                      
                 type: 'POST',
@@ -181,7 +181,9 @@
             });
         }
 
-        function modifying(listId) {           //사용자가 수정한 내용을 db에 업데이트
+
+        //특정 listId를 가진 사용자의 정보를 수정
+        function modifying(listId) {           
             $.ajax({                        //변수: url, name, price, memo, status, listId
                 type: 'PUT',
                 url: '/wishlist/listId',
@@ -192,8 +194,11 @@
                 }
             });
         }
+        //상태만 수정하는 함수 추가하기
 
-        function deleting(listId){             //특정 번호의 카드를 삭제하는 함수
+
+        //특정 listId를 가진 정보를 삭제
+        function deleting(listId){            
             $.ajax({
                 type: 'DELETE',
                 url: '/wishlist/listId',
@@ -205,6 +210,8 @@
             });
         }
 
+
+        //box open&close 함수들
         function open_posting_box(){            //상품 등록 박스를 open
             $('#post-box').show()
         }
