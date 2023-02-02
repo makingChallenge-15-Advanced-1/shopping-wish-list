@@ -28,8 +28,37 @@ def image_from_url(url):
 #db에 새로운 정보를 추가
 @app.route("/wishlist", methods=["POST"])
 def wishlist_post():                              #받는 변수 : url, name, price, memo, status
-    url_receive = request.form['url_give']    #listId 부여하는 식 넣기
-    image = image_from_url(url_receive)       #db 저장 : url, name, price, memo, status, listId
+    url_receive = request.form['url_give']          
+    name_receive = request.form['name_give']        
+    price_receive = request.form['price_give']
+    memo_receive = request.form['memo_give']
+    status_receive = request.form['status_give']
+
+    all_wishlist = list(db.wishlist.find({}, {'_id': False}))         #37~50 : listId 부여
+    sort_wishlist = sorted(all_wishlist, key=lambda d: d['num'])
+
+    if len(sort_wishlist == 0):
+        listId = 1
+    else:
+        count = 1
+        for item in sort_wishlist:
+            if item['listId'] == count:
+                count += 1
+                listId = count
+            else:
+                 listId = count
+                 break
+
+
+    doc = {                                 #db 저장 : url, name, price, memo, status, listId
+        'url': url_receive,
+        'name' : name_receive,
+        'price' : price_receive,
+        'memo' : memo_receive,
+        'status' : status_receive,
+        'listId' : listId
+    }
+    db.wishlist.insert_one(doc)
     return jsonify({'msg':'저장 완료!'})
 
 #db의 특정 정보를 수정
