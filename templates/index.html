@@ -12,21 +12,30 @@
             integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
             crossorigin="anonymous"></script>
 
-    <title>통합 쇼핑 찜바구니</title>
-    <link href="https://fonts.googleapis.com/css2?family=Gamja+Flower&family=Noto+Sans+KR&family=Single+Day&display=swap" rel="stylesheet">
+    <title>나의 쇼핑 찜바구니</title>
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&display=swap" rel="stylesheet">
 
     <style>
         * {
-            font-family: 'Single Day', cursive;
+            font-family: 'Nanum Gothic', sans-serif;
         }
 
+        html {
+            font-size: 13px;
+
+                @media (min-width: 768px) {
+                    font-size: 16px;
+                }
+            }
         .mytitle {
             width: 100%;
-            height: 250px;
+            height: 220px;
+            min-width: 800px;
 
-            background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://www.incimages.com/uploaded_files/image/1920x1080/getty_522735456_249841.jpg');
-            background-position: center;
-            background-size: cover;
+            background: #C068A8 url('/static/img/bgTop_whiteRec.png');
+            background-position:calc(50% + 200px) 0;
+            background-size:1;
+            background-repeat: no-repeat;
 
             color: white;
 
@@ -36,21 +45,226 @@
             justify-content: center;
         }
 
-        .mytitle > button {
-            width: 200px;
-            height: 50px;
-
-            background-color: transparent;
-            color: white;
-
-            border-radius: 50px;
-            border: 1px solid white;
-
-            padding-top: 10px;
-            margin: 10px 0px 20px 0px;
+        .mytitle > h1 > b {
+            top: 80px;
+            right: 60%;
+            position: absolute;
         }
-        .mytitle > button:hover {
-            border: 2px solid white;
+
+        .mytitle > h1 > img {
+            position: absolute;
+            left: calc(50% + 40px);
+            top:10px;
+        }
+
+        .mytitle > button {
+            cursor: pointer;
+            width: 180px;
+            height: 50px;
+            background-color: #E6C3DC;
+            color: #A03383;
+            border-radius: 10px;
+            border: none;
+            padding-top: 10px;
+            position: absolute;
+            top:140px;
+            right:65%;
+            box-shadow: 1px 3px 0 rgb(0,0,0,0.2);
+        }
+        
+        .mytitle > button:active {
+            top:142px;
+            box-shadow: 1px 1px 0 rgb(0,0,0,0.2);            
+            background-color: #d393c1;
+        }
+
+        .mytitle > .top-menu {
+            height:42px;
+            margin:300px auto 0 auto;
+            align-items: center;
+        }
+        .mytitle > .top-menu > ul {
+            padding: 0;
+            margin:0;
+        }
+        .mytitle > .top-menu > ul > li {
+            box-sizing: content-box;
+            float: left;
+
+            margin:0 30px;
+            list-style: none;
+
+        }
+        .mytitle > .top-menu > ul > li > a {
+            cursor: pointer;
+            display: block;
+
+            width:80px;
+            font-size: 18px;
+            font-weight: 700;
+            box-sizing: content-box;
+            position: relative;
+            text-align: center;
+            padding-left:30px;
+            padding-bottom: 10px;
+        }
+        .mytitle > .top-menu > ul > li.all > a {
+            background-image: url(/static/img/icon_allView_dark.png);
+            background-repeat: no-repeat;
+            background-size: 28px;
+            
+            color:#4c4c4c;
+        }
+        .mytitle > .top-menu > ul > li.all > a:hover,
+        .mytitle > .top-menu > ul > li.all > a:after,
+        .mytitle > .top-menu > ul > li.all > a:active
+         {
+            background-image: url(/static/img/icon_allView.png);
+            background-repeat: no-repeat;
+            background-size: 28px;
+            
+            color:#A03383;
+        }
+        .mytitle > .top-menu > ul > li.all > a:after {
+            content:"";
+            position: absolute;
+            left: 50%;
+            bottom: 0;
+            width: 0;
+            height: 3px;
+            background-color: #A03383;
+            transition: all .3s;
+        }
+        .mytitle > .top-menu > ul > li.all > a:before {
+            content:"";
+            position: absolute;
+            right: 50%;
+            bottom: 0;
+            width: 0;
+            height: 3px;
+            background-color: #A03383;
+            transition: all .3s;
+        }
+
+        .mytitle > .top-menu > ul > li.to-buy > a {
+            background-image: url(/static/img/icon_tobuy_dark.png);
+            background-repeat: no-repeat;
+            background-size: 28px;
+            
+            color:#4c4c4c;
+        }
+        .mytitle > .top-menu > ul > li.to-buy > a:hover,
+        .mytitle > .top-menu > ul > li.to-buy > a:after,
+        .mytitle > .top-menu > ul > li.to-buy > a:active
+         {
+            background-image: url(/static/img/icon_tobuy.png);
+            background-repeat: no-repeat;
+            background-size: 28px;
+            
+            color:#6720FF;
+        }
+        .mytitle > .top-menu > ul > li.to-buy > a:after {
+            content:"";
+            position: absolute;
+            left: 50%;
+            bottom: 0;
+            width: 0;
+            height: 3px;
+            background-color: #6720FF;
+            transition: all .3s;
+        }
+        .mytitle > .top-menu > ul > li.to-buy > a:before {
+            content:"";
+            position: absolute;
+            right: 50%;
+            bottom: 0;
+            width: 0;
+            height: 3px;
+            background-color: #6720FF;
+            transition: all .3s;
+        }
+
+        .mytitle > .top-menu > ul > li.hold > a {
+            background-image: url(/static/img/icon_hold_dark.png);
+            background-repeat: no-repeat;
+            background-size: 26px;
+            
+            color:#4c4c4c;
+        }
+        .mytitle > .top-menu > ul > li.hold > a:hover,
+        .mytitle > .top-menu > ul > li.hold > a:after,
+        .mytitle > .top-menu > ul > li.hold > a:active
+         {
+            background-image: url(/static/img/icon_hold.png);
+            background-repeat: no-repeat;
+            background-size: 26px;
+            
+            color:#C0833C;
+        }
+        .mytitle > .top-menu > ul > li.hold > a:after {
+            content:"";
+            position: absolute;
+            left: 50%;
+            bottom: 0;
+            width: 0;
+            height: 3px;
+            background-color: #C0833C;
+            transition: all .3s;
+        }
+        .mytitle > .top-menu > ul > li.hold > a:before {
+            content:"";
+            position: absolute;
+            right: 50%;
+            bottom: 0;
+            width: 0;
+            height: 3px;
+            background-color: #C0833C;
+            transition: all .3s;
+        }
+
+        .mytitle > .top-menu > ul > li.order > a {
+            background-image: url(/static/img/icon_cardComplete_dark.png);
+            background-repeat: no-repeat;
+            background-size: auto;
+            
+            color:#4c4c4c;
+        }
+        .mytitle > .top-menu > ul > li.order > a:hover,
+        .mytitle > .top-menu > ul > li.order > a:after,
+        .mytitle > .top-menu > ul > li.order > a:active
+         {
+            background-image: url(/static/img/icon_cardComplete.png);
+            background-repeat: no-repeat;
+            background-size: auto;
+            
+            color:#089DCC;
+        }
+        .mytitle > .top-menu > ul > li.order > a:after {
+            content:"";
+            position: absolute;
+            left: 50%;
+            bottom: 0;
+            width: 0;
+            height: 3px;
+            background-color: #089DCC;
+            transition: all .3s;
+        }
+        .mytitle > .top-menu > ul > li.order > a:before {
+            content:"";
+            position: absolute;
+            right: 50%;
+            bottom: 0;
+            width: 0;
+            height: 3px;
+            background-color: #089DCC;
+            transition: all .3s;
+        }
+
+        .mytitle > .top-menu > ul > li > a:hover:after {
+            width: 50%
+        }
+        .mytitle > .top-menu > ul > li > a:hover:before {
+            width: 50%
         }
 
         .mycards {
@@ -60,13 +274,81 @@
         }
 
         .mypost {
-            width: 95%;
-            max-width: 500px;
-            margin: 20px auto 0px auto;
+            width: 100%;
+            max-width: 600px;
+            margin: 0px auto;
             padding: 20px;
-            box-shadow: 0px 0px 3px 0px gray;
-
+            box-shadow: 0px 1px 4px rgb(0,0,0,0.3);      
             display: none;
+            position: absolute;
+            top: 240px;
+            z-index: 1000;
+            box-sizing: content-box;
+            background-color: #FDFAFC;
+            border-radius: 16px;
+        }
+        .mypost > .card-title {
+            display: block;
+            height:30px;
+            border-bottom: 1px solid #D9D9D9;
+        }
+        .mypost > .card-title > h5 {
+            color:#4c4c4c;
+            font-weight: 700;
+            float: left;
+        }
+        .mypost > .card-title > button {
+            border: none;
+            text-indent: -9999em;
+            background-image: url(/static/img/icon_close.png);
+            background-repeat: no-repeat;
+            background-size: 32px;
+            background-color: transparent;
+            width:32px;
+            height:32px;
+            position: absolute;
+            right: 10px;
+            top: 10px;
+        }
+
+        .mypost > .form-floating > label {
+            display: block;
+            position:initial;
+            left: 0;
+            font-size: 14px;
+            color: #000000;
+            font-weight: 400;
+            padding: 0 0 4px 0;
+        }
+
+        .mypost > .form-floating > .form-control {
+            padding: 6px 8px 8px 8px;
+            font-size: 1.2rem;
+            border: 1px solid #A4A4A4;
+            border-radius: 8px;
+        }
+        .mypost > .form-floating > .required {
+            border-color:#3733FF;
+        }
+        .mypost > .form-floating > .form-url {
+            width:calc(100% - 58px);
+        }
+        
+        .mypost > .form-floating > button.url-check {
+            background-image: url(/static/img/icon_check.png);
+            background-repeat: no-repeat;
+            background-size: 47.5px;
+            background-color: transparent;
+
+            border: none;
+            text-indent: -9999em;
+
+            width:47.5px;
+            height:47.5px;
+
+            cursor: pointer;
+            float: right;
+            margin-top: -47.5px;
         }
 
         .no_item_list {
@@ -380,41 +662,55 @@
 
 <body>
 <div class="mytitle">
-    <h1><b>나만의 찜 장바구니</b></h1>
+    
+    <h1><b>나의 쇼핑 찜바구니</b><img src="/static/img/img_shoppingBasket.png" alt="장바구니"></h1>
+    
     <button onclick="open_posting_box()"><h4><b>찜 상품 추가</b></h4></button>
-    <div class="btn-group" role="group" aria-label="Basic outlined example">
-        <button onclick="wishlist_get_all()" type="button" class="btn btn-outline-light">전체보기</button>
-        <button onclick="wishlist_get_ready()" type="button" class="btn btn-outline-light">구매예정만</button>
-        <button onclick="wishlist_get_refer()" type="button" class="btn btn-outline-light">구매보류만</button>
-        <button onclick="wishlist_get_done()" type="button" class="btn btn-outline-light">구입완료만</button>
+    <div class="mypost" id="posting-box">
+        <div class="card-title">
+            <h5>상품 등록하기</h5>
+            <button onclick="close_posting_box()" type="button" class="pop_close">닫기</button>
+        </div>
+        <div class="form-floating" id="url-box">
+            <label for="url_input">URL</label>
+            <input type="text" class="required form-url form-control" id="url_input" placeholder="url">
+            <button class="url-check" onclick="url_certifi()">url 검증</button>
+        </div>
+        <div class="form-floating">
+            <label for="name_input">상품명</label>
+            <input type="text" class="required form-control" id="name_input" placeholder="name">
+        </div>
+        <div class="form-floating">
+            <label for="price_input">가격</label>
+            <input type="text" class="form-control" id="price_input" placeholder="price" >
+        </div>
+        <div class="form-floating">
+            <label for="memo_input">메모</label>
+            <input type="text" class="form-control" id="memo_input" placeholder="memo">
+        </div>
+        <div class="form-floating">
+            <input type="text" class="form-control" id="status_input" placeholder="status">
+            <label for="status_input">상태(ready,refer,done)</label>
+        </div>
+    
+        <div class="btn-group" role="group" aria-label="Basic outlined example">
+            <button onclick="wishlist_get_ready()" type="button" class="btn btn-outline-dark">구매예정</button>
+            <button onclick="wishlist_get_refer()" type="button" class="btn btn-outline-dark">구매보류</button>
+            <button onclick="wishlist_get_done()" type="button" class="btn btn-outline-dark">구입완료</button>
+        </div>
+    
+        <div class="mybtns">
+            <button onclick=wishlist_post()" type="button" class="btn btn-dark">기록하기</button>
+            <button onclick="close_posting_box()" type="button" class="btn btn-outline-dark">닫기</button>
+        </div>
     </div>
-</div>
-<div class="mypost" id="posting-box">
-    <div class="form-floating" id="url-box">
-        <input type="text" class="form-control" id="url_input" placeholder="url">
-        <button onclick="url_certifi()">url 검증</button>
-        <label for="url_input">url</label>
-    </div>
-    <div class="form-floating">
-        <input type="text" class="form-control" id="name_input" placeholder="name">
-        <label for="name_input">상품명</label>
-    </div>
-    <div class="form-floating">
-        <input type="text" class="form-control" id="price_input" placeholder="price" >
-        <label for="price_input">가격</label>
-    </div>
-    <div class="form-floating">
-        <input type="text" class="form-control" id="memo_input" placeholder="memo">
-        <label for="memo_input">메모</label>
-    </div>
-    <div class="form-floating">
-        <input type="text" class="form-control" id="status_input" placeholder="status">
-        <label for="status_input">상태(ready,refer,done)</label>
-    </div>
-
-    <div class="mybtns">
-        <button onclick=wishlist_post()" type="button" class="btn btn-dark">기록하기</button>
-        <button onclick="close_posting_box()" type="button" class="btn btn-outline-dark">닫기</button>
+    <div class="top-menu">
+        <ul>
+            <li onclick="wishlist_get_all()" class="all"><a>전체보기</a></li>
+            <li onclick="wishlist_get_ready()" class="to-buy"><a>구매예정</a></li>
+            <li onclick="wishlist_get_refer()" class="hold"><a>구매보류</a></li>
+            <li onclick="wishlist_get_done()" class="order"><a>구입완료</a></li>
+        </ul>
     </div>
 </div>
 
