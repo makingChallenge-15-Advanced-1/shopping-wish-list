@@ -27,30 +27,30 @@ def image_from_url(url):
 
 #db에 새로운 정보를 추가
 @app.route("/shop", methods=["POST"])
-def item_post():                              #받는 변수 : url, title, price, memo, status
-    url_receive = request.form['url_give']    #num 부여하는 식 넣기
-    image = image_from_url(url_receive)       #db 저장 : url, title, price, memo, status, num
+def item_post():                              #받는 변수 : url, name, price, memo, status
+    url_receive = request.form['url_give']    #listId 부여하는 식 넣기
+    image = image_from_url(url_receive)       #db 저장 : url, name, price, memo, status, listId
     return jsonify({'msg':'저장 완료!'})
 
 #db의 특정 정보를 수정
-@app.route("/shop/num", methods=["PUT"])    #받는 변수 : url, title, price, memo, status, num
+@app.route("/shop/listId", methods=["PUT"])    #받는 변수 : url, name, price, memo, status, listId
 def item_modify():
-    url_receive = request.form['url_give']      #db 저장 : url, title, price, memo, status, num
+    url_receive = request.form['url_give']      #db 저장 : url, name, price, memo, status, listId
     image = image_from_url(url_receive)
     return jsonify({'msg':'수정 완료!'})
 
 #해당 번호의 db 정보를 return
-@app.route("/shop/num", methods=["GET"])        
-def item_num_get():                             #url에서 image 추출해서 전달하기
-    num_receive = request.args.get('num_give')
+@app.route("/shop/listId", methods=["GET"])        
+def item_listId_get():                             #url에서 image 추출해서 전달하기
+    listId_receive = request.args.get('listId')
     url = "url"
     image = image_from_url(url)
     return jsonify({'msg':'전달 완료!'})
 
 #해당 번호의 db 정보를 삭제
-@app.route("/shop/num", methods=["DELETE"])
+@app.route("/shop/listId", methods=["DELETE"])
 def meta_del():
-    num_receive = request.form['num_give']
+    listId_receive = request.form['listId_give']
     return jsonify({'msg':'삭제 완료!'})
 
 if __name__ == '__main__':

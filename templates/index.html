@@ -123,7 +123,7 @@
         function listing() {                //db의 정보를 카드 형식으로 보여줌
             $('#cards-box').empty()
             $.ajax({                        //ajax GET으로 list를 읽어와서 카드 생성
-                type: 'GET',                //받는 변수 : image, url, title, price, memo, status, num
+                type: 'GET',                //받는 변수 : image, url, name, price, memo, status, listId
                 url: '/shop?list=All',
                 data: {},
                 success: function (response) {
@@ -134,7 +134,7 @@
         function listing_ready() {          //당장구매 아이템만 보여주는 함수
             $('#cards-box').empty()
             $.ajax({                        //ajax GET으로 list를 읽어와서 카드 생성
-                type: 'GET',                //받는 변수 : image, url, title, price, memo, status, num
+                type: 'GET',                //받는 변수 : image, url, name, price, memo, status, listId
                 url: '/shop?list=All',
                 data: {},
                 success: function (response) {
@@ -146,7 +146,7 @@
         function listing_refer() {          //보류 아이템만 보여주는 함수
             $('#cards-box').empty()
             $.ajax({                        //ajax GET으로 list를 읽어와서 카드 생성
-                type: 'GET',                //받는 변수 : image, url, title, price, memo, status, num
+                type: 'GET',                //받는 변수 : image, url, name, price, memo, status, listId
                 url: '/shop?list=All',
                 data: {},
                 success: function (response) {
@@ -158,7 +158,7 @@
         function listing_done() {          //구매완료 아이템만 보여주는 함수
             $('#cards-box').empty()
             $.ajax({                        //ajax GET으로 list를 읽어와서 카드 생성
-                type: 'GET',                //받는 변수 : image, url, title, price, memo, status, num
+                type: 'GET',                //받는 변수 : image, url, name, price, memo, status, listId
                 url: '/shop?list=All',
                 data: {},
                 success: function (response) {
@@ -169,7 +169,7 @@
 
 
         function posting() {                //입력한 정보를 데이터베이스에 추가하는 함수
-            let url = "url"                 //변수 : url, title, price, memo, status
+            let url = "url"                 //변수 : url, name, price, memo, status
               $.ajax({                      
                 type: 'POST',
                 url: '/shop',
@@ -181,10 +181,10 @@
             });
         }
 
-        function modifying(num) {           //사용자가 수정한 내용을 db에 업데이트
-            $.ajax({                        //변수: url, title, price, memo, status, num
+        function modifying(listId) {           //사용자가 수정한 내용을 db에 업데이트
+            $.ajax({                        //변수: url, name, price, memo, status, listId
                 type: 'PUT',
-                url: '/shop/num',
+                url: '/shop/listId',
                 data: {url_give: url},
                 success: function (response) {
                     alert(response['msg'])
@@ -193,11 +193,11 @@
             });
         }
 
-        function deleting(num){             //특정 번호의 카드를 삭제하는 함수
+        function deleting(listId){             //특정 번호의 카드를 삭제하는 함수
             $.ajax({
                 type: 'DELETE',
-                url: '/shop/num',
-                data: {num_give: num},
+                url: '/shop/listId',
+                data: {listId_give: listId},
                 success: function (response) {
                     alert(response['msg'])
                     window.location.reload()
@@ -212,11 +212,11 @@
             $('#post-box').hide()
         }
 
-        function open_modify_box(num) {         //상품 수정 박스를 open
+        function open_modify_box(listId) {         //상품 수정 박스를 open
             $('#modify-box').empty()
             $.ajax({                            //기존 정보를 로딩해서 박스에 뿌려줌
-                type: 'GET',                    //받는 변수 : image, url, title, price, memo, status
-                url: '/shop/num?num_give='+num,
+                type: 'GET',                    //받는 변수 : image, url, name, price, memo, status
+                url: '/shop/listId?listId_give='+listId,
                 data: {},
                 success: function (response) { 
                     alert(response['msg'])
