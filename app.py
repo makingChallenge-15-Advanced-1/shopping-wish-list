@@ -116,7 +116,7 @@ def wishlist_modify():
         'price' : price_receive,
         'memo' : memo_receive,
         'status' : status_receive,
-        'listId' : listId_receive
+        'listId' : int(listId_receive)
     }
     db.wishlist.update_one({'listId':int(listId_receive)},{'$set':doc})
     return jsonify({'msg':'수정 완료!'})
@@ -134,7 +134,7 @@ def wishlist_modify_status():
 @app.route("/wishlist/{listId}", methods=["DELETE"])
 def wishlist_del():
     listId_receive = request.form['listId_give']
-    db.wishlist.delete_one({'listId':int(listId_receive)})
+    db.wishlist.delete_one({'listId': int(listId_receive)})
     return jsonify({'msg':'삭제 완료!'})
 
 if __name__ == '__main__':

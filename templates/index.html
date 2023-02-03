@@ -414,7 +414,7 @@
                 let price = wishlist[i]['price']
                 let status = wishlist[i]['status']
                 let listId = wishlist[i]['listId']
-                console.log(url, name, price, status, listId)
+
                 temp_html = `
                       <div class="col">
                         <div class="card">
@@ -509,7 +509,11 @@
 
 
         //특정 listId를 가진 사용자의 정보를 수정
-        function wishlist_modify(listId) {          
+        function wishlist_modify(listId) {
+            if (url_verifier == 'false') {
+                alert('url이 맞는지 검사해 주세요!!');
+                return
+            }
             let url = $('#url_modify').val()    
             let name = $('#name_modify').val()
             let price = $('#price_modify').val()
@@ -540,7 +544,7 @@
         }
 
         //특정 listId를 가진 정보를 삭제
-        function deleting(listId){            
+        function deleting(listId){
             $.ajax({
                 type: 'DELETE',
                 url: '/wishlist/{listId}',
@@ -613,7 +617,6 @@
                 data: {},
                 success: function (response) { 
                     rows = response['listId_item']
-                    console.log(rows)
                 }
             })
             let temp_html = `
@@ -640,7 +643,7 @@
                 </div>
 
                 <div class="mybtns">
-                    <button onclick="wishlist_modify(listId)" type="button" class="btn btn-dark">수정하기</button>
+                    <button onclick="wishlist_modify(${listId})" type="button" class="btn btn-dark">수정하기</button>
                     <button onclick="close_modify_box()" type="button" class="btn btn-outline-dark">닫기</button>
                 </div>
             `
@@ -700,7 +703,7 @@
         </div>
     
         <div class="mybtns">
-            <button onclick=wishlist_post()" type="button" class="btn btn-dark">기록하기</button>
+            <button onclick="wishlist_post()" type="button" class="btn btn-dark">기록하기</button>
             <button onclick="close_posting_box()" type="button" class="btn btn-outline-dark">닫기</button>
         </div>
     </div>
