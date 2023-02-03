@@ -8,7 +8,7 @@ from pymongo import MongoClient
 import certifi
 ca = certifi.where()
 # db 지우기
-client = MongoClient('mongodb+srv://test:sparta@Cluster0.kwrmlin.mongodb.net/?retryWrites=true&w=majority', 27017, tlsCAFile=ca)
+client = MongoClient('<db정보>', 27017, tlsCAFile=ca)
 db = client.dbsparta
 
 @app.route('/')
