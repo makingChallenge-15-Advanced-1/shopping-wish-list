@@ -106,7 +106,7 @@ function wishlist_post() {
         alert('상품명을 입력해 주세요!!');
         return
     }
-    alert(test)
+
     $.ajax({
         type: 'POST',
         url: '/wishlist',
