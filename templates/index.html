@@ -351,26 +351,45 @@
             border-color: #3733FF;
         }
 
+        .mypost>.form-floating>.txt-required {
+            color:#FF0000;
+        }
+
         .mypost>.form-floating>.form-url {
             width: calc(100% - 58px);
+        }
+
+        .mypost>.form-floating>textarea.form-control {
+            height:80px;
+            clear:both;
+        }
+        .mypost>.form-floating>textarea::placeholder {
+            opacity: 1;
+            color: #777777;
         }
 
         .mypost>.form-floating>button.url-check {
             background-image: url(/static/img/icon_check.png);
             background-repeat: no-repeat;
-            background-size: 47.5px;
+            background-size: 48px;
             background-color: transparent;
+            border-radius: 8px;
+            border:0;
+            box-shadow: 1px 3px 0 rgb(0, 0, 0, 0.3);
 
-            border: none;
             text-indent: -9999em;
 
-            width: 47.5px;
-            height: 47.5px;
+            width: 48px;
+            height: 48px;
 
             cursor: pointer;
             float: right;
-            margin-top: -47.5px;
+            margin-top: -49px;
         }
+
+        .mypost>.form-floating>button.url-check:active {
+            box-shadow: 1px 1px 0 rgb(0, 0, 0, 0.3);
+            background-color: #0000FF;
 
         .no_item_list {
             width: 90%;
@@ -399,6 +418,16 @@
             margin: 10px auto 15px auto;
         }
 
+        .btn-outline-dark {
+            color:#000000;
+            background-color: #4C6FFD !important;
+            border-color: #4C6FFD !important;
+        }
+        .btn-outline-dark:hover {
+            color: #fff;
+            background-color: #4C6FFD !important;
+            border-color: #4C6FFD !important;
+        }
         .mybtns {
             display: flex;
             flex-direction: row;
@@ -419,6 +448,7 @@
         .card-body>input:hover {
             color: grey;
         }
+        
     </style>
     <script>
         var url_verifier = 'false';
@@ -717,19 +747,23 @@
                 <label for="url_input">URL</label>
                 <input type="text" class="required form-url form-control" id="url_input" placeholder="url">
                 <button class="url-check" onclick="url_certifi()">url 검증</button>
+                <p class="txt-required">* 필수 항목입니다.</p>
             </div>
             <div class="form-floating">
                 <label for="name_input">상품명</label>
                 <input type="text" class="required form-control" id="name_input" placeholder="name">
+                <p class="txt-required">* 필수 항목입니다.</p>
             </div>
             <div class="form-floating">
                 <label for="price_input">가격</label>
                 <input type="text" class="form-control" id="price_input" placeholder="price">
+                <p></p>
             </div>
             <div class="form-floating">
                 <label for="memo_input">메모</label>
-                <input type="text" class="form-control" id="memo_input" placeholder="memo">
-            </div>
+                <textarea class="form-control" id="memo_input" maxlength="100" placeholder="최대 100자까지 가능합니다."></textarea>
+                <p></p>
+             </div>
             <div class="form-floating">
                 <input type="text" class="form-control" id="status_input" placeholder="status">
                 <label for="status_input">상태(ready,refer,done)</label>
@@ -738,7 +772,7 @@
             <div class="btn-group" role="group" aria-label="Basic outlined example" id="status_btn">
                 <button type="button" class="btn btn-outline-dark">구매예정</button>
                 <button type="button" class="btn btn-outline-dark">구매보류</button>
-                <button type="button" class="btn btn-outline-dark">구입완료</button>
+                <button type="button" class="btn btn-outline-dark">구매완료</button>
             </div>
 
             <div class="mybtns">
@@ -751,7 +785,7 @@
                 <li onclick="wishlist_get_all()" class="all"><a>전체보기</a></li>
                 <li onclick="wishlist_get_ready()" class="to-buy"><a>구매예정</a></li>
                 <li onclick="wishlist_get_refer()" class="hold"><a>구매보류</a></li>
-                <li onclick="wishlist_get_done()" class="order"><a>구입완료</a></li>
+                <li onclick="wishlist_get_done()" class="order"><a>구매완료</a></li>
             </ul>
         </div>
     </div>
