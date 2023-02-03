@@ -275,7 +275,7 @@ html {
     width: 100%;
     max-width: 600px;
     margin: 0px auto;
-    padding: 20px;
+    padding: 30px;
     box-shadow: 0px 1px 4px rgb(0, 0, 0, 0.3);
     display: none;
     position: absolute;
@@ -402,16 +402,40 @@ html {
     margin: 10px auto 15px auto;
 }
 
+.btn-dark {
+    color:#ffffff;
+    background-color: #C068A8 !important;
+    border-color: #C068A8 !important;
+}
+
 .btn-outline-dark {
-    color: #000000;
-    background-color: #4C6FFD !important;
+    color: #333333;
+    background-color: #ffffff !important;
     border-color: #4C6FFD !important;
+}
+.mypost>.btn-group {
+    text-align: center;
+    display: flex;
+    margin: 0 87px;
+}
+
+.mypost>.btn-group>button {    
+    width: 142px;
+    height: 50px;
+
+    font-size: 15px;
 }
 
 .btn-outline-dark:hover {
-    color: #fff;
+    color: #ffffff;
     background-color: #4C6FFD !important;
     border-color: #4C6FFD !important;
+}
+.btn-outline-dark:focus {
+    color: #ffffff;
+    background-color: #4C6FFD !important;
+    border-color: #4C6FFD !important;
+    box-shadow: 0px 0px 0px 4px #abbbff;
 }
 
 .mybtns {
@@ -421,10 +445,16 @@ html {
     justify-content: center;
 
     margin-top: 20px;
+    padding-top:20px;
+    border-top:1px solid #D9D9D9;
 }
 
 .mybtns>button {
-    margin-right: 10px;
+    width: 200px;
+    height: 50px;
+    margin: 0 10px;
+    font-size: 18px;
+    font-weight: 700;
 }
 
 .card-body>input {
