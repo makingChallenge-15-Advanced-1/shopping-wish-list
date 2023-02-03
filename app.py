@@ -7,12 +7,13 @@ from bs4 import BeautifulSoup
 from pymongo import MongoClient
 import certifi
 ca = certifi.where()
-client = MongoClient('mongodb+srv://sayhong_db:happy*721@cluster0.cnaox23.mongodb.net/?retryWrites=true&w=majority', 27017, tlsCAFile=ca)
+# db 지우기
+client = MongoClient('mongodb+srv://test:sparta@Cluster0.kwrmlin.mongodb.net/?retryWrites=true&w=majority', 27017, tlsCAFile=ca)
 db = client.dbsparta
 
 @app.route('/')
 def home():
-   return render_template('index.html')
+    return render_template('index.html')
 
 
 #url에서 image 추출하는 함수
@@ -84,8 +85,8 @@ def wishlist_post():                              #받는 변수 : url, name, pr
                 count += 1
                 listId = count
             else:
-                 listId = count
-                 break
+                listId = count
+                break
 
     doc = {                                 #db 저장 : url, name, price, memo, status, listId
         'url': url_receive,
@@ -138,4 +139,4 @@ def wishlist_del():
     return jsonify({'msg':'삭제 완료!'})
 
 if __name__ == '__main__':
-   app.run('0.0.0.0', port=5000, debug=True)
+    app.run('0.0.0.0', port=5000, debug=True)
