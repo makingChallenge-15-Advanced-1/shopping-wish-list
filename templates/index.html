@@ -514,16 +514,20 @@
 
         //DB에 새로운 정보를 추가하는 함수
         function wishlist_post() {
-            if (url_verifier == 'false') {
-                alert('url이 맞는지 검사해 주세요!!');
-                return
-            }
             let url = $('#url_input').val()    //변수 : url, name, price, memo, status
             let name = $('#name_input').val()
             let price = $('#price_input').val()
             let memo = $('#memo_input').val()
             let status = $('#status_input').val()
             let test = $('#status_btn').val()
+            if (url_verifier == 'false'){
+                alert('url이 맞는지 검사해 주세요!!');
+                return
+            }
+            if (name.length == 0) {
+                alert('상품명을 입력해 주세요!!');
+                return
+            }
             alert(test)
             $.ajax({
                 type: 'POST',
@@ -539,15 +543,19 @@
 
         //특정 listId를 가진 사용자의 정보를 수정
         function wishlist_modify(listId) {
-            if (url_verifier == 'false') {
-                alert('url이 맞는지 검사해 주세요!!');
-                return
-            }
-            let url = $('#url_modify').val()
+            let url = $('#url_modify').val()    
             let name = $('#name_modify').val()
             let price = $('#price_modify').val()
             let memo = $('#memo_modify').val()
             let status = $('#status_modify').val()   //status 부분 수정하기
+            if (url_verifier == 'false') {
+                alert('url이 맞는지 검사해 주세요!!');
+                return
+            }
+            if (name.length == 0) {
+                alert('상품명을 입력해 주세요!!');
+                return
+            }
             $.ajax({                                 //변수: url, name, price, memo, status, listId
                 type: 'PUT',
                 url: '/wishlist/{listId}',
