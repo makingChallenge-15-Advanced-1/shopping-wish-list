@@ -15,8 +15,719 @@
     <title>나의 쇼핑 찜바구니</title>
     <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="static/style.css">
-    <script src="static/main.js"></script>
+    <style>
+        * {
+            font-family: 'Nanum Gothic', sans-serif;
+        }
+
+        html {
+            font-size: 13px;
+
+            @media (min-width: 768px) {
+                font-size: 16px;
+            }
+        }
+
+        .mytitle {
+            width: 100%;
+            height: 220px;
+            min-width: 800px;
+
+            background: #C068A8 url('/static/img/bgTop_whiteRec.png');
+            background-position: calc(50% + 200px) 0;
+            background-size: 1;
+            background-repeat: no-repeat;
+
+            color: white;
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+
+            margin-bottom: 100px;
+        }
+
+        .mytitle>h1>b {
+            top: 80px;
+            right: 60%;
+            position: absolute;
+        }
+
+        .mytitle>h1>img {
+            position: absolute;
+            left: calc(50% + 40px);
+            top: 10px;
+        }
+
+        .mytitle>button {
+            cursor: pointer;
+            width: 180px;
+            height: 50px;
+            background-color: #E6C3DC;
+            color: #A03383;
+            border-radius: 10px;
+            border: none;
+            padding-top: 10px;
+            position: absolute;
+            top: 140px;
+            right: 65%;
+            box-shadow: 1px 3px 0 rgb(0, 0, 0, 0.2);
+        }
+
+        .mytitle>button:active {
+            top: 142px;
+            box-shadow: 1px 1px 0 rgb(0, 0, 0, 0.2);
+            background-color: #d393c1;
+        }
+
+        .mytitle>.top-menu {
+            height: 42px;
+            margin: 300px auto 0 auto;
+            align-items: center;
+        }
+
+        .mytitle>.top-menu>ul {
+            padding: 0;
+            margin: 0;
+        }
+
+        .mytitle>.top-menu>ul>li {
+            box-sizing: content-box;
+            float: left;
+
+            margin: 0 30px;
+            list-style: none;
+
+        }
+
+        .mytitle>.top-menu>ul>li>a {
+            cursor: pointer;
+            display: block;
+
+            width: 80px;
+            font-size: 18px;
+            font-weight: 700;
+            box-sizing: content-box;
+            position: relative;
+            text-align: center;
+            padding-left: 30px;
+            padding-bottom: 10px;
+        }
+
+        .mytitle>.top-menu>ul>li.all>a {
+            background-image: url(/static/img/icon_allView_dark.png);
+            background-repeat: no-repeat;
+            background-size: 28px;
+
+            color: #4c4c4c;
+        }
+
+        .mytitle>.top-menu>ul>li.all>a:hover,
+        .mytitle>.top-menu>ul>li.all>a:after,
+        .mytitle>.top-menu>ul>li.all>a:active {
+            background-image: url(/static/img/icon_allView.png);
+            background-repeat: no-repeat;
+            background-size: 28px;
+
+            color: #A03383;
+        }
+
+        .mytitle>.top-menu>ul>li.all>a:after {
+            content: "";
+            position: absolute;
+            left: 50%;
+            bottom: 0;
+            width: 0;
+            height: 3px;
+            background-color: #A03383;
+            transition: all .3s;
+        }
+
+        .mytitle>.top-menu>ul>li.all>a:before {
+            content: "";
+            position: absolute;
+            right: 50%;
+            bottom: 0;
+            width: 0;
+            height: 3px;
+            background-color: #A03383;
+            transition: all .3s;
+        }
+
+        .mytitle>.top-menu>ul>li.to-buy>a {
+            background-image: url(/static/img/icon_tobuy_dark.png);
+            background-repeat: no-repeat;
+            background-size: 28px;
+
+            color: #4c4c4c;
+        }
+
+        .mytitle>.top-menu>ul>li.to-buy>a:hover,
+        .mytitle>.top-menu>ul>li.to-buy>a:after,
+        .mytitle>.top-menu>ul>li.to-buy>a:active {
+            background-image: url(/static/img/icon_tobuy.png);
+            background-repeat: no-repeat;
+            background-size: 28px;
+
+            color: #6720FF;
+        }
+
+        .mytitle>.top-menu>ul>li.to-buy>a:after {
+            content: "";
+            position: absolute;
+            left: 50%;
+            bottom: 0;
+            width: 0;
+            height: 3px;
+            background-color: #6720FF;
+            transition: all .3s;
+        }
+
+        .mytitle>.top-menu>ul>li.to-buy>a:before {
+            content: "";
+            position: absolute;
+            right: 50%;
+            bottom: 0;
+            width: 0;
+            height: 3px;
+            background-color: #6720FF;
+            transition: all .3s;
+        }
+
+        .mytitle>.top-menu>ul>li.hold>a {
+            background-image: url(/static/img/icon_hold_dark.png);
+            background-repeat: no-repeat;
+            background-size: 26px;
+
+            color: #4c4c4c;
+        }
+
+        .mytitle>.top-menu>ul>li.hold>a:hover,
+        .mytitle>.top-menu>ul>li.hold>a:after,
+        .mytitle>.top-menu>ul>li.hold>a:active {
+            background-image: url(/static/img/icon_hold.png);
+            background-repeat: no-repeat;
+            background-size: 26px;
+
+            color: #C0833C;
+        }
+
+        .mytitle>.top-menu>ul>li.hold>a:after {
+            content: "";
+            position: absolute;
+            left: 50%;
+            bottom: 0;
+            width: 0;
+            height: 3px;
+            background-color: #C0833C;
+            transition: all .3s;
+        }
+
+        .mytitle>.top-menu>ul>li.hold>a:before {
+            content: "";
+            position: absolute;
+            right: 50%;
+            bottom: 0;
+            width: 0;
+            height: 3px;
+            background-color: #C0833C;
+            transition: all .3s;
+        }
+
+        .mytitle>.top-menu>ul>li.order>a {
+            background-image: url(/static/img/icon_cardComplete_dark.png);
+            background-repeat: no-repeat;
+            background-size: auto;
+
+            color: #4c4c4c;
+        }
+
+        .mytitle>.top-menu>ul>li.order>a:hover,
+        .mytitle>.top-menu>ul>li.order>a:after,
+        .mytitle>.top-menu>ul>li.order>a:active {
+            background-image: url(/static/img/icon_cardComplete.png);
+            background-repeat: no-repeat;
+            background-size: auto;
+
+            color: #089DCC;
+        }
+
+        .mytitle>.top-menu>ul>li.order>a:after {
+            content: "";
+            position: absolute;
+            left: 50%;
+            bottom: 0;
+            width: 0;
+            height: 3px;
+            background-color: #089DCC;
+            transition: all .3s;
+        }
+
+        .mytitle>.top-menu>ul>li.order>a:before {
+            content: "";
+            position: absolute;
+            right: 50%;
+            bottom: 0;
+            width: 0;
+            height: 3px;
+            background-color: #089DCC;
+            transition: all .3s;
+        }
+
+        .mytitle>.top-menu>ul>li>a:hover:after {
+            width: 50%
+        }
+
+        .mytitle>.top-menu>ul>li>a:hover:before {
+            width: 50%
+        }
+
+        .mycards {
+            margin: 20px auto 0px auto;
+            width: 95%;
+            max-width: 1300px;
+        }
+
+        .mypost {
+            width: 100%;
+            max-width: 600px;
+            margin: 0px auto;
+            padding: 20px;
+            box-shadow: 0px 1px 4px rgb(0, 0, 0, 0.3);
+            display: none;
+            position: absolute;
+            top: 240px;
+            z-index: 1000;
+            box-sizing: content-box;
+            background-color: #FDFAFC;
+            border-radius: 16px;
+        }
+
+        .mypost>.card-title {
+            display: block;
+            height: 30px;
+            border-bottom: 1px solid #D9D9D9;
+        }
+
+        .mypost>.card-title>h5 {
+            color: #4c4c4c;
+            font-weight: 700;
+            float: left;
+        }
+
+        .mypost>.card-title>button {
+            border: none;
+            text-indent: -9999em;
+            background-image: url(/static/img/icon_close.png);
+            background-repeat: no-repeat;
+            background-size: 32px;
+            background-color: transparent;
+            width: 32px;
+            height: 32px;
+            position: absolute;
+            right: 10px;
+            top: 10px;
+        }
+
+        .mypost>.form-floating>label {
+            display: block;
+            position: initial;
+            left: 0;
+            font-size: 14px;
+            color: #000000;
+            font-weight: 400;
+            padding: 0 0 4px 0;
+        }
+
+        .mypost>.form-floating>.form-control {
+            padding: 6px 8px 8px 8px;
+            font-size: 1.2rem;
+            border: 1px solid #A4A4A4;
+            border-radius: 8px;
+        }
+
+        .mypost>.form-floating>.required {
+            border-color: #3733FF;
+        }
+
+        .mypost>.form-floating>.txt-required {
+            color:#FF0000;
+        }
+
+        .mypost>.form-floating>.form-url {
+            width: calc(100% - 58px);
+        }
+
+        .mypost>.form-floating>textarea.form-control {
+            height:80px;
+            clear:both;
+        }
+        .mypost>.form-floating>textarea::placeholder {
+            opacity: 1;
+            color: #777777;
+        }
+
+        .mypost>.form-floating>button.url-check {
+            background-image: url(/static/img/icon_check.png);
+            background-repeat: no-repeat;
+            background-size: 48px;
+            background-color: transparent;
+            border-radius: 8px;
+            border:0;
+            box-shadow: 1px 3px 0 rgb(0, 0, 0, 0.3);
+
+            text-indent: -9999em;
+
+            width: 48px;
+            height: 48px;
+
+            cursor: pointer;
+            float: right;
+            margin-top: -49px;
+        }
+
+        .mypost>.form-floating>button.url-check:active {
+            box-shadow: 1px 1px 0 rgb(0, 0, 0, 0.3);
+            background-color: #0000FF;
+
+        .no_item_list {
+            width: 90%;
+            height: 300px;
+            margin: 20px auto 0px auto;
+            padding: 20px;
+            box-shadow: 0px 0px 3px 0px gray;
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .mymodifier {
+            width: 95%;
+            max-width: 500px;
+            margin: 20px auto 0px auto;
+            padding: 20px;
+            box-shadow: 0px 0px 3px 0px gray;
+
+            display: none;
+        }
+
+        .form-floating {
+            margin: 10px auto 15px auto;
+        }
+
+        .btn-outline-dark {
+            color:#000000;
+            background-color: #4C6FFD !important;
+            border-color: #4C6FFD !important;
+        }
+        .btn-outline-dark:hover {
+            color: #fff;
+            background-color: #4C6FFD !important;
+            border-color: #4C6FFD !important;
+        }
+        .mybtns {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+
+            margin-top: 20px;
+        }
+
+        .mybtns>button {
+            margin-right: 10px;
+        }
+
+        .card-body>input {
+            color: lightgrey;
+        }
+
+        .card-body>input:hover {
+            color: grey;
+        }
+        
+    </style>
+    <script>
+        var url_verifier = 'false';
+
+        $(document).ready(function () {       //페이지 로딩 시 wishlist_get_all() 함수 호출
+            wishlist_get_all();
+        });
+
+        // DB 정보를 표시해 주는 함수들
+        function list_to_card(wishlist) {        //받은 list를 카드로 만들어 화면에 추가해 주는 함수
+            for (let i = 0; i < wishlist.length; i++) {
+                let image = wishlist[i]['image']
+                let url = wishlist[i]['url']
+                let name = wishlist[i]['name']
+                let memo = wishlist[i]['memo']
+                let price = wishlist[i]['price']
+                let status = wishlist[i]['status']
+                let listId = wishlist[i]['listId']
+
+                temp_html = `
+                      <div class="col">
+                        <div class="card">
+                            <a href="${url}">
+                                <img src="${image}" class="card-img-top" alt="...">
+                            </a>
+                            <div class="card-body">
+                                <h5 class="card-title">"상품명 : ${name}"</h5>
+                                <p class="card-text">"메모 : ${memo}"</p>
+                                <p class="card-text">"가격 : ${price}"</p>
+                                <p class="card-text">"상태 : ${status}"</p>
+                                <input onclick="open_modify_box(${listId})" type='button' class='btn' name='btn' value='수정하기'
+                                    style="float: right;">
+                                <input onclick="wishlist_delete(${listId})" type='button' class='btn' name='btn' value='삭제하기'
+                                    style="float: right;">
+                            </div>
+                        </div>
+                    </div>
+                `
+                $('#cards-box').append(temp_html)
+            }
+            return
+        }
+
+        function wishlist_get_all() {                //모든 정보를 보여줌
+            $('#cards-box').empty()
+            $.ajax({                        //ajax GET으로 list를 읽어와서 카드 생성
+                type: 'GET',                //받는 변수 : image, url, name, price, memo, status, listId
+                url: '/wishlist?list=all',
+                data: {},
+                success: function (response) {
+                    wishlist = response['wishlist']
+                    list_to_card(wishlist)
+                }
+            })
+        }
+        function wishlist_get_ready() {          //당장구매 아이템만 보여줌
+            $('#cards-box').empty()
+            $.ajax({                        //ajax GET으로 list를 읽어와서 카드 생성
+                type: 'GET',                //받는 변수 : image, url, name, price, memo, status, listId
+                url: '/wishlist?list=ready',
+                data: {},
+                success: function (response) {
+                    wishlist = response['wishlist']
+                    list_to_card(wishlist)
+                }
+            })
+        }
+        function wishlist_get_refer() {          //보류 아이템만 보여줌
+            $('#cards-box').empty()
+            $.ajax({                        //ajax GET으로 list를 읽어와서 카드 생성
+                type: 'GET',                //받는 변수 : image, url, name, price, memo, status, listId
+                url: '/wishlist?list=refer',
+                data: {},
+                success: function (response) {
+                    wishlist = response['wishlist']
+                    list_to_card(wishlist)
+                }
+            })
+        }
+        function wishlist_get_done() {          //구매완료 아이템만 보여줌
+            $('#cards-box').empty()
+            $.ajax({                        //ajax GET으로 list를 읽어와서 카드 생성
+                type: 'GET',                //받는 변수 : image, url, name, price, memo, status, listId
+                url: '/wishlist?list=done',
+                data: {},
+                success: function (response) {
+                    wishlist = response['wishlist']
+                    list_to_card(wishlist)
+                }
+            })
+        }
+
+
+        //DB에 새로운 정보를 추가하는 함수
+        function wishlist_post() {
+            let url = $('#url_input').val()    //변수 : url, name, price, memo, status
+            let name = $('#name_input').val()
+            let price = $('#price_input').val()
+            let memo = $('#memo_input').val()
+            let status = $('#status_input').val()
+            let test = $('#status_btn').val()
+            if (url_verifier == 'false'){
+                alert('url이 맞는지 검사해 주세요!!');
+                return
+            }
+            if (name.length == 0) {
+                alert('상품명을 입력해 주세요!!');
+                return
+            }
+            alert(test)
+            $.ajax({
+                type: 'POST',
+                url: '/wishlist',
+                data: { url_give: url, name_give: name, price_give: price, memo_give: memo, status_give: status },
+                success: function (response) {
+                    alert(response['msg'])
+                    window.location.reload()
+                }
+            });
+        }
+
+
+        //특정 listId를 가진 사용자의 정보를 수정
+        function wishlist_modify(listId) {
+            let url = $('#url_modify').val()    
+            let name = $('#name_modify').val()
+            let price = $('#price_modify').val()
+            let memo = $('#memo_modify').val()
+            let status = $('#status_modify').val()   //status 부분 수정하기
+            if (url_verifier == 'false') {
+                alert('url이 맞는지 검사해 주세요!!');
+                return
+            }
+            if (name.length == 0) {
+                alert('상품명을 입력해 주세요!!');
+                return
+            }
+            $.ajax({                                 //변수: url, name, price, memo, status, listId
+                type: 'PUT',
+                url: '/wishlist/{listId}',
+                data: { url_give: url, name_give: name, price_give: price, memo_give: memo, status_give: status, listId_give: listId },
+                success: function (response) {
+                    alert(response['msg'])
+                    window.location.reload()
+                }
+            });
+        }
+        //상태만 수정하는 함수
+        function modifying_status(listId) {
+            let status = $('#status_modify').val()        //status 부분 수정하기
+            $.ajax({                                      //변수: status, listId
+                type: 'PUT',
+                url: '/wishlist/{listId}/status',
+                data: { status_give: status, listId_give: listId },
+                success: function (response) {
+                    alert(response['msg'])
+                    window.location.reload()
+                }
+            });
+        }
+
+        //특정 listId를 가진 정보를 삭제
+        function wishlist_delete(listId) {
+            $.ajax({
+                type: 'DELETE',
+                url: '/wishlist/{listId}',
+                data: { listId_give: listId },
+                success: function (response) {
+                    alert(response['msg'])
+                    window.location.reload()
+                }
+            });
+        }
+
+        //url 형식이 맞는지 검증하는 함수. url 검증 버튼에서 call
+        function url_certifi() {
+            let url = $('#url_input').val()
+
+            if (url == "") {
+                alert("URL을 입력해 주세요!!")
+                return
+            }
+            //url 형식 검증
+            let regex = /^(((http(s?))\:\/\/)?)([0-9a-zA-Z\-]+\.)+[a-zA-Z]{2,6}(\:[0-9]+)?(\/\S*)?/;
+
+            if (regex.test(url)) {
+                // location.href = url;     해당 url로 이동하는 식
+                alert(url)
+                url_verifier = 'true'
+                return
+            } else {
+                alert("유효하지 않은 url입니다")
+                return
+            }
+        }
+
+        function url_mod_certifi() {
+            let url = $('#url_modify').val()
+
+            if (url == "") {
+                alert("URL을 입력해 주세요!!")
+                return
+            }
+            //url 형식 검증
+            let regex = /^(((http(s?))\:\/\/)?)([0-9a-zA-Z\-]+\.)+[a-zA-Z]{2,6}(\:[0-9]+)?(\/\S*)?/;
+
+            if (regex.test(url)) {
+                // location.href = url;     해당 url로 이동하는 식
+                alert(url)
+                url_verifier = 'true'
+                return
+            } else {
+                alert("유효하지 않은 url입니다")
+                return
+            }
+        }
+
+        //box open&close 함수들
+        function open_posting_box() {            //상품 등록 박스를 open
+            $('#posting-box').show()
+        }
+        function close_posting_box() {           //상품 등록 박스를 close
+            url_verifier = 'false'
+            $('#posting-box').hide()
+        }
+
+        function open_modify_box(listId) {         //상품 수정 박스를 open
+            $('#modify-box').show()
+            $('#modify-box').empty()
+            $.ajax({                            //기존 정보를 로딩해서 박스에 뿌려줌
+                type: 'GET',                    //받는 변수 : image, url, name, price, memo, status
+                url: '/wishlist/{listId}?listId_give=' + listId,
+                data: {},
+                success: function (response) {
+                    rows = response['listId_item']
+                }
+            })
+            let temp_html = `
+                <div class="form-floating" id="url-box">
+                    <input type="text" class="form-control" id="url_modify" placeholder="url">
+                    <button onclick="url_mod_certifi()">url 검증</button>
+                    <label for="url_modify">url</label>
+                </div>
+                <div class="form-floating">
+                    <input type="text" class="form-control" id="name_modify" placeholder="name">
+                    <label for="name_modify">상품명</label>
+                </div>
+                <div class="form-floating">
+                    <input type="text" class="form-control" id="price_modify" placeholder="price" >
+                    <label for="price_modify">가격</label>
+                </div>
+                <div class="form-floating">
+                    <input type="text" class="form-control" id="memo_modify" placeholder="memo">
+                    <label for="memo_modify">메모</label>
+                </div>
+                <div class="form-floating">
+                    <input type="text" class="form-control" id="status_modify" placeholder="status">
+                    <label for="status_modify">상태(ready,refer,done)</label>
+                </div>
+
+                <div class="mybtns">
+                    <button onclick="wishlist_modify(${listId})" type="button" class="btn btn-dark">수정하기</button>
+                    <button onclick="close_modify_box()" type="button" class="btn btn-outline-dark">닫기</button>
+                </div>
+            `
+            $('#modify-box').append(temp_html)
+        }
+        function close_modify_box() {           //상품 수정 박스를 close
+            url_verifier = 'false'
+            $('#modify-box').hide()
+        }
+
+        function open_delete_box() {            //상품 삭제 박스를 open
+            $('#delete-box').show()
+        }
+        function close_delete_box() {           //상품 삭제 박스를 close
+            $('#delete-box').hide()
+        }
+    </script>
 </head>
 
 <body>
