@@ -19,7 +19,7 @@ function list_to_card(wishlist) {        //받은 list를 카드로 만들어 �
         temp_html = `
                     <div class="col">
                         <div class="card">
-                            <a href="${url}">
+                            <a href="${url}" target="_blank">
                                 <img src="${image}" class="card-img-top" alt="...">
                             </a>
                             <div class="card-body">
