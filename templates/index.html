@@ -496,6 +496,8 @@
             let price = $('#price_input').val()
             let memo = $('#memo_input').val()
             let status = $('#status_input').val()
+            let test = $('#status_btn').val()
+            alert(test)
             $.ajax({
                 type: 'POST',
                 url: '/wishlist',
@@ -696,10 +698,10 @@
             <label for="status_input">상태(ready,refer,done)</label>
         </div>
     
-        <div class="btn-group" role="group" aria-label="Basic outlined example">
-            <button onclick="wishlist_get_ready()" type="button" class="btn btn-outline-dark">구매예정</button>
-            <button onclick="wishlist_get_refer()" type="button" class="btn btn-outline-dark">구매보류</button>
-            <button onclick="wishlist_get_done()" type="button" class="btn btn-outline-dark">구입완료</button>
+        <div class="btn-group" role="group" aria-label="Basic outlined example" id="status_btn">
+            <button type="button" class="btn btn-outline-dark">구매예정</button>
+            <button type="button" class="btn btn-outline-dark">구매보류</button>
+            <button type="button" class="btn btn-outline-dark">구입완료</button>
         </div>
     
         <div class="mybtns">
