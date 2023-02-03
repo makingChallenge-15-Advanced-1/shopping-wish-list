@@ -425,7 +425,7 @@
                             <p class="card-text">"가격 : ${price}"</p>
                             <p class="card-text">"상태 : ${status}"</p>
                             <input onclick="open_modify_box(${listId})" type='button' class='btn' name='btn' value='수정하기' style="float: right;">
-                            <input onclick="deleting(${listId})" type='button' class='btn' name='btn' value='삭제하기' style="float: right;">
+                            <input onclick="wishlist_delete(${listId})" type='button' class='btn' name='btn' value='삭제하기' style="float: right;">
                           </div>
                         </div>
                       </div>
@@ -546,7 +546,7 @@
         }
 
         //특정 listId를 가진 정보를 삭제
-        function deleting(listId){
+        function wishlist_delete(listId){
             $.ajax({
                 type: 'DELETE',
                 url: '/wishlist/{listId}',
