@@ -16,9 +16,26 @@ function list_to_card(wishlist) {        //받은 list를 카드로 만들어 �
         let status = wishlist[i]['status']
         let listId = wishlist[i]['listId']
 
+        let status_img = ""
+        //구매 상태 아이콘 지정
+        if (status === 'ready') {
+            status_img = '/static/img/icon_toBuy.png';
+        } else if (status === 'refer') {
+            status_img = '/static/img/icon_hold.png';            
+        } else if (status === 'done') {
+            status_img = '/static/img/icon_cardComplete.png';
+        }
+
         temp_html = `
                     <div class="col">
                         <div class="card">
+                            <div class="card-header bg-transparent">
+                                <img src="${status_img}"  class="status-icon" alt="${status}">
+                                <input onclick="open_modify_box(${listId})" type='image' src="/static/img/icon_edit.png" class='btn'
+                                    name='btn' value='수정하기' style="float: right;">
+                                <input onclick="wishlist_delete(${listId})" type='image' src="/static/img/icon_del.png" class='btn'
+                                    name='btn' value='삭제하기' style="float: right;">
+                            </div>
                             <div class="embed-responsive embed-responsive-4by3">
                                 <a href="${url}" target="_blank">
                                     <img src="${image}" class="card-img-top embed-responsive-item" alt="링크이동">
@@ -28,11 +45,6 @@ function list_to_card(wishlist) {        //받은 list를 카드로 만들어 �
                                 <h4 class="card-title">${name}</h4>
                                 <p class="card-text" id="cardPrice">${price}</p>
                                 <p class="card-text" id="cardMemo">${memo}</p>
-                                <p class="card-text" id="cardStatus">${status}</p>
-                                <input onclick="open_modify_box(${listId})" type='image' src="/static/img/icon_edit.png"
-                                    class='btn' name='btn' value='수정하기' style="float: right;">
-                                <input onclick="wishlist_delete(${listId})" type='image' src="/static/img/icon_del.png"
-                                    class='btn' name='btn' value='삭제하기' style="float: right;">
                             </div>
                         </div>
                     </div>

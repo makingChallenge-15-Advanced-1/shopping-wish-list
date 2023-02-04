@@ -18,7 +18,6 @@
     <!-- css, js 분리 -->
     <link rel="stylesheet" href="/static/style.css">
     <script src="/static/main.js"></script>
-    
 </head>
 
 <body>
@@ -86,47 +85,25 @@
     </div>
 
     <div class="mycards">
-        <div class="row row-cols-1 row-cols-md-3 g-3" id="cards-box">
+        <div class="row row-cols-1 row-cols-md-4 g-3" id="cards-box">
             <div class="col">
-                <div class="card h-100">
-                    <h5 class="card-header"><b>품명</b></h5>
-                    <div class="card-body">
-                        <h5 class="card-title">모델명</h5>
-                        <h6 class="card-subtitle mb-2 text-muted">구입완료 / 보유수량 3개</h6>
-                        <p class="card-text">메모는 여기에 적기</p>
-                        <input onclick="open_modifier()" type='button' class='btn' name='btn' value='수정하기'
-                            style="float: right;">
+                <div class="card">
+                    <div class="card-header bg-transparent">
+                        <img src="/static/img/icon_toBuy.png" class="status-icon" alt="${status}">
+                        <input onclick="open_modify_box(${listId})" type='image' src="/static/img/icon_edit.png" class='btn'
+                            name='btn' value='수정하기' style="float: right;">
+                        <input onclick="wishlist_delete(${listId})" type='image' src="/static/img/icon_del.png" class='btn'
+                            name='btn' value='삭제하기' style="float: right;">
                     </div>
-                    <button type="button" class="btn btn-outline-secondary">구매예정으로 변경</button>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card h-100">
-                    <h5 class="card-header"><b>품명</b></h5>
-                    <div class="card-body">
-                        <h5 class="card-title">모델명</h5>
-                        <h6 class="card-subtitle mb-2 text-muted">구매보류 / 보유수량 0개</h6>
-                        <p class="card-text">메모는 여기에 적기</p>
-                        <input onclick="open_modifier()" type='button' class='btn' name='btn' value='수정하기'
-                            style="float: right;">
+                    <div class="embed-responsive embed-responsive-4by3">
+                        <a href="${url}" target="_blank">
+                            <img src="/static/img/no_image.png" class="card-img-top embed-responsive-item" alt="링크이동">
+                        </a>
                     </div>
-                    <button type="button" class="btn btn-outline-secondary">보류 해제하기</button>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card h-100">
-                    <h5 class="card-header"><b>품명</b></h5>
                     <div class="card-body">
-                        <h5 class="card-title">모델명</h5>
-                        <h6 class="card-subtitle mb-2 text-muted">구매예정 / 보유수량 0개</h6>
-                        <p class="card-text">메모는 여기에 적기</p>
-                        <input onclick="open_modifier()" type='button' class='btn' name='btn' value='수정하기'
-                            style="float: right;">
-                        </p>
-                    </div>
-                    <div class="btn-group" role="group" aria-label="Basic outlined example">
-                        <button type="button" class="btn btn-outline-secondary">보류하기</button>
-                        <button type="button" class="btn btn-outline-secondary">구입완료</button>
+                        <h4 class="card-title">상품명</h4>
+                        <p class="card-text" id="cardPrice">가격</p>
+                        <p class="card-text" id="cardMemo">메모</p>
                     </div>
                 </div>
             </div>
