@@ -19,13 +19,15 @@ function list_to_card(wishlist) {        //받은 list를 카드로 만들어 �
         temp_html = `
                     <div class="col">
                         <div class="card">
-                            <a href="${url}" target="_blank">
-                                <img src="${image}" class="card-img-top" alt="링크이동">
-                            </a>
+                            <div class="embed-responsive embed-responsive-4by3">
+                                <a href="${url}" target="_blank">
+                                    <img src="${image}" class="card-img-top embed-responsive-item" alt="링크이동">
+                                </a>
+                            </div>
                             <div class="card-body">
                                 <h4 class="card-title">${name}</h4>
-                                <p class="card-text" id="cardMemo">${memo}</p>
                                 <p class="card-text" id="cardPrice">${price}</p>
+                                <p class="card-text" id="cardMemo">${memo}</p>
                                 <p class="card-text" id="cardStatus">${status}</p>
                                 <input onclick="open_modify_box(${listId})" type='image' src="/static/img/icon_edit.png"
                                     class='btn' name='btn' value='수정하기' style="float: right;">
@@ -41,7 +43,7 @@ function list_to_card(wishlist) {        //받은 list를 카드로 만들어 �
 }
 
 function wishlist_get_all() {                //모든 정보를 보여줌
-    $('#cards-box').empty()
+    // $('#cards-box').empty()
     $.ajax({                        //ajax GET으로 list를 읽어와서 카드 생성
         type: 'GET',                //받는 변수 : image, url, name, price, memo, status, listId
         url: '/wishlist?list=all',
