@@ -464,4 +464,5 @@ html {
 
 .card-body>input:hover {
     color: grey;
+    filter: drop-shadow(5px 2px 1px #808080);
 }

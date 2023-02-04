@@ -20,17 +20,17 @@ function list_to_card(wishlist) {        //받은 list를 카드로 만들어 �
                     <div class="col">
                         <div class="card">
                             <a href="${url}" target="_blank">
-                                <img src="${image}" class="card-img-top" alt="...">
+                                <img src="${image}" class="card-img-top" alt="링크이동">
                             </a>
                             <div class="card-body">
-                                <h5 class="card-title">"상품명 : ${name}"</h5>
-                                <p class="card-text">"메모 : ${memo}"</p>
-                                <p class="card-text">"가격 : ${price}"</p>
-                                <p class="card-text">"상태 : ${status}"</p>
-                                <input onclick="open_modify_box(${listId})" type='button' class='btn' name='btn' value='수정하기'
-                                    style="float: right;">
-                                <input onclick="wishlist_delete(${listId})" type='button' class='btn' name='btn' value='삭제하기'
-                                    style="float: right;">
+                                <h4 class="card-title">${name}</h4>
+                                <p class="card-text" id="cardMemo">${memo}</p>
+                                <p class="card-text" id="cardPrice">${price}</p>
+                                <p class="card-text" id="cardStatus">${status}</p>
+                                <input onclick="open_modify_box(${listId})" type='image' src="/static/img/icon_edit.png"
+                                    class='btn' name='btn' value='수정하기' style="float: right;">
+                                <input onclick="wishlist_delete(${listId})" type='image' src="/static/img/icon_del.png"
+                                    class='btn' name='btn' value='삭제하기' style="float: right;">
                             </div>
                         </div>
                     </div>
@@ -106,7 +106,7 @@ function wishlist_post() {
         alert('상품명을 입력해 주세요!!');
         return
     }
-
+    alert(test)
     $.ajax({
         type: 'POST',
         url: '/wishlist',
