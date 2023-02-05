@@ -72,10 +72,10 @@
         </div>
         <div class="top-menu">
             <ul>
-                <li onclick="wishlist_get_all()" class="all"><a>전체보기</a></li>
-                <li onclick="wishlist_get_ready()" class="to-buy"><a>구매예정</a></li>
-                <li onclick="wishlist_get_refer()" class="hold"><a>구매보류</a></li>
-                <li onclick="wishlist_get_done()" class="order"><a>구매완료</a></li>
+                <li onclick="wishlist_get_all()" class="all"><a href="">전체보기</a></li>
+                <li onclick="wishlist_get_ready()" class="to-buy"><a href="">구매예정</a></li>
+                <li onclick="wishlist_get_refer()" class="hold"><a href="">구매보류</a></li>
+                <li onclick="wishlist_get_done()" class="order"><a href="">구매완료</a></li>
             </ul>
         </div>
     </div>
@@ -85,15 +85,36 @@
     </div>
 
     <div class="mycards">
-        <div class="row row-cols-1 row-cols-md-4 g-3" id="cards-box">
+        <div class="row row-cols-2 row-cols-md-4 g-3" id="cards-box">
             <div class="col">
                 <div class="card">
                     <div class="card-header bg-transparent">
-                        <img src="/static/img/icon_toBuy.png" class="status-icon" alt="${status}">
+                        <img src="/static/img/icon_toBuy.png" class="icon-status" alt="${status}">
                         <input onclick="open_modify_box(${listId})" type='image' src="/static/img/icon_edit.png" class='btn'
                             name='btn' value='수정하기' style="float: right;">
                         <input onclick="wishlist_delete(${listId})" type='image' src="/static/img/icon_del.png" class='btn'
                             name='btn' value='삭제하기' style="float: right;">
+                    </div>
+                    <div class="embed-responsive embed-responsive-4by3">
+                        <a href="${url}" target="_blank">
+                            <img src="/static/img/no_image.png" class="card-img-top embed-responsive-item" alt="링크이동">
+                        </a>
+                    </div>
+                    <div class="card-body">
+                        <h4 class="card-title">상품명</h4>
+                        <p class="card-text" id="cardPrice">가격</p>
+                        <p class="card-text" id="cardMemo">메모</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card">
+                    <div class="status-bar">
+                        <div class="status-toBuy">구매예정</div>
+                        <!-- <div class="status-hold">구매보류</div>
+                        <div class="status-order">구매완료</div> -->
+                        <input onclick="wishlist_delete()" type='button' class='btn-del' name='btn' value='삭제하기'>
+                        <input onclick="open_modify_box()" type='button' class='btn-modify' name='btn' value='수정하기'>
                     </div>
                     <div class="embed-responsive embed-responsive-4by3">
                         <a href="${url}" target="_blank">
