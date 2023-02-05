@@ -15,7 +15,8 @@ html {
     height: 220px;
     min-width: 800px;
 
-    background: #C068A8 url('/static/img/bgTop_whiteRec.png');
+    background-image: url("/static/img/bgTop_whiteRec.png");
+    background-color: #C068A8;
     background-position: calc(50% + 200px) 0;
     background-size: 1;
     background-repeat: no-repeat;
@@ -80,7 +81,6 @@ html {
 
     margin: 0 30px;
     list-style: none;
-
 }
 
 .mytitle>.top-menu>ul>li>a {
@@ -95,24 +95,27 @@ html {
     text-align: center;
     padding-left: 30px;
     padding-bottom: 10px;
+    text-decoration: none;
 }
 
 .mytitle>.top-menu>ul>li.all>a {
-    background-image: url(/static/img/icon_allView_dark.png);
+    background-image: url("/static/img/icon_allView_dark.png");
     background-repeat: no-repeat;
     background-size: 28px;
 
     color: #4c4c4c;
+    text-decoration: none;
 }
 
 .mytitle>.top-menu>ul>li.all>a:hover,
 .mytitle>.top-menu>ul>li.all>a:after,
 .mytitle>.top-menu>ul>li.all>a:active {
-    background-image: url(/static/img/icon_allView.png);
+    background-image: url("/static/img/icon_allView.png");
     background-repeat: no-repeat;
     background-size: 28px;
 
     color: #A03383;
+    text-decoration: none;
 }
 
 .mytitle>.top-menu>ul>li.all>a:after {
@@ -138,7 +141,7 @@ html {
 }
 
 .mytitle>.top-menu>ul>li.to-buy>a {
-    background-image: url(/static/img/icon_tobuy_dark.png);
+    background-image: url("/static/img/icon_tobuy_dark.png");
     background-repeat: no-repeat;
     background-size: 28px;
 
@@ -148,7 +151,7 @@ html {
 .mytitle>.top-menu>ul>li.to-buy>a:hover,
 .mytitle>.top-menu>ul>li.to-buy>a:after,
 .mytitle>.top-menu>ul>li.to-buy>a:active {
-    background-image: url(/static/img/icon_tobuy.png);
+    background-image: url("/static/img/icon_tobuy.png");
     background-repeat: no-repeat;
     background-size: 28px;
 
@@ -178,7 +181,7 @@ html {
 }
 
 .mytitle>.top-menu>ul>li.hold>a {
-    background-image: url(/static/img/icon_hold_dark.png);
+    background-image: url("/static/img/icon_hold_dark.png");
     background-repeat: no-repeat;
     background-size: 26px;
 
@@ -188,7 +191,7 @@ html {
 .mytitle>.top-menu>ul>li.hold>a:hover,
 .mytitle>.top-menu>ul>li.hold>a:after,
 .mytitle>.top-menu>ul>li.hold>a:active {
-    background-image: url(/static/img/icon_hold.png);
+    background-image: url("/static/img/icon_hold.png");
     background-repeat: no-repeat;
     background-size: 26px;
 
@@ -218,7 +221,7 @@ html {
 }
 
 .mytitle>.top-menu>ul>li.order>a {
-    background-image: url(/static/img/icon_cardComplete_dark.png);
+    background-image: url("/static/img/icon_cardComplete_dark.png");
     background-repeat: no-repeat;
     background-size: auto;
 
@@ -228,7 +231,7 @@ html {
 .mytitle>.top-menu>ul>li.order>a:hover,
 .mytitle>.top-menu>ul>li.order>a:after,
 .mytitle>.top-menu>ul>li.order>a:active {
-    background-image: url(/static/img/icon_cardComplete.png);
+    background-image: url("/static/img/icon_cardComplete.png");
     background-repeat: no-repeat;
     background-size: auto;
 
@@ -271,12 +274,113 @@ html {
     max-width: 1300px;
 }
 
-.card-img-top {
-    height: 25rem;
+.mycards .card {
+    background-color: #FAF7F9 !important;
+    padding: 10px !important;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    box-shadow: 0px 4px 6px rgb(0 0 0 / 25%);
+    border-radius: 8px;
+    border: 0;
+    min-width: 210px !important;
+}
+
+.mycards .card-img-top {
+    height: 30vh;
     object-fit: cover;
 }
 
-.status-icon {
+.mycards .card-header {
+    border-bottom: 0;
+}
+.mycards .card-body {
+    padding:1rem 0 0 0;
+
+}
+
+
+.mycards .card-title {
+    font-size: 16px;
+    font-weight: 700;
+}
+.mycards .status-bar {
+    display: block;
+    height: 50px;
+}
+
+.card-header input:hover,
+.status-bar input:active {
+    background-color:#ffffff !important;
+    box-shadow: 1px 3px 0 rgb(0 0 0 / 20%);
+    border: 1px solid #d9d9d9 !important;
+    border-radius: 4px;
+}
+.mycards .status-bar .status-toBuy {
+    position: absolute;
+    left: 10px;
+    top: 16px;
+
+    background-color:transparent;
+    background-image: url("/static/img/icon_toBuy.png");
+    background-size: 30px;
+    text-indent: -999999px;
+    width:30px;
+    height:30px;
+}
+.mycards .status-bar .status-hold {
+    position: absolute;
+    left: 10px;
+    top: 16px;
+
+    background-color:transparent;
+    background-image: url("/static/img/icon_hold.png");
+    background-size: 30px;
+    text-indent: -999999px;
+    width:30px;
+    height:30px;
+}
+.mycards .status-bar .status-order {
+    position: absolute;
+    left: 10px;
+    top: 12px;
+
+    background-color:transparent;
+    background-image: url("/static/img/icon_cardComplete.png");
+    background-size: 30px;
+    text-indent: -999999px;
+    width:30px;
+    height:30px;
+}
+
+.mycards .status-bar .btn-del {
+    background-image:url("/static/img/icon_del.png") ;
+    background-repeat: no-repeat;
+    background-color: transparent;
+    background-size: 36px;
+    width: 40px;
+    height:40px;
+    border:none;
+    text-indent: -9999px;
+    position: absolute;
+    right: 60px;
+}
+
+.mycards .status-bar .btn-modify {
+    background-image:url("/static/img/icon_edit.png") ;
+    background-repeat: no-repeat;
+    background-color: transparent;
+    background-size: 36px;
+    width: 40px;
+    height:40px;
+    border:none;
+    text-indent: -9999px;
+    position: absolute;
+    right: 10px;
+}
+
+.icon-status {
     border: 1px solid transparent;
     padding: 0.75rem 0.75rem;
 }
@@ -311,7 +415,7 @@ html {
 .mypost>.card-title>button {
     border: none;
     text-indent: -9999em;
-    background-image: url(/static/img/icon_close.png);
+    background-image: url("/static/img/icon_close.png");
     background-repeat: no-repeat;
     background-size: 32px;
     background-color: transparent;
@@ -362,7 +466,7 @@ html {
 }
 
 .mypost>.form-floating>button.url-check {
-    background-image: url(/static/img/icon_check.png);
+    background-image: url("/static/img/icon_check.png");
     background-repeat: no-repeat;
     background-size: 48px;
     background-color: transparent;
@@ -469,6 +573,7 @@ html {
     font-weight: 700;
 }
 
-.card-header>input:hover {
-    filter: drop-shadow(2px 2px 1px #808080);
+.card-body>input {
+    display: block;
 }
+
