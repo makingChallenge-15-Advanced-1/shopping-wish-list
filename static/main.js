@@ -1,4 +1,3 @@
-
 var url_verifier = 'false';
 
 $(document).ready(function () {       //페이지 로딩 시 wishlist_get_all() 함수 호출
@@ -290,37 +289,38 @@ function open_modify_box(listId) {         //상품 수정 박스를 open
         }
     })
     let temp_html = `
+                <div class="card-title" style="display: flex;">
+                    <h5>상품 수정하기</h5>
+                    <button onclick="close_modify_box()" type="button" class="pop-close">닫기</button>
+                </div>
                 <div class="form-floating" id="url_box">
-                    <input type="text" class="form-control" id="url_modify" placeholder="url">
-                    <button onclick="url_mod_certifi()">url 검증</button>
-                    <label for="url_modify">url</label>
+                    <label for="url_modify">URL</label>
+                    <input type="text" class="required form-url form-control" id="url_modify" placeholder="url">
+                    <button class="url-check" onclick="url_mod_certifi()">url 검증</button>
                 </div>
                 <div class="form-floating">
-                    <input type="text" class="form-control" id="name_modify" placeholder="name">
                     <label for="name_modify">상품명</label>
+                    <input type="text" class="required form-control" id="name_modify" placeholder="name">
                 </div>
                 <div class="form-floating">
-                    <input type="text" class="form-control" id="price_modify" placeholder="price" >
                     <label for="price_modify">가격</label>
+                    <input type="text" class="form-control" id="price_modify" placeholder="price" >
                 </div>
                 <div class="form-floating">
-                    <input type="text" class="form-control" id="memo_modify" placeholder="memo">
                     <label for="memo_modify">메모</label>
+                    <textarea class="form-control" id="memo_modify" maxlength="100" placeholder="메모수정"></textarea>
                 </div>
                 <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
                     <input type="radio" class="btn-check" name="status" id="toBuy" value="toBuy" autocomplete="off">
                     <label class="btn btn-outline-primary" for="toBuy">구매예정</label>
-
                     <input type="radio" class="btn-check" name="status" id="hold" value="hold" autocomplete="off">
                     <label class="btn btn-outline-primary" for="hold">구매보류</label>
-
                     <input type="radio" class="btn-check" name="status" id="order" value="order" autocomplete="off">
                     <label class="btn btn-outline-primary" for="order">구매완료</label>
                 </div>
-
                 <div class="mybtns">
                     <button onclick="wishlist_modify(${listId})" type="button" class="btn btn-dark">수정하기</button>
-                    <button onclick="close_modify_box()" type="button" class="btn btn-outline-dark">닫기</button>
+                    <button onclick="close_modify_box()" type="button" class="btn btn-outline-secondary">닫기</button>
                 </div>
             `
     $('#modify_box').append(temp_html)
