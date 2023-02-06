@@ -28,12 +28,12 @@
         <button onclick="open_posting_box()">
             <h4><b>찜 상품 추가</b></h4>
         </button>
-        <div class="mypost" id="posting-box">
+        <div class="mypost" id="posting_box">
             <div class="card-title">
                 <h5>상품 등록하기</h5>
                 <button onclick="close_posting_box()" type="button" class="pop_close">닫기</button>
             </div>
-            <div class="form-floating" id="url-box">
+            <div class="form-floating" id="url_box">
                 <label for="url_input">URL</label>
                 <input type="text" class="required form-url form-control" id="url_input" placeholder="url">
                 <button class="url-check" onclick="url_certifi()">url 검증</button>
@@ -80,20 +80,20 @@
         </div>
     </div>
 
-    <div class="mymodifier" id="modify-box">
+    <div class="mymodifier" id="modify_box">
 
     </div>
 
     <div class="mycards">
-        <div class="row row-cols-2 row-cols-md-4 g-3" id="cards-box">
+        <div class="row row-cols-2 row-cols-md-4 g-3" id="cards_box">
             <div class="col">
                 <div class="card">
-                    <div class="card-header bg-transparent">
-                        <img src="/static/img/icon_toBuy.png" class="icon-status" alt="${status}">
-                        <input onclick="open_modify_box(${listId})" type='image' src="/static/img/icon_edit.png" class='btn'
-                            name='btn' value='수정하기' style="float: right;">
-                        <input onclick="wishlist_delete(${listId})" type='image' src="/static/img/icon_del.png" class='btn'
-                            name='btn' value='삭제하기' style="float: right;">
+                    <div class="status-bar">
+                        <div class="status-toBuy">구매예정</div>
+                        <!-- <div class="status-hold">구매보류</div>
+                        <div class="status-order">구매완료</div> -->
+                        <input onclick="wishlist_delete()" type='button' class='btn-del' name='btn' value='삭제하기'>
+                        <input onclick="open_modify_box()" type='button' class='btn-modify' name='btn' value='수정하기'>
                     </div>
                     <div class="embed-responsive embed-responsive-4by3">
                         <a href="${url}" target="_blank">
@@ -102,8 +102,8 @@
                     </div>
                     <div class="card-body">
                         <h4 class="card-title">상품명</h4>
-                        <p class="card-text" id="cardPrice">가격</p>
-                        <p class="card-text" id="cardMemo">메모</p>
+                        <p class="card-text" id="card_price">가격</p>
+                        <p class="card-text" id="card_memo">메모</p>
                     </div>
                 </div>
             </div>
@@ -123,8 +123,8 @@
                     </div>
                     <div class="card-body">
                         <h4 class="card-title">상품명</h4>
-                        <p class="card-text" id="cardPrice">가격</p>
-                        <p class="card-text" id="cardMemo">메모</p>
+                        <p class="card-text" id="card_price">가격</p>
+                        <p class="card-text" id="card_memo">메모</p>
                     </div>
                 </div>
             </div>
