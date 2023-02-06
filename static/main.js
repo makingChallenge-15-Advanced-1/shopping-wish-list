@@ -30,7 +30,7 @@ function list_to_card(wishlist) {        //받은 list를 카드로 만들어 �
                     <div class="col">
                         <div class="card">
                             <div class="status-bar">
-                                <img src="${status_img}"  class="status-icon" alt="${status}">
+                                <img src="${status_img}"  class="icon-status" alt="${status}">
                                 <input onclick="open_modify_box(${listId})" type='image' src="/static/img/icon_edit.png" class='btn'
                                     name='btn' value='수정하기' style="float: right;">
                                 <input onclick="wishlist_delete(${listId})" type='image' src="/static/img/icon_del.png" class='btn'
