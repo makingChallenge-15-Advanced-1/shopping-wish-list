@@ -18,11 +18,11 @@ function list_to_card(wishlist) {        //받은 list를 카드로 만들어 �
 
         let statusClass = ""
         //구매 상태 아이콘 지정
-        if (status === 'ready') {
+        if (status === 'toBuy') { // 구매예정
             statusClass = "status-toBuy";
-        } else if (status === 'refer') {
+        } else if (status === 'hold') { // 구매보류
             statusClass = "status-hold";            
-        } else if (status === 'done') {
+        } else if (status === 'order') { // 구매완료
             statusClass = "status-order";
         }
 
@@ -102,14 +102,16 @@ function wishlist_get_done() {          //구매완료 아이템만 보여줌
 }
 
 
-//DB에 새로운 정보를 추가하는 함수
+//DB에 새로운 정보를 추가하는 함수(등록하기)
 function wishlist_post() {
     let url = $('#url_input').val()    //변수 : url, name, price, memo, status
-    let name = $('#input_name').val()
+    let name = $('#name_input').val()
     let price = $('#price_input').val()
     let memo = $('#memo_input').val()
-    let status = $('#status_input').val()
-    let test = $('#status_btn').val()
+    // let status = $('#status_input').val()
+    // let test = $('#status_btn').val()
+    let status = $("input[type=radio][name=status]:checked").val(); // 상태 변경 (수정)
+
     if (url_verifier == 'false') {
         alert('url이 맞는지 검사해 주세요!!');
         return
