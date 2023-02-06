@@ -64,11 +64,11 @@ function wishlist_get_all() {                //모든 정보를 보여줌
         }
     })
 }
-function wishlist_get_ready() {          //당장구매 아이템만 보여줌
+function wishlist_get_toBuy() {          //당장구매 아이템만 보여줌
     $('#cards_box').empty()
     $.ajax({                        //ajax GET으로 list를 읽어와서 카드 생성
         type: 'GET',                //받는 변수 : image, url, name, price, memo, status, listId
-        url: '/wishlist?list=ready',
+        url: '/wishlist?list=toBuy',
         data: {},
         success: function (response) {
             wishlist = response['wishlist']
@@ -76,11 +76,11 @@ function wishlist_get_ready() {          //당장구매 아이템만 보여줌
         }
     })
 }
-function wishlist_get_refer() {          //보류 아이템만 보여줌
+function wishlist_get_hold() {          //보류 아이템만 보여줌
     $('#cards_box').empty()
     $.ajax({                        //ajax GET으로 list를 읽어와서 카드 생성
         type: 'GET',                //받는 변수 : image, url, name, price, memo, status, listId
-        url: '/wishlist?list=refer',
+        url: '/wishlist?list=hold',
         data: {},
         success: function (response) {
             wishlist = response['wishlist']
@@ -88,11 +88,11 @@ function wishlist_get_refer() {          //보류 아이템만 보여줌
         }
     })
 }
-function wishlist_get_done() {          //구매완료 아이템만 보여줌
+function wishlist_get_order() {          //구매완료 아이템만 보여줌
     $('#cards_box').empty()
     $.ajax({                        //ajax GET으로 list를 읽어와서 카드 생성
         type: 'GET',                //받는 변수 : image, url, name, price, memo, status, listId
-        url: '/wishlist?list=done',
+        url: '/wishlist?list=order',
         data: {},
         success: function (response) {
             wishlist = response['wishlist']

@@ -43,12 +43,12 @@ def wishlist_get():
     list_method = request.args.get('list')
     if list_method == 'all':
         wishlist = list(db.wishlist.find({}, {'_id': False}))
-    elif list_method == 'ready':
-        wishlist = list(db.wishlist.find({'status': 'ready'}, {'_id': False}))
-    elif list_method == 'refer':
-        wishlist = list(db.wishlist.find({'status': 'refer'}, {'_id': False}))
-    elif list_method == 'done':
-        wishlist = list(db.wishlist.find({'status': 'done'}, {'_id': False}))
+    elif list_method == 'toBuy':
+        wishlist = list(db.wishlist.find({'status': 'toBuy'}, {'_id': False}))
+    elif list_method == 'hold':
+        wishlist = list(db.wishlist.find({'status': 'hold'}, {'_id': False}))
+    elif list_method == 'order':
+        wishlist = list(db.wishlist.find({'status': 'order'}, {'_id': False}))
 
     for item in wishlist:
         url = item['url']
