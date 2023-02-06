@@ -522,35 +522,40 @@ html {
     border-color: #C068A8 !important;
 }
 
-.btn-outline-dark {
-    color: #333333;
-    background-color: #ffffff !important;
-    border-color: #4C6FFD !important;
-}
-
-.mypost>.btn-group {
-    text-align: center;
+.mypost .btn-group {
     display: flex;
     margin: 0 87px;
+    flex-wrap: nowrap;
+    align-items: center;
+    flex-direction: row;
 }
 
-.mypost>.btn-group>button {
+.mypost .btn-group input {
     width: 142px;
-    height: 50px;
-
     font-size: 15px;
 }
 
-.btn-outline-dark:hover {
-    color: #ffffff;
-    background-color: #4C6FFD !important;
-    border-color: #4C6FFD !important;
+.mypost .btn-group .btn-outline-primary {
+    color: #333333;
+    background-color: #ffffff;
+    border-color: #4C6FFD;
+    padding:10px 0;
 }
 
-.btn-outline-dark:focus {
+.mypost .btn-group .btn-outline-primary:hover,
+.mypost .btn-group .btn-check:active+.btn-outline-primary, 
+.mypost .btn-group .btn-check:checked+.btn-outline-primary,  
+.mypost .btn-group .btn-outline-primary.dropdown-toggle.show {
     color: #ffffff;
-    background-color: #4C6FFD !important;
-    border-color: #4C6FFD !important;
+    background-color: #4C6FFD;
+    border-color: #4C6FFD;
+}
+
+.mypost .btn-group .btn-outline-primary:focus,
+.mypost .btn-group .btn-outline-primary.active {
+    color: #ffffff;
+    background-color: #4C6FFD ;
+    border-color: #4C6FFD ;
     box-shadow: 0px 0px 0px 4px #abbbff;
 }
 
