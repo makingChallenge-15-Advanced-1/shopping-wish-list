@@ -305,6 +305,16 @@ html {
     font-size: 16px;
     font-weight: 700;
 }
+.mycards .card-price {
+    font-size: 20px;
+    font-weight: 400;
+    color: #7C7C7C;
+}
+.mycards .card-text {
+    font-size: 14px;
+    font-weight: 400;
+    color: #7C7C7C;
+}
 .mycards .status-bar {
     display: block;
     height: 50px;

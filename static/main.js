@@ -41,7 +41,7 @@ function list_to_card(wishlist) {        //받은 list를 카드로 만들어 �
                             </div>
                             <div class="card-body">
                                 <h4 class="card-title">${name}</h4>
-                                <p class="card-text" id="card_price">${price}</p>
+                                <p class="card-price" id="card_price">${price}</p>
                                 <p class="card-text" id="card_memo">${memo}</p>
                             </div>
                         </div>
