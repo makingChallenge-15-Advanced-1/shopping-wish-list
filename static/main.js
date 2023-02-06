@@ -155,8 +155,8 @@ function wishlist_modify(listId) {
     let name = $('#name_modify').val()
     let price = $('#price_modify').val()
     let memo = $('#memo_modify').val()
-    let status = $('#status_modify').val()   //status 부분 수정하기
-    
+    let status = $("input[type=radio][name=status]:checked").val(); // 상태 변경 (수정)
+
     let alertMsg = "";
     if (url_verifier == 'false') {
         alertMsg = 'url이 맞는지 검사해 주세요!!';
@@ -307,9 +307,15 @@ function open_modify_box(listId) {         //상품 수정 박스를 open
                     <input type="text" class="form-control" id="memo_modify" placeholder="memo">
                     <label for="memo_modify">메모</label>
                 </div>
-                <div class="form-floating">
-                    <input type="text" class="form-control" id="status_modify" placeholder="status">
-                    <label for="status_modify">상태(ready,refer,done)</label>
+                <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                    <input type="radio" class="btn-check" name="status" id="toBuy" value="toBuy" autocomplete="off">
+                    <label class="btn btn-outline-primary" for="toBuy">구매예정</label>
+
+                    <input type="radio" class="btn-check" name="status" id="hold" value="hold" autocomplete="off">
+                    <label class="btn btn-outline-primary" for="hold">구매보류</label>
+
+                    <input type="radio" class="btn-check" name="status" id="order" value="order" autocomplete="off">
+                    <label class="btn btn-outline-primary" for="order">구매완료</label>
                 </div>
 
                 <div class="mybtns">
