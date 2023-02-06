@@ -37,7 +37,7 @@ def image_from_url(url_receive):
     return image
 
 #GET API 
-#조건에 맞는 list를 return
+#조건에 맞는 list를 return -> 아직 해결 안됨.(16:50)
 @app.route("/wishlist", methods=["GET"])
 def wishlist_get():
     list_method = request.args.get('list')
