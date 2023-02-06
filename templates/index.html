@@ -24,55 +24,61 @@
         <button onclick="open_posting_box()">
             <b>찜 상품 추가</b>
         </button>
+        
+        <!-- 불투명 백그라운드 설정 -->
+        <div class="container">
+            <!-- 상품 등록하기-->
+            <div class="mypost" id="posting_box" style="overflow-y: auto;">
+                <div class="card-title">
+                    <h5>상품 등록하기</h5>
+                    <button onclick="close_posting_box()" type="button" class="pop-close">닫기</button>
+                </div>
+                <div class="form-floating" id="url_box">
+                    <label for="url_input">URL</label>
+                    <input type="text" class="required form-url form-control" id="url_input" placeholder="url">
+                    <button class="url-check" onclick="url_certifi()">url 검증</button>
+                    <p class="txt-required">* 필수 항목입니다.</p>
+                </div>
+                <div class="form-floating">
+                    <label for="name_input">상품명</label>
+                    <input type="text" class="required form-control" id="name_input" placeholder="name">
+                    <p class="txt-required">* 필수 항목입니다.</p>
+                </div>
+                <div class="form-floating">
+                    <label for="price_input">가격</label>
+                    <input type="text" class="form-control" id="price_input" placeholder="price">
+                    <p></p>
+                </div>
+                <div class="form-floating">
+                    <label for="memo_input">메모</label>
+                    <textarea class="form-control" id="memo_input" maxlength="100"
+                        placeholder="최대 100자까지 가능합니다."></textarea>
+                </div>
+                <!-- <div class="form-floating">
+                    <input type="text" class="form-control" id="status_input" placeholder="status">
+                    <label for="status_input">상태(ready,refer,done)</label>
+                </div> -->
 
-        <div class="mypost" id="posting_box">
-            <div class="card-title">
-                <h5>상품 등록하기</h5>
-                <button onclick="close_posting_box()" type="button" class="pop_close">닫기</button>
-            </div>
-            <div class="form-floating" id="url_box">
-                <label for="url_input">URL</label>
-                <input type="text" class="required form-url form-control" id="url_input" placeholder="url">
-                <button class="url-check" onclick="url_certifi()">url 검증</button>
-                <p class="txt-required">* 필수 항목입니다.</p>
-            </div>
-            <div class="form-floating">
-                <label for="name_input">상품명</label>
-                <input type="text" class="required form-control" id="name_input" placeholder="name">
-                <p class="txt-required">* 필수 항목입니다.</p>
-            </div>
-            <div class="form-floating">
-                <label for="price_input">가격</label>
-                <input type="text" class="form-control" id="price_input" placeholder="price">
-                <p></p>
-            </div>
-            <div class="form-floating">
-                <label for="memo_input">메모</label>
-                <textarea class="form-control" id="memo_input" maxlength="100"
-                    placeholder="최대 100자까지 가능합니다."></textarea>
-                <p></p>
-            </div>
-            <!-- <div class="form-floating">
-                <input type="text" class="form-control" id="status_input" placeholder="status">
-                <label for="status_input">상태(ready,refer,done)</label>
-            </div> -->
+                <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                    <input type="radio" class="btn-check" name="status" id="toBuy" value="toBuy" autocomplete="off">
+                    <label class="btn btn-outline-primary" for="toBuy">구매예정</label>
 
-            <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
-                <input type="radio" class="btn-check" name="status" id="toBuy" value="toBuy" autocomplete="off">
-                <label class="btn btn-outline-primary" for="toBuy">구매예정</label>
+                    <input type="radio" class="btn-check" name="status" id="hold" value="hold" autocomplete="off">
+                    <label class="btn btn-outline-primary" for="hold">구매보류</label>
 
-                <input type="radio" class="btn-check" name="status" id="hold" value="hold" autocomplete="off">
-                <label class="btn btn-outline-primary" for="hold">구매보류</label>
+                    <input type="radio" class="btn-check" name="status" id="order" value="order" autocomplete="off">
+                    <label class="btn btn-outline-primary" for="order">구매완료</label>
+                </div>
 
-                <input type="radio" class="btn-check" name="status" id="order" value="order" autocomplete="off">
-                <label class="btn btn-outline-primary" for="order">구매완료</label>
+                <div class="mybtns">
+                    <button onclick="wishlist_post()" type="button" class="btn btn-dark">등록하기</button>
+                    <button onclick="close_posting_box()" type="button" class="btn btn-outline-secondary">취소</button>
+                </div>
             </div>
-
-            <div class="mybtns">
-                <button onclick="wishlist_post()" type="button" class="btn btn-dark">등록하기</button>
-                <button onclick="close_posting_box()" type="button" class="btn btn-outline-secondary">취소</button>
-            </div>
+            <!-- 상품 수정하기-->
+            <div class="mymodifier" id="modify_box" style="overflow-y: auto;"></div>
         </div>
+        
         <div class="top-menu">
             <ul>
                 <li onclick="wishlist_get_all()" class="all"><a>전체보기</a></li>
@@ -81,10 +87,6 @@
                 <li onclick="wishlist_get_order()" class="order"><a>구매완료</a></li>
             </ul>
         </div>
-    </div>
-
-    <div class="mymodifier" id="modify_box">
-
     </div>
 
     <div class="mycards">
