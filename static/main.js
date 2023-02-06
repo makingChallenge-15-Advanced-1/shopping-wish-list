@@ -101,6 +101,10 @@ function wishlist_get_order() {          //구매완료 아이템만 보여줌
     })
 }
 
+//alert 창 (ok)
+function checkAlert(msg) {
+    Swal.fire(msg)
+}
 
 //DB에 새로운 정보를 추가하는 함수(등록하기)
 function wishlist_post() {
@@ -112,12 +116,15 @@ function wishlist_post() {
     // let test = $('#status_btn').val()
     let status = $("input[type=radio][name=status]:checked").val(); // 상태 변경 (수정)
 
+    let alertMsg = "";
     if (url_verifier == 'false') {
-        alert('url이 맞는지 검사해 주세요!!');
+        alertMsg = 'url이 맞는지 검사해 주세요!!';
+        checkAlert(alertMsg);
         return
     }
     if (name.length == 0) {
-        alert('상품명을 입력해 주세요!!');
+        alertMsg = '상품명을 입력해 주세요!!';
+        checkAlert(alertMsg);
         return
     }
     $.ajax({
@@ -125,7 +132,7 @@ function wishlist_post() {
         url: '/wishlist',
         data: { url_give: url, name_give: name, price_give: price, memo_give: memo, status_give: status },
         success: function (response) {
-            alert(response['msg'])
+            checkAlert(response['msg'])
             window.location.reload()
         }
     });
@@ -139,12 +146,16 @@ function wishlist_modify(listId) {
     let price = $('#price_modify').val()
     let memo = $('#memo_modify').val()
     let status = $('#status_modify').val()   //status 부분 수정하기
+    
+    let alertMsg = "";
     if (url_verifier == 'false') {
-        alert('url이 맞는지 검사해 주세요!!');
+        alertMsg = 'url이 맞는지 검사해 주세요!!';
+        checkAlert(alertMsg);
         return
     }
     if (name.length == 0) {
-        alert('상품명을 입력해 주세요!!');
+        alertMsg = '상품명을 입력해 주세요!!';
+        checkAlert(alertMsg);
         return
     }
     $.ajax({                                 //변수: url, name, price, memo, status, listId
@@ -152,7 +163,7 @@ function wishlist_modify(listId) {
         url: '/wishlist/{listId}',
         data: { url_give: url, name_give: name, price_give: price, memo_give: memo, status_give: status, listId_give: listId },
         success: function (response) {
-            alert(response['msg'])
+            checkAlert(response['msg'])
             window.location.reload()
         }
     });
@@ -165,7 +176,7 @@ function modifying_status(listId) {
         url: '/wishlist/{listId}/status',
         data: { status_give: status, listId_give: listId },
         success: function (response) {
-            alert(response['msg'])
+            checkAlert(response['msg'])
             window.location.reload()
         }
     });
@@ -178,7 +189,7 @@ function wishlist_delete(listId) {
         url: '/wishlist/{listId}',
         data: { listId_give: listId },
         success: function (response) {
-            alert(response['msg'])
+            checkAlert(response['msg'])
             window.location.reload()
         }
     });
@@ -188,8 +199,10 @@ function wishlist_delete(listId) {
 function url_certifi() {
     let url = $('#url_input').val()
 
+    let alertMsg = "";
     if (url == "") {
-        alert("URL을 입력해 주세요!!")
+        alertMsg = "URL을 입력해 주세요!!";
+        checkAlert(alertMsg);
         return
     }
     //url 형식 검증
@@ -197,11 +210,13 @@ function url_certifi() {
 
     if (regex.test(url)) {
         // location.href = url;     해당 url로 이동하는 식
-        alert(url)
+        alertMsg = "url 확인 됐습니다.";
+        checkAlert(alertMsg);
         url_verifier = 'true'
         return
     } else {
-        alert("유효하지 않은 url입니다")
+        alertMsg = "유효하지 않은 url입니다";
+        checkAlert(alertMsg);
         return
     }
 }
@@ -210,7 +225,8 @@ function url_mod_certifi() {
     let url = $('#url_modify').val()
 
     if (url == "") {
-        alert("URL을 입력해 주세요!!")
+        alertMsg = "URL을 입력해 주세요!!";
+        checkAlert(alertMsg);
         return
     }
     //url 형식 검증
@@ -218,11 +234,13 @@ function url_mod_certifi() {
 
     if (regex.test(url)) {
         // location.href = url;     해당 url로 이동하는 식
-        alert(url)
+        alertMsg = "url 확인 됐습니다.";
+        checkAlert(alertMsg);
         url_verifier = 'true'
         return
     } else {
-        alert("유효하지 않은 url입니다")
+        alertMsg = "유효하지 않은 url입니다";
+        checkAlert(alertMsg);
         return
     }
 }
