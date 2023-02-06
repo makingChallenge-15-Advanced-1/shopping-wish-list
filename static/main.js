@@ -41,19 +41,19 @@ function list_to_card(wishlist) {        //받은 list를 카드로 만들어 �
                             </div>
                             <div class="card-body">
                                 <h4 class="card-title">${name}</h4>
-                                <p class="card-text" id="cardPrice">${price}</p>
-                                <p class="card-text" id="cardMemo">${memo}</p>
+                                <p class="card-text" id="card_price">${price}</p>
+                                <p class="card-text" id="card_memo">${memo}</p>
                             </div>
                         </div>
                     </div>
                 `
-        $('#cards-box').append(temp_html)
+        $('#cards_box').append(temp_html)
     }
     return
 }
 
 function wishlist_get_all() {                //모든 정보를 보여줌
-    $('#cards-box').empty()
+    $('#cards_box').empty()
     $.ajax({                        //ajax GET으로 list를 읽어와서 카드 생성
         type: 'GET',                //받는 변수 : image, url, name, price, memo, status, listId
         url: '/wishlist?list=all',
@@ -65,7 +65,7 @@ function wishlist_get_all() {                //모든 정보를 보여줌
     })
 }
 function wishlist_get_ready() {          //당장구매 아이템만 보여줌
-    $('#cards-box').empty()
+    $('#cards_box').empty()
     $.ajax({                        //ajax GET으로 list를 읽어와서 카드 생성
         type: 'GET',                //받는 변수 : image, url, name, price, memo, status, listId
         url: '/wishlist?list=ready',
@@ -77,7 +77,7 @@ function wishlist_get_ready() {          //당장구매 아이템만 보여줌
     })
 }
 function wishlist_get_refer() {          //보류 아이템만 보여줌
-    $('#cards-box').empty()
+    $('#cards_box').empty()
     $.ajax({                        //ajax GET으로 list를 읽어와서 카드 생성
         type: 'GET',                //받는 변수 : image, url, name, price, memo, status, listId
         url: '/wishlist?list=refer',
@@ -89,7 +89,7 @@ function wishlist_get_refer() {          //보류 아이템만 보여줌
     })
 }
 function wishlist_get_done() {          //구매완료 아이템만 보여줌
-    $('#cards-box').empty()
+    $('#cards_box').empty()
     $.ajax({                        //ajax GET으로 list를 읽어와서 카드 생성
         type: 'GET',                //받는 변수 : image, url, name, price, memo, status, listId
         url: '/wishlist?list=done',
@@ -105,7 +105,7 @@ function wishlist_get_done() {          //구매완료 아이템만 보여줌
 //DB에 새로운 정보를 추가하는 함수
 function wishlist_post() {
     let url = $('#url_input').val()    //변수 : url, name, price, memo, status
-    let name = $('#name_input').val()
+    let name = $('#input_name').val()
     let price = $('#price_input').val()
     let memo = $('#memo_input').val()
     let status = $('#status_input').val()
@@ -227,16 +227,16 @@ function url_mod_certifi() {
 
 //box open&close 함수들
 function open_posting_box() {            //상품 등록 박스를 open
-    $('#posting-box').show()
+    $('#posting_box').show()
 }
 function close_posting_box() {           //상품 등록 박스를 close
     url_verifier = 'false'
-    $('#posting-box').hide()
+    $('#posting_box').hide()
 }
 
 function open_modify_box(listId) {         //상품 수정 박스를 open
-    $('#modify-box').show()
-    $('#modify-box').empty()
+    $('#modify_box').show()
+    $('#modify_box').empty()
     $.ajax({                            //기존 정보를 로딩해서 박스에 뿌려줌
         type: 'GET',                    //받는 변수 : image, url, name, price, memo, status
         url: '/wishlist/{listId}?listId_give=' + listId,
@@ -246,7 +246,7 @@ function open_modify_box(listId) {         //상품 수정 박스를 open
         }
     })
     let temp_html = `
-                <div class="form-floating" id="url-box">
+                <div class="form-floating" id="url_box">
                     <input type="text" class="form-control" id="url_modify" placeholder="url">
                     <button onclick="url_mod_certifi()">url 검증</button>
                     <label for="url_modify">url</label>
@@ -273,11 +273,11 @@ function open_modify_box(listId) {         //상품 수정 박스를 open
                     <button onclick="close_modify_box()" type="button" class="btn btn-outline-dark">닫기</button>
                 </div>
             `
-    $('#modify-box').append(temp_html)
+    $('#modify_box').append(temp_html)
 }
 function close_modify_box() {           //상품 수정 박스를 close
     url_verifier = 'false'
-    $('#modify-box').hide()
+    $('#modify_box').hide()
 }
 
 function open_delete_box() {            //상품 삭제 박스를 open
