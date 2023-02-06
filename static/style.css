@@ -2,11 +2,11 @@
     font-family: 'Nanum Gothic', sans-serif;
 }
 
-html {
-    font-size: 13px;
+html {font-size:13px;}
 
-    @media (min-width: 768px) {
-        font-size: 16px;
+@media (min-width: 768px) {
+    html {
+        font-size: 1rem;
     }
 }
 
@@ -18,7 +18,7 @@ html {
     background-image: url("/static/img/bgTop_whiteRec.png");
     background-color: #C068A8;
     background-position: calc(50% + 200px) 0;
-    background-size: 1;
+    background-size: auto;
     background-repeat: no-repeat;
 
     color: white;
@@ -45,13 +45,13 @@ html {
 
 .mytitle>button {
     cursor: pointer;
+    font-size: calc(1.275rem + .3vw);
     width: 180px;
-    height: 50px;
     background-color: #E6C3DC;
     color: #A03383;
     border-radius: 10px;
     border: none;
-    padding-top: 10px;
+    padding: 10px 0;
     position: absolute;
     top: 140px;
     right: 65%;
@@ -281,7 +281,7 @@ html {
     flex-direction: column;
     flex-wrap: wrap;
     justify-content: space-evenly;
-    box-shadow: 0px 4px 6px rgb(0 0 0 / 25%);
+    box-shadow: 0 4px 6px rgb(0 0 0 / 25%);
     border-radius: 8px;
     border: 0;
     min-width: 210px !important;
@@ -429,7 +429,6 @@ html {
 .mypost>.form-floating>label {
     display: block;
     position: initial;
-    left: 0;
     font-size: 14px;
     color: #000000;
     font-weight: 400;
@@ -438,9 +437,10 @@ html {
 
 .mypost>.form-floating>.form-control {
     padding: 6px 8px 8px 8px;
-    font-size: 1.2rem;
+    font-size: .9rem;
     border: 1px solid #A4A4A4;
     border-radius: 8px;
+    height: calc(2.85rem + 2px);
 }
 
 .mypost>.form-floating>.required {
@@ -581,4 +581,3 @@ html {
 .card-body>input {
     display: block;
 }
-
