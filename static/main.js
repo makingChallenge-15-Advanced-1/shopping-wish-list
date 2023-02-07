@@ -127,12 +127,12 @@ function wishlist_post() {
 
     let alertMsg = "";
     if (url_verifier == 'false') {
-        alertMsg = 'url이 맞는지 검사해 주세요!!';
+        alertMsg = 'URL 유효성 체크 해주세요!';
         okAlert(alertMsg);
         return
     }
     if (name.length == 0) {
-        alertMsg = '상품명을 입력해 주세요!!';
+        alertMsg = '상품명을 입력해 주세요!';
         okAlert(alertMsg);
         return
     }
@@ -158,12 +158,12 @@ function wishlist_modify(listId) {
 
     let alertMsg = "";
     if (url_verifier == 'false') {
-        alertMsg = 'url이 맞는지 검사해 주세요!!';
+        alertMsg =  'URL 유효성 체크 해주세요!';
         okAlert(alertMsg);
         return
     }
     if (name.length == 0) {
-        alertMsg = '상품명을 입력해 주세요!!';
+        alertMsg = '상품명을 입력해 주세요!';
         okAlert(alertMsg);
         return
     }
@@ -195,8 +195,8 @@ function modifying_status(listId) {
 //특정 listId를 가진 정보를 삭제
 function wishlist_delete(listId) {
     Swal.fire({
-        title: '정말 삭제하시겠습니까?',
-        text: "삭제하시면 복구되지 않습니다.",
+        title: '정말 삭제 하시겠습니까?',
+        text: "삭제되면 복구할 수 없습니다",
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#C068A8',
@@ -224,7 +224,7 @@ function url_certifi() {
 
     let alertMsg = "";
     if (url == "") {
-        alertMsg = "URL을 입력해 주세요!!";
+        alertMsg = "URL을 입력해 주세요!";
         okAlert(alertMsg);
         return
     }
@@ -233,12 +233,12 @@ function url_certifi() {
 
     if (regex.test(url)) {
         // location.href = url;     해당 url로 이동하는 식
-        alertMsg = "url 확인 됐습니다.";
+        alertMsg = "유효한 URL 입니다";
         okAlert(alertMsg);
         url_verifier = 'true'
         return
     } else {
-        alertMsg = "유효하지 않은 url입니다";
+        alertMsg = "유효하지 않은 URL 입니다";
         okAlert(alertMsg);
         return
     }
@@ -248,7 +248,7 @@ function url_mod_certifi() {
     let url = $('#url_modify').val()
 
     if (url == "") {
-        alertMsg = "URL을 입력해 주세요!!";
+        alertMsg = "URL을 입력해 주세요!";
         okAlert(alertMsg);
         return
     }
@@ -257,12 +257,12 @@ function url_mod_certifi() {
 
     if (regex.test(url)) {
         // location.href = url;     해당 url로 이동하는 식
-        alertMsg = "url 확인 됐습니다.";
+        alertMsg = "유효한 URL 입니다";
         okAlert(alertMsg);
         url_verifier = 'true'
         return
     } else {
-        alertMsg = "유효하지 않은 url입니다";
+        alertMsg = "유효하지 않은 URL입니다";
         okAlert(alertMsg);
         return
     }
