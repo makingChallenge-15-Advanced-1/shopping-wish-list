@@ -46,7 +46,7 @@ html {font-size:13px;}
 .mytitle>button {
     cursor: pointer;
     font-size: calc(1.275rem + .3vw);
-    z-index: 1061;
+    /*z-index: 1061;*/
     width: 180px;
     background-color: #E6C3DC;
     color: #A03383;
@@ -617,7 +617,18 @@ html {font-size:13px;}
     display: block;
 }
 
-.swal2-header .swal2-title { /* 알럿 타이틀 수정 */
-    font-size: 1.3rem !important;
-    line-height: 3rem;
+/* 알럿창 스타일 추가 정의 */
+.swal2-header .swal2-title {
+    font-size: 1.4rem !important;
+    line-height: 2.4rem;
+}
+.swal2-icon.swal2-warning {
+    border-color: #ff4f8d !important;
+    color:#ff4f8d !important;
+}
+
+.swal2-icon .swal2-icon-content {
+    font-size: 4em !important;
+    font-weight: 700 !important;
+    border-width: 6px !important;
 }
