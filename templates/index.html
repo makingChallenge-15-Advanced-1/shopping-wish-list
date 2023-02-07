@@ -8,14 +8,10 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-        crossorigin="anonymous"></script>
-
-    <title>나의 쇼핑 찜바구니</title>
     <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&display=swap" rel="stylesheet">
 
-    <!-- css, js 분리 -->
+    <title>나의 쇼핑 찜바구니</title>
+
     <link rel="stylesheet" href="/static/style.css">
     <script src="/static/main.js"></script>
 </head>
@@ -26,74 +22,83 @@
         <h1><b>나의 쇼핑 찜바구니</b><img src="/static/img/img_shoppingBasket.png" alt="장바구니"></h1>
 
         <button onclick="open_posting_box()">
-            <h4><b>찜 상품 추가</b></h4>
+            <b>찜 상품 추가</b>
         </button>
-        <div class="mypost" id="posting-box">
-            <div class="card-title">
-                <h5>상품 등록하기</h5>
-                <button onclick="close_posting_box()" type="button" class="pop_close">닫기</button>
-            </div>
-            <div class="form-floating" id="url-box">
-                <label for="url_input">URL</label>
-                <input type="text" class="required form-url form-control" id="url_input" placeholder="url">
-                <button class="url-check" onclick="url_certifi()">url 검증</button>
-                <p class="txt-required">* 필수 항목입니다.</p>
-            </div>
-            <div class="form-floating">
-                <label for="name_input">상품명</label>
-                <input type="text" class="required form-control" id="name_input" placeholder="name">
-                <p class="txt-required">* 필수 항목입니다.</p>
-            </div>
-            <div class="form-floating">
-                <label for="price_input">가격</label>
-                <input type="text" class="form-control" id="price_input" placeholder="price">
-                <p></p>
-            </div>
-            <div class="form-floating">
-                <label for="memo_input">메모</label>
-                <textarea class="form-control" id="memo_input" maxlength="100" placeholder="최대 100자까지 가능합니다."></textarea>
-                <p></p>
-            </div>
-            <div class="form-floating">
-                <input type="text" class="form-control" id="status_input" placeholder="status">
-                <label for="status_input">상태(ready,refer,done)</label>
-            </div>
+        
+        <!-- 불투명 백그라운드 설정 -->
+        <div class="container">
+            <!-- 상품 등록하기-->
+            <div class="mypost" id="posting_box" style="overflow-y: auto;">
+                <div class="card-title">
+                    <h5>상품 등록하기</h5>
+                    <button onclick="close_posting_box()" type="button" class="pop-close">닫기</button>
+                </div>
+                <div class="form-floating" id="url_box">
+                    <label for="url_input">URL</label>
+                    <input type="text" class="required form-url form-control" id="url_input" placeholder="url">
+                    <button class="url-check" onclick="url_certifi()">url 검증</button>
+                    <p class="txt-required">* 필수 항목입니다.</p>
+                </div>
+                <div class="form-floating">
+                    <label for="name_input">상품명</label>
+                    <input type="text" class="required form-control" id="name_input" placeholder="name">
+                    <p class="txt-required">* 필수 항목입니다.</p>
+                </div>
+                <div class="form-floating">
+                    <label for="price_input">가격</label>
+                    <input type="text" class="form-control" id="price_input" placeholder="price">
+                    <p></p>
+                </div>
+                <div class="form-floating">
+                    <label for="memo_input">메모</label>
+                    <textarea class="form-control" id="memo_input" maxlength="100"
+                        placeholder="최대 100자까지 가능합니다."></textarea>
+                </div>
+                <!-- <div class="form-floating">
+                    <input type="text" class="form-control" id="status_input" placeholder="status">
+                    <label for="status_input">상태(ready,refer,done)</label>
+                </div> -->
 
-            <div class="btn-group" role="group" aria-label="Basic outlined example" id="status_btn">
-                <button type="button" class="btn btn-outline-dark">구매예정</button>
-                <button type="button" class="btn btn-outline-dark">구매보류</button>
-                <button type="button" class="btn btn-outline-dark">구매완료</button>
-            </div>
+                <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                    <input type="radio" class="btn-check" name="status" id="toBuy" value="toBuy" autocomplete="off">
+                    <label class="btn btn-outline-primary" for="toBuy">구매예정</label>
 
-            <div class="mybtns">
-                <button onclick="wishlist_post()" type="button" class="btn btn-dark">등록하기</button>
-                <button onclick="close_posting_box()" type="button" class="btn btn-outline-secondary">취소</button>
+                    <input type="radio" class="btn-check" name="status" id="hold" value="hold" autocomplete="off">
+                    <label class="btn btn-outline-primary" for="hold">구매보류</label>
+
+                    <input type="radio" class="btn-check" name="status" id="order" value="order" autocomplete="off">
+                    <label class="btn btn-outline-primary" for="order">구매완료</label>
+                </div>
+
+                <div class="mybtns">
+                    <button onclick="wishlist_post()" type="button" class="btn btn-dark">등록하기</button>
+                    <button onclick="close_posting_box()" type="button" class="btn btn-outline-secondary">취소</button>
+                </div>
             </div>
+            <!-- 상품 수정하기-->
+            <div class="mymodifier" id="modify_box" style="overflow-y: auto;"></div>
         </div>
+        
         <div class="top-menu">
             <ul>
-                <li onclick="wishlist_get_all()" class="all"><a href="">전체보기</a></li>
-                <li onclick="wishlist_get_ready()" class="to-buy"><a href="">구매예정</a></li>
-                <li onclick="wishlist_get_refer()" class="hold"><a href="">구매보류</a></li>
-                <li onclick="wishlist_get_done()" class="order"><a href="">구매완료</a></li>
+                <li onclick="wishlist_get_all()" class="all"><a>전체보기</a></li>
+                <li onclick="wishlist_get_toBuy()" class="to-buy"><a>구매예정</a></li>
+                <li onclick="wishlist_get_hold()" class="hold"><a>구매보류</a></li>
+                <li onclick="wishlist_get_order()" class="order"><a>구매완료</a></li>
             </ul>
         </div>
     </div>
 
-    <div class="mymodifier" id="modify-box">
-
-    </div>
-
     <div class="mycards">
-        <div class="row row-cols-2 row-cols-md-4 g-3" id="cards-box">
+        <div class="row row-cols-2 row-cols-md-4 g-3" id="cards_box">
             <div class="col">
                 <div class="card">
-                    <div class="card-header bg-transparent">
-                        <img src="/static/img/icon_toBuy.png" class="icon-status" alt="${status}">
-                        <input onclick="open_modify_box(${listId})" type='image' src="/static/img/icon_edit.png" class='btn'
-                            name='btn' value='수정하기' style="float: right;">
-                        <input onclick="wishlist_delete(${listId})" type='image' src="/static/img/icon_del.png" class='btn'
-                            name='btn' value='삭제하기' style="float: right;">
+                    <div class="status-bar">
+                        <div class="status-toBuy">구매예정</div>
+                        <!-- <div class="status-hold">구매보류</div>
+                        <div class="status-order">구매완료</div> -->
+                        <input onclick="wishlist_delete()" type='button' class='btn-del' name='btn' value='삭제하기'>
+                        <input onclick="open_modify_box()" type='button' class='btn-modify' name='btn' value='수정하기'>
                     </div>
                     <div class="embed-responsive embed-responsive-4by3">
                         <a href="${url}" target="_blank">
@@ -102,8 +107,8 @@
                     </div>
                     <div class="card-body">
                         <h4 class="card-title">상품명</h4>
-                        <p class="card-text" id="cardPrice">가격</p>
-                        <p class="card-text" id="cardMemo">메모</p>
+                        <p class="card-price" id="card_price">가격</p>
+                        <p class="card-text" id="card_memo">메모</p>
                     </div>
                 </div>
             </div>
@@ -123,13 +128,18 @@
                     </div>
                     <div class="card-body">
                         <h4 class="card-title">상품명</h4>
-                        <p class="card-text" id="cardPrice">가격</p>
-                        <p class="card-text" id="cardMemo">메모</p>
+                        <p class="card-text" id="card_price2">가격</p>
+                        <p class="card-text" id="card_memo2">메모</p>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 </body>
 
 </html>
