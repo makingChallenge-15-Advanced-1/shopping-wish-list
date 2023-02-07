@@ -112,7 +112,7 @@ function checkedAlert(msg) {
         icon: 'success',
         title: msg,
         showConfirmButton: false,
-        timer: 500
+        timer: 1500
     })
 }
 //alert ok창
@@ -147,7 +147,7 @@ function wishlist_post() {
         data: { url_give: url, name_give: name, price_give: price, memo_give: memo, status_give: status },
         success: function (response) {
             checkedAlert(response['msg'])
-            window.location.reload()
+            setTimeout(() => window.location.reload(), 1550);
         }
     });
 }
@@ -178,7 +178,7 @@ function wishlist_modify(listId) {
         data: { url_give: url, name_give: name, price_give: price, memo_give: memo, status_give: status, listId_give: listId },
         success: function (response) {
             checkedAlert(response['msg'])
-            window.location.reload()
+            setTimeout(() => window.location.reload(), 1550);
         }
     });
 }
@@ -192,7 +192,7 @@ function modifying_status(listId) {
         data: { status_give: status, listId_give: listId },
         success: function (response) {
             checkedAlert(response['msg'])
-            window.location.reload()
+            setTimeout(() => window.location.reload(), 1550);
         }
     });
 }
@@ -216,7 +216,7 @@ function wishlist_delete(listId) {
                 data: { listId_give: listId },
                 success: function (response) {
                     checkedAlert(response['msg'])
-                    window.location.reload()
+                    setTimeout(() => window.location.reload(), 1550);
                 }
             });
         }
