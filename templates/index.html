@@ -24,10 +24,7 @@
         <button onclick="open_posting_box()">
             <b>찜 상품 추가</b>
         </button>
-        
-        <!-- 불투명 백그라운드 설정 -->
         <div class="container">
-            <!-- 상품 등록하기-->
             <div class="mypost" id="posting_box" style="overflow-y: auto;">
                 <div class="card-title">
                     <h5>상품 등록하기</h5>
@@ -75,10 +72,8 @@
                     <button onclick="close_posting_box()" type="button" class="btn btn-outline-secondary">취소</button>
                 </div>
             </div>
-            <!-- 상품 수정하기-->
             <div class="mymodifier" id="modify_box" style="overflow-y: auto;"></div>
         </div>
-        
         <div class="top-menu">
             <ul>
                 <li onclick="wishlist_get_all()" class="all"><a>전체보기</a></li>
@@ -130,6 +125,8 @@
                         <h4 class="card-title">상품명</h4>
                         <p class="card-text" id="card_price2">가격</p>
                         <p class="card-text" id="card_memo2">메모</p>
+<!--                                임의로 수정하기 팝업 설정해서 더보기 버튼 설정-->
+                        <input onclick="open_modify_box()" type='button' class='btn-detail-pop' name='btn' value='더보기'>
                     </div>
                 </div>
             </div>
