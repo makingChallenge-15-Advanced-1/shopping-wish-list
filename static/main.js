@@ -1,4 +1,5 @@
 var url_verifier = 'false';
+var rows; // open_modify_box에서 사용할 전역변수
 
 $(document).ready(function () {       //페이지 로딩 시 wishlist_get_all() 함수 호출
     wishlist_get_all();
@@ -287,11 +288,17 @@ function open_modify_box(listId) {         //상품 수정 박스를 open
     $.ajax({                            //기존 정보를 로딩해서 박스에 뿌려줌
         type: 'GET',                    //받는 변수 : image, url, name, price, memo, status
         url: '/wishlist/{listId}?listId_give=' + listId,
+        async: false, // 전역 변수 rows 사용 위함
         data: {},
         success: function (response) {
             rows = response['listId_item']
         }
     })
+    let get_list = JSON.parse(rows)
+    let url = get_list["url"]
+    let name = get_list["name"]
+    let price = get_list["price"]
+    let memo = get_list["memo"]
     let temp_html = `
                 <div class="card-title" style="display: flex;">
                     <h5>상품 수정하기</h5>
@@ -299,20 +306,20 @@ function open_modify_box(listId) {         //상품 수정 박스를 open
                 </div>
                 <div class="form-floating" id="url_box">
                     <label for="url_modify">URL</label>
-                    <input type="text" class="required form-url form-control" id="url_modify" placeholder="url">
+                    <input type="text" class="required form-url form-control" id="url_modify" placeholder="url" value="${url}">
                     <button class="url-check" onclick="url_mod_certifi()">url 검증</button>
                 </div>
                 <div class="form-floating">
                     <label for="name_modify">상품명</label>
-                    <input type="text" class="required form-control" id="name_modify" placeholder="name">
+                    <input type="text" class="required form-control" id="name_modify" placeholder="name" value="${name}">
                 </div>
                 <div class="form-floating">
                     <label for="price_modify">가격</label>
-                    <input type="text" class="form-control" id="price_modify" placeholder="price" >
+                    <input type="text" class="form-control" id="price_modify" placeholder="price" value="${price}">
                 </div>
                 <div class="form-floating">
                     <label for="memo_modify">메모</label>
-                    <textarea class="form-control" id="memo_modify" maxlength="100" placeholder="메모수정"></textarea>
+                    <textarea class="form-control" id="memo_modify" maxlength="100" placeholder="메모수정" value="${memo}"></textarea>
                 </div>
                 <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
                     <input type="radio" class="btn-check" name="status" id="toBuy" value="toBuy" autocomplete="off">
