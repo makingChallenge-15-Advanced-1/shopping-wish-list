@@ -299,6 +299,8 @@ function open_modify_box(listId) {         //상품 수정 박스를 open
     let name = get_list["name"]
     let price = get_list["price"]
     let memo = get_list["memo"]
+    let status = get_list["status"]
+
     let temp_html = `
                 <div class="card-title" style="display: flex;">
                     <h5>상품 수정하기</h5>
@@ -335,6 +337,7 @@ function open_modify_box(listId) {         //상품 수정 박스를 open
                 </div>
             `
     $('#modify_box').append(temp_html)
+    $(`input[type=radio][id='${status}']`).prop("checked", true);
 }
 function close_modify_box() {           //상품 수정 박스를 close
     Swal.fire({
