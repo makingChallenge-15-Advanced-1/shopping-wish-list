@@ -280,16 +280,18 @@ html {font-size:13px;}
     padding: 10px !important;
     display: flex;
     flex-direction: column;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     justify-content: space-evenly;
     box-shadow: 0 2px 4px rgb(0 0 0 / 20%);
     border-radius: 8px;
     border: 0;
-    min-width: 210px !important;
+    min-width: 180px !important;
+    max-height: 500px;
+    min-height: 500px;
 }
 
 .mycards .card-img-top {
-    height: 30vh;
+    height: 300px;
     object-fit: cover;
 }
 
@@ -298,27 +300,37 @@ html {font-size:13px;}
 }
 .mycards .card-body {
     padding:1rem 0 0 0;
-
 }
 
+.mycards .card-body p {
+    margin-bottom:.8rem !important;
+}
 
 .mycards .card-title {
-    font-size: 16px;
+    font-size: 18px;
     font-weight: 700;
+    text-overflow: ellipsis;
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
 }
 .mycards .card-price {
-    font-size: 20px;
+    font-size: 16px;
     font-weight: 400;
-    color: #7C7C7C;
+    color: #6720ff;
 }
 .mycards .card-text {
     font-size: 14px;
     font-weight: 400;
     color: #7C7C7C;
+    display: block;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 .mycards .status-bar {
     display: block;
-    height: 50px;
+    height: 3rem;
 }
 
 .card-header input:hover,
@@ -331,65 +343,91 @@ html {font-size:13px;}
 .mycards .status-bar .status-toBuy {
     position: absolute;
     left: 10px;
-    top: 16px;
+    top: .6rem;
+    text-indent: -999999rem;
 
     background-color:transparent;
     background-image: url("/static/img/icon_toBuy.png");
-    background-size: 30px;
-    text-indent: -999999px;
-    width:30px;
-    height:30px;
+    background-size: 2.2rem;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 2.6rem;
+    height: 2.6rem;
 }
 .mycards .status-bar .status-hold {
     position: absolute;
     left: 10px;
-    top: 16px;
+    top: .6rem;
+    text-indent: -999999rem;
 
     background-color:transparent;
     background-image: url("/static/img/icon_hold.png");
-    background-size: 30px;
-    text-indent: -999999px;
-    width:30px;
-    height:30px;
+    background-size: 2.2rem;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 2.6rem;
+    height: 2.6rem;
 }
 .mycards .status-bar .status-order {
     position: absolute;
     left: 10px;
-    top: 12px;
+    top: .8rem;
+    text-indent: -999999rem;
 
     background-color:transparent;
     background-image: url("/static/img/icon_cardComplete.png");
-    background-size: 30px;
-    text-indent: -999999px;
-    width:30px;
-    height:30px;
+    background-size: 2.2rem;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 2.6rem;
+    height: 2.6rem;
 }
 
 .mycards .status-bar .btn-del {
     background-image:url("/static/img/icon_del.png") ;
     background-repeat: no-repeat;
     background-color: transparent;
-    background-size: 36px;
-    width: 40px;
-    height:40px;
-    border:none;
+    background-size: 2.2rem;
+    background-position: center;
+    width: 2.6rem;
+    height: 2.6rem;
+    border: none;
     text-indent: -9999px;
     position: absolute;
-    right: 60px;
+    right: 3.4rem;
 }
 
 .mycards .status-bar .btn-modify {
     background-image:url("/static/img/icon_edit.png") ;
     background-repeat: no-repeat;
     background-color: transparent;
-    background-size: 36px;
-    width: 40px;
-    height:40px;
-    border:none;
+    background-size: 2.2rem;
+    background-position: center;
+    width: 2.6rem;
+    height: 2.6rem;
+    border: none;
     text-indent: -9999px;
     position: absolute;
-    right: 10px;
+    right: 0.4rem;
 }
+
+.btn-detail-pop {
+    font-size: 14px;
+    font-weight: 400;
+    background-color: #ffffff;
+    border: 1px solid #d9d9d9;
+    border-radius: 4px;
+    float:right;
+}
+.btn-detail-pop:hover,
+.btn-detail-pop:active {
+    /*box-shadow: 1px 2px 0 rgb(0 0 0 / 20%);*/
+    font-weight: 700;
+    color:#ffffff;
+    border-color: #6720ff;
+    background-color: #6720ff;
+}
+
 
 .icon-status {
     border: 1px solid transparent;
@@ -466,7 +504,7 @@ html {font-size:13px;}
 .mymodifier>.form-floating>.form-control,
 .mypost>.form-floating>.form-control {
     padding: 6px 8px 8px 8px;
-    font-size: .9rem;
+    font-size: 1rem;
     border: 1px solid #A4A4A4;
     border-radius: 8px;
     height: calc(2.85rem + 2px);
@@ -485,7 +523,7 @@ html {font-size:13px;}
 
 .mymodifier>.form-floating>.form-url,
 .mypost>.form-floating>.form-url {
-    width: calc(100% - 58px);
+    width: calc(100% - 4.1rem);
 }
 
 .mymodifier>.form-floating>textarea.form-control,
@@ -502,22 +540,19 @@ html {font-size:13px;}
 
 .mymodifier>.form-floating>button.url-check,
 .mypost>.form-floating>button.url-check {
-    background-image: url("/static/img/btn_check.png");
+    background-image: url(/static/img/btn_check.png);
     background-repeat: no-repeat;
-    background-size: 48px;
+    background-size: 3rem;
     background-color: #ffffff;
     border-radius: 8px;
-    border: 0;
-    box-shadow: 1px 3px 0 rgb(0, 0, 0, 0.3);
-
+    border: 0.1rem solid #4d6ffd;
+    box-shadow: 1px 3px 1px rgb(0 0 0 / 30%);
     text-indent: -9999em;
-
-    width: 48px;
-    height: 48px;
-
+    width: 3.1rem;
+    height: 3.1rem;
     cursor: pointer;
     float: right;
-    margin-top: -49px;
+    margin-top: -3.1rem;
 }
 
 .mymodifier>.form-floating>button.url-check:active,
@@ -625,6 +660,16 @@ html {font-size:13px;}
 .swal2-icon.swal2-warning {
     border-color: #ff4f8d !important;
     color:#ff4f8d !important;
+}
+
+.swal2-icon.swal2-info {
+    border-color: #1960ee!important;
+    color: #1960ee!important;
+}
+
+.swal2-icon.swal2-success {
+    border-color: #07b90f!important;
+    color: #07b90f!important;
 }
 
 .swal2-icon .swal2-icon-content {
