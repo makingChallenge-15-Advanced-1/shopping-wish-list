@@ -19,7 +19,7 @@ db = client.dbsparta
 def home():
     return render_template('index.html')
 
-
+#branch에 업로드해보자!!
 #url에서 image 추출하는 함수
 def image_from_url(url_receive):
     headers = {        
@@ -37,18 +37,18 @@ def image_from_url(url_receive):
     return image
 
 #GET API 
-#조건에 맞는 list를 return
+#조건에 맞는 list를 return -> 아직 해결 안됨.(16:50)
 @app.route("/wishlist", methods=["GET"])
 def wishlist_get():
     list_method = request.args.get('list')
     if list_method == 'all':
         wishlist = list(db.wishlist.find({}, {'_id': False}))
-    elif list_method == 'ready':
-        wishlist = list(db.wishlist.find({'status': 'ready'}, {'_id': False}))
-    elif list_method == 'refer':
-        wishlist = list(db.wishlist.find({'status': 'refer'}, {'_id': False}))
-    elif list_method == 'done':
-        wishlist = list(db.wishlist.find({'status': 'done'}, {'_id': False}))
+    elif list_method == 'toBuy':
+        wishlist = list(db.wishlist.find({'status': 'toBuy'}, {'_id': False}))
+    elif list_method == 'hold':
+        wishlist = list(db.wishlist.find({'status': 'hold'}, {'_id': False}))
+    elif list_method == 'order':
+        wishlist = list(db.wishlist.find({'status': 'order'}, {'_id': False}))
 
     for item in wishlist:
         url = item['url']
