@@ -319,7 +319,7 @@ function open_modify_box(listId) {         //상품 수정 박스를 open
                 </div>
                 <div class="form-floating">
                     <label for="memo_modify">메모</label>
-                    <textarea class="form-control" id="memo_modify" maxlength="100" placeholder="메모수정" value="${memo}"></textarea>
+                    <textarea class="form-control" id="memo_modify" maxlength="100" placeholder="메모수정">${memo}</textarea>
                 </div>
                 <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
                     <input type="radio" class="btn-check" name="status" id="toBuy" value="toBuy" autocomplete="off">
@@ -337,8 +337,21 @@ function open_modify_box(listId) {         //상품 수정 박스를 open
     $('#modify_box').append(temp_html)
 }
 function close_modify_box() {           //상품 수정 박스를 close
-    url_verifier = 'false'
-    $('#modify_box').hide()
+    Swal.fire({
+        title: '수정을 취소 하시겠습니까?',
+        text: "수정한 항목이 있다면 반영되지 않습니다",
+        icon: 'info',
+        showCancelButton: true,
+        confirmButtonColor: '#C068A8',
+        cancelButtonColor: '#D9D9D9',
+        confirmButtonText: '수정취소',
+        cancelButtonText: '계속수정'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            url_verifier = 'false'
+            $('#modify_box').hide()
+        }
+    })
 }
 
 function open_delete_box() {            //상품 삭제 박스를 open
