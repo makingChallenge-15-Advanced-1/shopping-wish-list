@@ -54,6 +54,7 @@ function list_to_card(wishlist) {        //받은 list를 카드로 만들어 �
 
 function wishlist_get_all() {                //모든 정보를 보여줌
     $('#cards_box').empty()
+    $('#toBuy').prop("checked",true) 
     $.ajax({                        //ajax GET으로 list를 읽어와서 카드 생성
         type: 'GET',                //받는 변수 : image, url, name, price, memo, status, listId
         url: '/wishlist?list=all',
@@ -66,6 +67,7 @@ function wishlist_get_all() {                //모든 정보를 보여줌
 }
 function wishlist_get_toBuy() {          //당장구매 아이템만 보여줌
     $('#cards_box').empty()
+    $('#toBuy').prop("checked", true)
     $.ajax({                        //ajax GET으로 list를 읽어와서 카드 생성
         type: 'GET',                //받는 변수 : image, url, name, price, memo, status, listId
         url: '/wishlist?list=toBuy',
@@ -78,6 +80,7 @@ function wishlist_get_toBuy() {          //당장구매 아이템만 보여줌
 }
 function wishlist_get_hold() {          //보류 아이템만 보여줌
     $('#cards_box').empty()
+    $('#hold').prop("checked", true)
     $.ajax({                        //ajax GET으로 list를 읽어와서 카드 생성
         type: 'GET',                //받는 변수 : image, url, name, price, memo, status, listId
         url: '/wishlist?list=hold',
@@ -90,6 +93,7 @@ function wishlist_get_hold() {          //보류 아이템만 보여줌
 }
 function wishlist_get_order() {          //구매완료 아이템만 보여줌
     $('#cards_box').empty()
+    $('#order').prop("checked", true)
     $.ajax({                        //ajax GET으로 list를 읽어와서 카드 생성
         type: 'GET',                //받는 변수 : image, url, name, price, memo, status, listId
         url: '/wishlist?list=order',
