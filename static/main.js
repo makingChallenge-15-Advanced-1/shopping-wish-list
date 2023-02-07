@@ -21,7 +21,7 @@ function list_to_card(wishlist) {        //받은 list를 카드로 만들어 �
         if (status === 'toBuy') { // 구매예정
             statusClass = "status-toBuy";
         } else if (status === 'hold') { // 구매보류
-            statusClass = "status-hold";            
+            statusClass = "status-hold";
         } else if (status === 'order') { // 구매완료
             statusClass = "status-order";
         }
@@ -43,6 +43,8 @@ function list_to_card(wishlist) {        //받은 list를 카드로 만들어 �
                                 <h4 class="card-title">${name}</h4>
                                 <p class="card-price" id="card_price">${price}</p>
                                 <p class="card-text" id="card_memo">${memo}</p>
+<!--                                임의로 수정하기 팝업 설정해서 더보기 버튼 설정-->
+                                <input onclick="open_modify_box(${listId})" type='button' class='btn-detail-pop' name='btn' value='더보기'>
                             </div>
                         </div>
                     </div>
@@ -54,7 +56,7 @@ function list_to_card(wishlist) {        //받은 list를 카드로 만들어 �
 
 function wishlist_get_all() {                //모든 정보를 보여줌
     $('#cards_box').empty()
-    $('#toBuy').prop("checked",true) 
+    $('#toBuy').prop("checked",true)
     $.ajax({                        //ajax GET으로 list를 읽어와서 카드 생성
         type: 'GET',                //받는 변수 : image, url, name, price, memo, status, listId
         url: '/wishlist?list=all',
@@ -309,7 +311,7 @@ function open_modify_box(listId) {         //상품 수정 박스를 open
                 <div class="form-floating" id="url_box">
                     <label for="url_modify">URL</label>
                     <input type="text" class="required form-url form-control" id="url_modify" placeholder="url" value="${url}">
-                    <button class="url-check" onclick="url_mod_certifi()">url 검증</button>
+                    <button class="url-check" onclick="url_mod_certifi()">URL 검증</button>
                 </div>
                 <div class="form-floating">
                     <label for="name_modify">상품명</label>
