@@ -319,7 +319,7 @@ function open_modify_box(listId) {         //상품 수정 박스를 open
                 </div>
                 <div class="form-floating">
                     <label for="memo_modify">메모</label>
-                    <textarea class="form-control" id="memo_modify" maxlength="100" placeholder="메모수정" value="${memo}"></textarea>
+                    <textarea class="form-control" id="memo_modify" maxlength="100" placeholder="${memo}"></textarea>
                 </div>
                 <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
                     <input type="radio" class="btn-check" name="status" id="toBuy" value="toBuy" autocomplete="off">
