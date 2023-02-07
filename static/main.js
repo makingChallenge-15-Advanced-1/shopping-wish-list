@@ -283,7 +283,9 @@ function close_posting_box() {           //상품 등록 박스를 close
 
 function open_modify_box(listId) {         //상품 수정 박스를 open
     $('#modify_box').show()
-    $('#modify_box').empty()
+    // $('#modify_box').empty()
+    // let url = listId_item['url']
+    // let name = listId_item['name']
     $.ajax({                            //기존 정보를 로딩해서 박스에 뿌려줌
         type: 'GET',                    //받는 변수 : image, url, name, price, memo, status
         url: '/wishlist/{listId}?listId_give=' + listId,
