@@ -1,4 +1,3 @@
-
 var url_verifier = 'false';
 
 $(document).ready(function () {       //페이지 로딩 시 wishlist_get_all() 함수 호출
@@ -132,12 +131,12 @@ function wishlist_post() {
 
     let alertMsg = "";
     if (url_verifier == 'false') {
-        alertMsg = 'url이 맞는지 검사해 주세요!!';
+        alertMsg = 'URL 유효성 체크 해주세요!';
         okAlert(alertMsg);
         return
     }
     if (name.length == 0) {
-        alertMsg = '상품명을 입력해 주세요!!';
+        alertMsg = '상품명을 입력해 주세요!';
         okAlert(alertMsg);
         return
     }
@@ -163,12 +162,12 @@ function wishlist_modify(listId) {
 
     let alertMsg = "";
     if (url_verifier == 'false') {
-        alertMsg = 'url이 맞는지 검사해 주세요!!';
+        alertMsg =  'URL 유효성 체크 해주세요!';
         okAlert(alertMsg);
         return
     }
     if (name.length == 0) {
-        alertMsg = '상품명을 입력해 주세요!!';
+        alertMsg = '상품명을 입력해 주세요!';
         okAlert(alertMsg);
         return
     }
@@ -200,8 +199,8 @@ function modifying_status(listId) {
 //특정 listId를 가진 정보를 삭제
 function wishlist_delete(listId) {
     Swal.fire({
-        title: '정말 삭제하시겠습니까?',
-        text: "삭제하시면 복구되지 않습니다.",
+        title: '정말 삭제 하시겠습니까?',
+        text: "삭제되면 복구할 수 없습니다",
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#C068A8',
@@ -229,7 +228,7 @@ function url_certifi() {
 
     let alertMsg = "";
     if (url == "") {
-        alertMsg = "URL을 입력해 주세요!!";
+        alertMsg = "URL을 입력해 주세요!";
         okAlert(alertMsg);
         return
     }
@@ -238,12 +237,12 @@ function url_certifi() {
 
     if (regex.test(url)) {
         // location.href = url;     해당 url로 이동하는 식
-        alertMsg = "url 확인 됐습니다.";
+        alertMsg = "유효한 URL 입니다";
         okAlert(alertMsg);
         url_verifier = 'true'
         return
     } else {
-        alertMsg = "유효하지 않은 url입니다";
+        alertMsg = "유효하지 않은 URL 입니다";
         okAlert(alertMsg);
         return
     }
@@ -253,7 +252,7 @@ function url_mod_certifi() {
     let url = $('#url_modify').val()
 
     if (url == "") {
-        alertMsg = "URL을 입력해 주세요!!";
+        alertMsg = "URL을 입력해 주세요!";
         okAlert(alertMsg);
         return
     }
@@ -262,12 +261,12 @@ function url_mod_certifi() {
 
     if (regex.test(url)) {
         // location.href = url;     해당 url로 이동하는 식
-        alertMsg = "url 확인 됐습니다.";
+        alertMsg = "유효한 URL 입니다";
         okAlert(alertMsg);
         url_verifier = 'true'
         return
     } else {
-        alertMsg = "유효하지 않은 url입니다";
+        alertMsg = "유효하지 않은 URL입니다";
         okAlert(alertMsg);
         return
     }
@@ -294,37 +293,38 @@ function open_modify_box(listId) {         //상품 수정 박스를 open
         }
     })
     let temp_html = `
+                <div class="card-title" style="display: flex;">
+                    <h5>상품 수정하기</h5>
+                    <button onclick="close_modify_box()" type="button" class="pop-close">닫기</button>
+                </div>
                 <div class="form-floating" id="url_box">
-                    <input type="text" class="form-control" id="url_modify" placeholder="url">
-                    <button onclick="url_mod_certifi()">url 검증</button>
-                    <label for="url_modify">url</label>
+                    <label for="url_modify">URL</label>
+                    <input type="text" class="required form-url form-control" id="url_modify" placeholder="url">
+                    <button class="url-check" onclick="url_mod_certifi()">url 검증</button>
                 </div>
                 <div class="form-floating">
-                    <input type="text" class="form-control" id="name_modify" placeholder="name">
                     <label for="name_modify">상품명</label>
+                    <input type="text" class="required form-control" id="name_modify" placeholder="name">
                 </div>
                 <div class="form-floating">
-                    <input type="text" class="form-control" id="price_modify" placeholder="price" >
                     <label for="price_modify">가격</label>
+                    <input type="text" class="form-control" id="price_modify" placeholder="price" >
                 </div>
                 <div class="form-floating">
-                    <input type="text" class="form-control" id="memo_modify" placeholder="memo">
                     <label for="memo_modify">메모</label>
+                    <textarea class="form-control" id="memo_modify" maxlength="100" placeholder="메모수정"></textarea>
                 </div>
                 <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
                     <input type="radio" class="btn-check" name="status" id="toBuy" value="toBuy" autocomplete="off">
                     <label class="btn btn-outline-primary" for="toBuy">구매예정</label>
-
                     <input type="radio" class="btn-check" name="status" id="hold" value="hold" autocomplete="off">
                     <label class="btn btn-outline-primary" for="hold">구매보류</label>
-
                     <input type="radio" class="btn-check" name="status" id="order" value="order" autocomplete="off">
                     <label class="btn btn-outline-primary" for="order">구매완료</label>
                 </div>
-
                 <div class="mybtns">
                     <button onclick="wishlist_modify(${listId})" type="button" class="btn btn-dark">수정하기</button>
-                    <button onclick="close_modify_box()" type="button" class="btn btn-outline-dark">닫기</button>
+                    <button onclick="close_modify_box()" type="button" class="btn btn-outline-secondary">닫기</button>
                 </div>
             `
     $('#modify_box').append(temp_html)
