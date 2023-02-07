@@ -9,13 +9,38 @@ html {font-size:13px;}
         font-size: 1rem;
     }
 }
+/* 알럿창 스타일 추가 정의 */
+.swal2-header .swal2-title {
+    font-size: 1.4rem !important;
+    line-height: 2.4rem;
+}
+.swal2-icon.swal2-warning {
+    border-color: #ff4f8d !important;
+    color:#ff4f8d !important;
+}
+
+.swal2-icon.swal2-info {
+    border-color: #1960ee !important;
+    color: #1960ee !important;
+}
+
+.swal2-icon.swal2-success {
+    border-color: #26ad2e !important;
+    color: #26ad2e !important;
+}
+
+.swal2-icon .swal2-icon-content {
+    font-size: 4em !important;
+    font-weight: 700 !important;
+    border-width: 6px !important;
+}
 
 .mytitle {
     width: 100%;
     height: 220px;
     min-width: 800px;
 
-    background-image: url("/static/img/bgTop_whiteRec.png");
+    background-image: url(/static/img/bgTop_whiteRec.png);
     background-color: #C068A8;
     background-position: calc(50% + 200px) 0;
     background-size: auto;
@@ -78,6 +103,7 @@ html {font-size:13px;}
 
 .mytitle>.top-menu>ul>li {
     box-sizing: content-box;
+    display: inline-block;
     float: left;
 
     margin: 0 30px;
@@ -100,7 +126,7 @@ html {font-size:13px;}
 }
 
 .mytitle>.top-menu>ul>li.all>a {
-    background-image: url("/static/img/icon_allView_dark.png");
+    background-image: url(/static/img/icon_allView_dark.png);
     background-repeat: no-repeat;
     background-size: 28px;
 
@@ -111,7 +137,7 @@ html {font-size:13px;}
 .mytitle>.top-menu>ul>li.all>a:hover,
 .mytitle>.top-menu>ul>li.all>a:after,
 .mytitle>.top-menu>ul>li.all>a:active {
-    background-image: url("/static/img/icon_allView.png");
+    background-image: url(/static/img/icon_allView.png);
     background-repeat: no-repeat;
     background-size: 28px;
 
@@ -142,7 +168,7 @@ html {font-size:13px;}
 }
 
 .mytitle>.top-menu>ul>li.to-buy>a {
-    background-image: url("/static/img/icon_tobuy_dark.png");
+    background-image: url(/static/img/icon_tobuy_dark.png);
     background-repeat: no-repeat;
     background-size: 28px;
 
@@ -152,7 +178,7 @@ html {font-size:13px;}
 .mytitle>.top-menu>ul>li.to-buy>a:hover,
 .mytitle>.top-menu>ul>li.to-buy>a:after,
 .mytitle>.top-menu>ul>li.to-buy>a:active {
-    background-image: url("/static/img/icon_tobuy.png");
+    background-image: url(/static/img/icon_tobuy.png);
     background-repeat: no-repeat;
     background-size: 28px;
 
@@ -182,7 +208,7 @@ html {font-size:13px;}
 }
 
 .mytitle>.top-menu>ul>li.hold>a {
-    background-image: url("/static/img/icon_hold_dark.png");
+    background-image: url(/static/img/icon_hold_dark.png);
     background-repeat: no-repeat;
     background-size: 26px;
 
@@ -192,7 +218,7 @@ html {font-size:13px;}
 .mytitle>.top-menu>ul>li.hold>a:hover,
 .mytitle>.top-menu>ul>li.hold>a:after,
 .mytitle>.top-menu>ul>li.hold>a:active {
-    background-image: url("/static/img/icon_hold.png");
+    background-image: url(/static/img/icon_hold.png);
     background-repeat: no-repeat;
     background-size: 26px;
 
@@ -222,7 +248,7 @@ html {font-size:13px;}
 }
 
 .mytitle>.top-menu>ul>li.order>a {
-    background-image: url("/static/img/icon_cardComplete_dark.png");
+    background-image: url(/static/img/icon_cardComplete_dark.png);
     background-repeat: no-repeat;
     background-size: auto;
 
@@ -232,7 +258,7 @@ html {font-size:13px;}
 .mytitle>.top-menu>ul>li.order>a:hover,
 .mytitle>.top-menu>ul>li.order>a:after,
 .mytitle>.top-menu>ul>li.order>a:active {
-    background-image: url("/static/img/icon_cardComplete.png");
+    background-image: url(/static/img/icon_cardComplete.png);
     background-repeat: no-repeat;
     background-size: auto;
 
@@ -270,7 +296,7 @@ html {font-size:13px;}
 }
 
 .mycards {
-    margin: 20px auto 0px auto;
+    margin: 1rem auto 0 auto;
     width: 95%;
     max-width: 1300px;
 }
@@ -291,6 +317,7 @@ html {font-size:13px;}
 }
 
 .mycards .card-img-top {
+    padding-top:.4rem;
     height: 300px;
     object-fit: cover;
 }
@@ -347,8 +374,7 @@ html {font-size:13px;}
     text-indent: -999999rem;
 
     background-color:transparent;
-    background-image: url("/static/img/icon_toBuy.png");
-    background-size: 2.2rem;
+    background-image: url(/static/img/icon_toBuy.png);
     background-position: center;
     background-repeat: no-repeat;
     width: 2.6rem;
@@ -361,8 +387,7 @@ html {font-size:13px;}
     text-indent: -999999rem;
 
     background-color:transparent;
-    background-image: url("/static/img/icon_hold.png");
-    background-size: 2.2rem;
+    background-image: url(/static/img/icon_hold.png);
     background-position: center;
     background-repeat: no-repeat;
     width: 2.6rem;
@@ -375,8 +400,7 @@ html {font-size:13px;}
     text-indent: -999999rem;
 
     background-color:transparent;
-    background-image: url("/static/img/icon_cardComplete.png");
-    background-size: 2.2rem;
+    background-image: url(/static/img/icon_cardComplete.png);
     background-position: center;
     background-repeat: no-repeat;
     width: 2.6rem;
@@ -384,7 +408,7 @@ html {font-size:13px;}
 }
 
 .mycards .status-bar .btn-del {
-    background-image:url("/static/img/icon_del.png") ;
+    background-image: url(/static/img/icon_del.png);
     background-repeat: no-repeat;
     background-color: transparent;
     background-size: 2.2rem;
@@ -398,7 +422,7 @@ html {font-size:13px;}
 }
 
 .mycards .status-bar .btn-modify {
-    background-image:url("/static/img/icon_edit.png") ;
+    background-image:url(/static/img/icon_edit.png) ;
     background-repeat: no-repeat;
     background-color: transparent;
     background-size: 2.2rem;
@@ -480,7 +504,7 @@ html {font-size:13px;}
 .mypost>.card-title>button.pop-close {
     border: none;
     text-indent: -9999em;
-    background-image: url("/static/img/icon_close.png");
+    background-image: url(/static/img/icon_close.png);
     background-repeat: no-repeat;
     background-size: 32px;
     background-color: transparent;
@@ -650,30 +674,4 @@ html {font-size:13px;}
 
 .card-body>input {
     display: block;
-}
-
-/* 알럿창 스타일 추가 정의 */
-.swal2-header .swal2-title {
-    font-size: 1.4rem !important;
-    line-height: 2.4rem;
-}
-.swal2-icon.swal2-warning {
-    border-color: #ff4f8d !important;
-    color:#ff4f8d !important;
-}
-
-.swal2-icon.swal2-info {
-    border-color: #1960ee!important;
-    color: #1960ee!important;
-}
-
-.swal2-icon.swal2-success {
-    border-color: #07b90f!important;
-    color: #07b90f!important;
-}
-
-.swal2-icon .swal2-icon-content {
-    font-size: 4em !important;
-    font-weight: 700 !important;
-    border-width: 6px !important;
 }
