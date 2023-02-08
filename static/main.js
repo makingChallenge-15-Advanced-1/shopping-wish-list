@@ -58,7 +58,7 @@ function list_to_card(wishlist) {        //받은 list를 카드로 만들어 �
 
 function wishlist_get_all() {                //모든 정보를 보여줌
     $('#cards_box').empty()
-    $('#toBuy').prop("checked",true)
+    $('#all').prop("checked", true)
     $.ajax({                        //ajax GET으로 list를 읽어와서 카드 생성
         type: 'GET',                //받는 변수 : image, url, name, price, memo, status, listId
         url: '/wishlist?list=all',
@@ -396,30 +396,30 @@ function open_more_box(listId) {         //상품 수정 박스를 open
     else price = Number(price).toLocaleString()
 
     let temp_html = `
-                <div class="card-title" style="display: flex;">
+                <div class="more-title" style="display: flex;">
                     <h5>상품 상세보기</h5>
-                    <button onclick="close_modify_box()" type="button" class="pop-close">닫기</button>
+                    <button onclick="close_more_box()" type="button" class="pop-close">닫기</button>
                 </div>
-                <div>
+                <div class="url-img">
                     <img src="${image}" class="card-img-top embed-responsive-item" alt="링크이동">
                 </div>
                 <div class="form-floating" id="url_box">
-                    <label for="url_modify">URL</label>
-                    <a href="${url}"><p style="color:black;">${url}</p></a>
+                    <label>URL</label>
+                    <a href="${url}" target="_blank"><p class="url-blue">${url}</p></a>
                 </div>
                 <div class="form-floating">
-                    <label for="name_modify">상품명</label>
-                    <p style="color:black;">${name}</p>
+                    <label>상품명</label>
+                    <h4 class="url-name">${name}</h4>
                 </div>
                 <div class="form-floating">
-                    <label for="price_modify">가격</label>
-                    <p style="color:black;">${price}<span>원</span></p>
+                    <label>가격</label>
+                    <div class="url-price">${price}<span>원</span></div>
                 </div>
                 <div class="form-floating">
                     <label for="memo_modify">메모</label>
-                    <p style="color:black;">${memo}</p>
+                    <p class="url-memo">${memo}</p>
                 </div>
-                <p style="color:black;">${status}</p>
+                <div class="url-status"><p class="status-${status}"></p></div>
                 <div class="mybtns">
                     <button onclick="open_modify_box(${listId})" type="button" class="btn btn-dark">수정하기</button>
                     <button onclick="close_more_box()" type="button" class="btn btn-outline-secondary">닫기</button>
