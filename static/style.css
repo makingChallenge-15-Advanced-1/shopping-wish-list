@@ -336,6 +336,7 @@ html {font-size:13px;}
 .mycards .card-title {
     font-size: 18px;
     font-weight: 700;
+    width: 95%;
     text-overflow: ellipsis;
     display: block;
     white-space: nowrap;
@@ -350,6 +351,7 @@ html {font-size:13px;}
     font-size: 14px;
     font-weight: 400;
     color: #7C7C7C;
+    width: 95%;
     display: block;
     overflow: hidden;
     white-space: nowrap;
