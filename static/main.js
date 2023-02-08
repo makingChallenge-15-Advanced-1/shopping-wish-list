@@ -43,8 +43,7 @@ function list_to_card(wishlist) {        //받은 list를 카드로 만들어 �
                                 <h4 class="card-title">${name}</h4>
                                 <p class="card-price" id="card_price">${price}</p>
                                 <p class="card-text" id="card_memo">${memo}</p>
-<!--                                임의로 수정하기 팝업 설정해서 더보기 버튼 설정-->
-                                <input onclick="open_modify_box(${listId})" type='button' class='btn-detail-pop' name='btn' value='더보기'>
+                                <input onclick="open_more_box(${listId})" type='button' class='btn-detail-pop' name='btn' value='더보기'>
                             </div>
                         </div>
                     </div>
@@ -285,6 +284,7 @@ function close_posting_box() {           //상품 등록 박스를 close
 }
 
 function open_modify_box(listId) {         //상품 수정 박스를 open
+    close_more_box()
     $('#modify_box').show()
     $('#modify_box').empty()
     $.ajax({                            //기존 정보를 로딩해서 박스에 뿌려줌
@@ -364,4 +364,61 @@ function open_delete_box() {            //상품 삭제 박스를 open
 }
 function close_delete_box() {           //상품 삭제 박스를 close
     $('#delete-box').hide()
+}
+
+function open_more_box(listId) {         //상품 수정 박스를 open
+    $('#more_box').show()
+    $('#more_box').empty()
+    $.ajax({                            //기존 정보를 로딩해서 박스에 뿌려줌
+        type: 'GET',                    //받는 변수 : image, url, name, price, memo, status
+        url: '/wishlist/{listId}?listId_give=' + listId,
+        async: false, // 전역 변수 rows 사용 위함
+        data: {},
+        success: function (response) {
+            rows = response['listId_item']
+        }
+    })
+    let get_list = JSON.parse(rows)
+    let image = get_list["image"]
+    let url = get_list["url"]
+    let name = get_list["name"]
+    let price = get_list["price"]
+    let memo = get_list["memo"]
+    let status = get_list["status"]
+
+    let temp_html = `
+                <div class="card-title" style="display: flex;">
+                    <h5>상품 상세보기</h5>
+                    <button onclick="close_modify_box()" type="button" class="pop-close">닫기</button>
+                </div>
+                <div>
+                    <img src="${image}" class="card-img-top embed-responsive-item" alt="링크이동">
+                </div>
+                <div class="form-floating" id="url_box">
+                    <label for="url_modify">URL</label>
+                    <a href="${url}"><p style="color:black;">${url}</p></a>
+                </div>
+                <div class="form-floating">
+                    <label for="name_modify">상품명</label>
+                    <p style="color:black;">${name}</p>
+                </div>
+                <div class="form-floating">
+                    <label for="price_modify">가격</label>
+                    <p style="color:black;">${price}</p>
+                </div>
+                <div class="form-floating">
+                    <label for="memo_modify">메모</label>
+                    <p style="color:black;">${memo}</p>
+                </div>
+                <p style="color:black;">${status}</p>
+                <div class="mybtns">
+                    <button onclick="open_modify_box(${listId})" type="button" class="btn btn-dark">수정하기</button>
+                    <button onclick="close_more_box()" type="button" class="btn btn-outline-secondary">닫기</button>
+                </div>
+            `
+    $('#more_box').append(temp_html)
+}
+
+function close_more_box() {
+    $('#more_box').hide()
 }
