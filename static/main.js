@@ -16,6 +16,9 @@ function list_to_card(wishlist) {        //받은 list를 카드로 만들어 �
         let status = wishlist[i]['status']
         let listId = wishlist[i]['listId']
 
+        if (price === '') price = '-';
+        else price = Number(price).toLocaleString()
+
         let statusClass = ""
         //구매 상태 아이콘 지정
         if (status === 'toBuy') { // 구매예정
@@ -41,7 +44,7 @@ function list_to_card(wishlist) {        //받은 list를 카드로 만들어 �
                             </div>
                             <div class="card-body">
                                 <h4 class="card-title">${name}</h4>
-                                <p class="card-price" id="card_price">${price}</p>
+                                <p class="card-price" id="card_price">${price}<span>원</span></p>
                                 <p class="card-text" id="card_memo">${memo}</p>
                                 <input onclick="open_more_box(${listId})" type='button' class='btn-detail-pop' name='btn' value='더보기'>
                             </div>
@@ -62,6 +65,7 @@ function wishlist_get_all() {                //모든 정보를 보여줌
         data: {},
         success: function (response) {
             wishlist = response['wishlist']
+            console.log(wishlist);
             list_to_card(wishlist)
         }
     })
@@ -388,6 +392,9 @@ function open_more_box(listId) {         //상품 수정 박스를 open
     let memo = get_list["memo"]
     let status = get_list["status"]
 
+    if (price === '') price = '-';
+    else price = Number(price).toLocaleString()
+
     let temp_html = `
                 <div class="card-title" style="display: flex;">
                     <h5>상품 상세보기</h5>
@@ -406,7 +413,7 @@ function open_more_box(listId) {         //상품 수정 박스를 open
                 </div>
                 <div class="form-floating">
                     <label for="price_modify">가격</label>
-                    <p style="color:black;">${price}</p>
+                    <p style="color:black;">${price}<span>원</span></p>
                 </div>
                 <div class="form-floating">
                     <label for="memo_modify">메모</label>
