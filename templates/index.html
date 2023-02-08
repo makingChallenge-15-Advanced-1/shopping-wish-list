@@ -43,7 +43,9 @@
                 </div>
                 <div class="form-floating">
                     <label for="price_input">가격</label>
-                    <input type="text" class="form-control" id="price_input" placeholder="price">
+                    <input type="text" class="form-control" id="price_input"
+                        oninput="this.value = this.value.replace(/\D/g, '');"
+                        maxlength="15" placeholder="price">
                     <p></p>
                 </div>
                 <div class="form-floating">
@@ -106,29 +108,6 @@
                         <p class="card-price" id="card_price">가격</p>
                         <p class="card-text" id="card_memo">메모</p>
                         <input onclick="open_more_box()" type='button' class='btn-detail-pop' name='btn' value='더보기'>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card">
-                    <div class="status-bar">
-                        <div class="status-toBuy">구매예정</div>
-                        <!-- <div class="status-hold">구매보류</div>
-                        <div class="status-order">구매완료</div> -->
-                        <input onclick="wishlist_delete()" type='button' class='btn-del' name='btn' value='삭제하기'>
-                        <input onclick="open_modify_box()" type='button' class='btn-modify' name='btn' value='수정하기'>
-                    </div>
-                    <div class="embed-responsive embed-responsive-4by3">
-                        <a href="${url}" target="_blank">
-                            <img src="/static/img/no_image.png" class="card-img-top embed-responsive-item" alt="링크이동">
-                        </a>
-                    </div>
-                    <div class="card-body">
-                        <h4 class="card-title">상품명</h4>
-                        <p class="card-text" id="card_price2">가격</p>
-                        <p class="card-text" id="card_memo2">메모</p>
-<!--                                임의로 수정하기 팝업 설정해서 더보기 버튼 설정-->
-                        <input onclick="open_modify_box()" type='button' class='btn-detail-pop' name='btn' value='더보기'>
                     </div>
                 </div>
             </div>

@@ -319,7 +319,9 @@ function open_modify_box(listId) {         //상품 수정 박스를 open
                 </div>
                 <div class="form-floating">
                     <label for="price_modify">가격</label>
-                    <input type="text" class="form-control" id="price_modify" placeholder="price" value="${price}">
+                    <input type="text" class="form-control" id="price_modify" 
+                    oninput="this.value = this.value.replace(/\\D/g, '');"
+                    maxlength="15" placeholder="price" value="${price}">
                 </div>
                 <div class="form-floating">
                     <label for="memo_modify">메모</label>
