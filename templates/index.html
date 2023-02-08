@@ -14,6 +14,7 @@
 
     <link rel="stylesheet" href="/static/style.css">
     <script src="/static/main.js"></script>
+
 </head>
 
 <body>
@@ -43,9 +44,7 @@
                 </div>
                 <div class="form-floating">
                     <label for="price_input">가격</label>
-                    <input type="text" class="form-control" id="price_input"
-                        oninput="this.value = this.value.replace(/\D/g, '');"
-                        maxlength="15" placeholder="price">
+                    <input type="text" class="form-control" id="price_input" placeholder="price">
                     <p></p>
                 </div>
                 <div class="form-floating">
@@ -53,10 +52,6 @@
                     <textarea class="form-control" id="memo_input" maxlength="100"
                         placeholder="최대 100자까지 가능합니다."></textarea>
                 </div>
-                <!-- <div class="form-floating">
-                    <input type="text" class="form-control" id="status_input" placeholder="status">
-                    <label for="status_input">상태(ready,refer,done)</label>
-                </div> -->
 
                 <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
                     <input type="radio" class="btn-check" name="status" id="toBuy" value="toBuy" autocomplete="off">
@@ -79,7 +74,7 @@
         </div>
         <div class="top-menu">
             <ul class="tab-nav">
-                <li onclick="wishlist_get_all()" class="all"><a href="#all">전체보기</a></li>
+                <li onclick="wishlist_get_all()" class="all"><a href="#all" class="active">전체보기</a></li>
                 <li onclick="wishlist_get_toBuy()" class="to-buy"><a href="#toBuy">구매예정</a></li>
                 <li onclick="wishlist_get_hold()" class="hold"><a href="#hold">구매보류</a></li>
                 <li onclick="wishlist_get_order()" class="order"><a href="#order">구매완료</a></li>
@@ -89,28 +84,6 @@
 
     <div class="mycards">
         <div class="row row-cols-2 row-cols-md-4 g-3" id="cards_box">
-            <div class="col">
-                <div class="card">
-                    <div class="status-bar">
-                        <div class="status-toBuy">구매예정</div>
-                        <!-- <div class="status-hold">구매보류</div>
-                        <div class="status-order">구매완료</div> -->
-                        <input onclick="wishlist_delete()" type='button' class='btn-del' name='btn' value='삭제하기'>
-                        <input onclick="open_modify_box()" type='button' class='btn-modify' name='btn' value='수정하기'>
-                    </div>
-                    <div class="embed-responsive embed-responsive-4by3">
-                        <a href="${url}" target="_blank">
-                            <img src="/static/img/no_image.png" class="card-img-top embed-responsive-item" alt="링크이동">
-                        </a>
-                    </div>
-                    <div class="card-body">
-                        <h4 class="card-title">상품명</h4>
-                        <p class="card-price" id="card_price">가격</p>
-                        <p class="card-text" id="card_memo">메모</p>
-                        <input onclick="open_more_box()" type='button' class='btn-detail-pop' name='btn' value='더보기'>
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
     
@@ -118,6 +91,19 @@
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
         crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+    <script>
+        //클릭한 메뉴 active 상태유지
+        const menu = document.querySelectorAll(".top-menu .tab-nav li a");
+            for( let i = 0; i < menu.length; i++) {
+                menu[i].addEventListener("click",act);
+                function act(){
+                    for( let j = 0; j < menu.length; j++){
+                        menu[j].removeAttribute("class","active");
+                    }
+                    this.setAttribute("class","active");
+                }
+            }
+    </script>
 </body>
 
 </html>
