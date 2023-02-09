@@ -37,7 +37,7 @@ jwt = JWTManager(app)
 #route 설정
 @app.route('/')    #첫화면
 def home():     
-    return render_template('main.html')
+    return render_template('login.html')
 @app.route('/index')    #wishlist page
 def index():
     return render_template('index.html')
@@ -73,7 +73,7 @@ def register_check_id():
     return jsonify({'result' : "success"})
 
 #로그인하기
-@app.route("/user/login", methods=["POST"])   #main.html의 login() 에서 call
+@app.route("/user/login", methods=["POST"])   #login.html의 login() 에서 call
 def login():
     # 회원정보 생성
     user_id = request.form['user_id_give']
