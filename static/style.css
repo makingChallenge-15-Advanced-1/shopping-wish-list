@@ -2,7 +2,8 @@
     font-family: 'Nanum Gothic', sans-serif;
 }
 
-html {font-size:13px;}
+html { font-size:13px;
+        min-width: 768px;}
 
 @media (min-width: 768px) {
     html {
@@ -13,20 +14,6 @@ html {font-size:13px;}
 .swal2-header .swal2-title {
     font-size: 1.4rem !important;
     line-height: 2.4rem;
-}
-.swal2-icon.swal2-warning {
-    border-color: #ff4f8d !important;
-    color:#ff4f8d !important;
-}
-
-.swal2-icon.swal2-info {
-    border-color: #1960ee !important;
-    color: #1960ee !important;
-}
-
-.swal2-icon.swal2-success {
-    border-color: #26ad2e !important;
-    color: #26ad2e !important;
 }
 
 .swal2-icon .swal2-icon-content {
@@ -125,162 +112,177 @@ html {font-size:13px;}
     text-decoration: none;
 }
 
-.mytitle>.top-menu>ul>li.all>a {
+.top-menu>ul>li.all>a {
     background-image: url(/static/img/icon_allView_dark.png);
     background-repeat: no-repeat;
     background-size: 28px;
 
     color: #4c4c4c;
     text-decoration: none;
+    border-bottom: 3px solid #ffffff;
 }
-
-.mytitle>.top-menu>ul>li.all>a:hover,
-.mytitle>.top-menu>ul>li.all>a:after,
-.mytitle>.top-menu>ul>li.all>a:active {
+.top-menu>ul>li.all>a.active,
+.top-menu>ul>li.all>a:hover,
+.top-menu>ul>li.all>a:after,
+.top-menu>ul>li.all>a:active {
     background-image: url(/static/img/icon_allView.png);
     background-repeat: no-repeat;
     background-size: 28px;
 
     color: #A03383;
     text-decoration: none;
+    border-bottom: 3px solid #A03383;
+    transition: all .8s ease-out;
 }
 
-.mytitle>.top-menu>ul>li.all>a:after {
+.top-menu>ul>li.all>a:after {
     content: "";
     position: absolute;
     left: 50%;
-    bottom: 0;
+    bottom: -3px;
     width: 0;
     height: 3px;
     background-color: #A03383;
     transition: all .3s;
 }
 
-.mytitle>.top-menu>ul>li.all>a:before {
+.top-menu>ul>li.all>a:before {
     content: "";
     position: absolute;
     right: 50%;
-    bottom: 0;
+    bottom: -3px;
     width: 0;
     height: 3px;
     background-color: #A03383;
     transition: all .3s;
 }
 
-.mytitle>.top-menu>ul>li.to-buy>a {
+.top-menu>ul>li.to-buy>a {
     background-image: url(/static/img/icon_tobuy_dark.png);
     background-repeat: no-repeat;
     background-size: 28px;
 
     color: #4c4c4c;
+    border-bottom: 3px solid #ffffff;
 }
 
-.mytitle>.top-menu>ul>li.to-buy>a:hover,
-.mytitle>.top-menu>ul>li.to-buy>a:after,
-.mytitle>.top-menu>ul>li.to-buy>a:active {
+.top-menu>ul>li.to-buy>a.active,
+.top-menu>ul>li.to-buy>a:hover,
+top-menu>ul>li.to-buy>a:after,
+.top-menu>ul>li.to-buy>a:active {
     background-image: url(/static/img/icon_tobuy.png);
     background-repeat: no-repeat;
     background-size: 28px;
 
     color: #6720FF;
+    border-bottom: 3px solid #6720FF;
+    transition: all .8s ease-out;
 }
 
-.mytitle>.top-menu>ul>li.to-buy>a:after {
+.top-menu>ul>li.to-buy>a:after {
     content: "";
     position: absolute;
     left: 50%;
-    bottom: 0;
+    bottom: -3px;
     width: 0;
     height: 3px;
     background-color: #6720FF;
     transition: all .3s;
 }
 
-.mytitle>.top-menu>ul>li.to-buy>a:before {
+.top-menu>ul>li.to-buy>a:before {
     content: "";
     position: absolute;
     right: 50%;
-    bottom: 0;
+    bottom: -3px;
     width: 0;
     height: 3px;
     background-color: #6720FF;
     transition: all .3s;
 }
 
-.mytitle>.top-menu>ul>li.hold>a {
+.top-menu>ul>li.hold>a {
     background-image: url(/static/img/icon_hold_dark.png);
     background-repeat: no-repeat;
     background-size: 26px;
 
     color: #4c4c4c;
+    border-bottom: 3px solid #ffffff;
 }
 
-.mytitle>.top-menu>ul>li.hold>a:hover,
-.mytitle>.top-menu>ul>li.hold>a:after,
-.mytitle>.top-menu>ul>li.hold>a:active {
+.top-menu>ul>li.hold>a.active,
+.top-menu>ul>li.hold>a:hover,
+.top-menu>ul>li.hold>a:after,
+.top-menu>ul>li.hold>a:active {
     background-image: url(/static/img/icon_hold.png);
     background-repeat: no-repeat;
     background-size: 26px;
 
     color: #C0833C;
+    border-bottom: 3px solid #C0833C;
+    transition: all .8s ease-out;
 }
 
-.mytitle>.top-menu>ul>li.hold>a:after {
+.top-menu>ul>li.hold>a:after {
     content: "";
     position: absolute;
     left: 50%;
-    bottom: 0;
+    bottom: -3px;
     width: 0;
     height: 3px;
     background-color: #C0833C;
     transition: all .3s;
 }
 
-.mytitle>.top-menu>ul>li.hold>a:before {
+.top-menu>ul>li.hold>a:before {
     content: "";
     position: absolute;
     right: 50%;
-    bottom: 0;
+    bottom: -3px;
     width: 0;
     height: 3px;
     background-color: #C0833C;
     transition: all .3s;
 }
 
-.mytitle>.top-menu>ul>li.order>a {
+.top-menu>ul>li.order>a {
     background-image: url(/static/img/icon_cardComplete_dark.png);
     background-repeat: no-repeat;
     background-size: auto;
 
     color: #4c4c4c;
+    border-bottom: 3px solid #ffffff;
 }
 
-.mytitle>.top-menu>ul>li.order>a:hover,
-.mytitle>.top-menu>ul>li.order>a:after,
-.mytitle>.top-menu>ul>li.order>a:active {
+.top-menu>ul>li.order>a.active,
+.top-menu>ul>li.order>a:hover,
+.top-menu>ul>li.order>a:after,
+.top-menu>ul>li.order>a:active {
     background-image: url(/static/img/icon_cardComplete.png);
     background-repeat: no-repeat;
     background-size: auto;
 
     color: #089DCC;
+    border-bottom: 3px solid #089DCC;
+    transition: all .8s ease-out;
 }
 
-.mytitle>.top-menu>ul>li.order>a:after {
+.top-menu>ul>li.order>a:after {
     content: "";
     position: absolute;
     left: 50%;
-    bottom: 0;
+    bottom: -3px;
     width: 0;
     height: 3px;
     background-color: #089DCC;
     transition: all .3s;
 }
 
-.mytitle>.top-menu>ul>li.order>a:before {
+.top-menu>ul>li.order>a:before {
     content: "";
     position: absolute;
     right: 50%;
-    bottom: 0;
+    bottom: -3px;
     width: 0;
     height: 3px;
     background-color: #089DCC;
@@ -296,7 +298,7 @@ html {font-size:13px;}
 }
 
 .mycards {
-    margin: 1rem auto 0 auto;
+    margin: 0 auto;
     width: 95%;
     max-width: 1300px;
 }
@@ -334,8 +336,9 @@ html {font-size:13px;}
 }
 
 .mycards .card-title {
-    font-size: 18px;
+    font-size: 1.2rem;
     font-weight: 700;
+    color:#212529;
     width: 95%;
     text-overflow: ellipsis;
     display: block;
@@ -369,7 +372,7 @@ html {font-size:13px;}
     border: 1px solid #d9d9d9 !important;
     border-radius: 4px;
 }
-.mycards .status-bar .status-toBuy {
+.status-toBuy {
     position: absolute;
     left: 10px;
     top: .6rem;
@@ -382,7 +385,7 @@ html {font-size:13px;}
     width: 2.6rem;
     height: 2.6rem;
 }
-.mycards .status-bar .status-hold {
+.status-hold {
     position: absolute;
     left: 10px;
     top: .6rem;
@@ -395,7 +398,7 @@ html {font-size:13px;}
     width: 2.6rem;
     height: 2.6rem;
 }
-.mycards .status-bar .status-order {
+.status-order {
     position: absolute;
     left: 10px;
     top: .8rem;
@@ -409,7 +412,7 @@ html {font-size:13px;}
     height: 2.6rem;
 }
 
-.mycards .status-bar .btn-del {
+.btn-del {
     background-image: url(/static/img/icon_del.png);
     background-repeat: no-repeat;
     background-color: transparent;
@@ -423,7 +426,7 @@ html {font-size:13px;}
     right: 3.4rem;
 }
 
-.mycards .status-bar .btn-modify {
+.btn-modify {
     background-image:url(/static/img/icon_edit.png) ;
     background-repeat: no-repeat;
     background-color: transparent;
@@ -454,7 +457,6 @@ html {font-size:13px;}
     background-color: #6720ff;
 }
 
-
 .icon-status {
     border: 1px solid transparent;
     padding: 0.75rem 0.75rem;
@@ -475,7 +477,6 @@ html {font-size:13px;}
     width: 100%;
     max-width: 600px;
     left: calc(50% - 330px);
-    /*margin: 0px auto;*/
     padding: 30px;
     box-shadow: 0px 1px 4px rgb(0, 0, 0, 0.3);
     display: none;
@@ -484,24 +485,35 @@ html {font-size:13px;}
     z-index: 1000;
     box-sizing: content-box;
     background-color: #FDFAFC;
-    border-radius: 16px;
+    border-radius: 1rem;
     animation: swal2-show .3s;
 }
 
 .mymodifier>.card-title,
 .mypost>.card-title {
     display: block;
-    height: 30px;
+    height: 1.5rem;
     border-bottom: 1px solid #D9D9D9;
 }
 
+.mymodifier>.more-title {
+    display: block;
+    height: 1.5rem;
+    border-bottom: 1px solid #D9D9D9;
+    padding-left:2.2rem;
+}
+
+.mymodifier>.more-title>h5,
 .mymodifier>.card-title>h5,
 .mypost>.card-title>h5 {
     color: #4c4c4c;
     font-weight: 700;
     line-height: .3rem;
+    height: 1.5rem;
+    position: relative;
 }
 
+.mymodifier>.more-title>button.pop-close,
 .mymodifier>.card-title>button.pop-close,
 .mypost>.card-title>button.pop-close {
     border: none;
@@ -550,6 +562,44 @@ html {font-size:13px;}
 .mymodifier>.form-floating>.form-url,
 .mypost>.form-floating>.form-url {
     width: calc(100% - 4.1rem);
+}
+
+.mymodifier>.url-img {
+    padding-top: 0.4rem;
+    height:fit-content;
+    object-fit: cover;
+}
+
+.mymodifier .form-floating .url-blue {
+    color:#0d6efd;
+    word-break: break-all;
+}
+
+.mymodifier .form-floating .url-name {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color:#212529;
+    display: block;
+    word-break: break-all;
+}
+
+.mymodifier .form-floating .url-price {
+    font-size: 16px;
+    font-weight: 400;
+    color: #6720ff;
+}
+
+.mymodifier .form-floating .url-memo {
+    font-size: 14px;
+    font-weight: 400;
+    color: #7C7C7C;
+    display: block;
+    word-break: break-all;
+}
+.mymodifier .form-floating .url-status {
+    display: block;
+    height:36px;
+    width:36px;
 }
 
 .mymodifier>.form-floating>textarea.form-control,

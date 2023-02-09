@@ -125,7 +125,9 @@ def image_from_url(url_receive):
 def wishlist_get():
     list_method = request.args.get('list')
     if list_method == 'all':
-        wishlist = list(db.wishlist.find({}, {'_id': False}))
+        wishlist = list(db.wishlist.find({'status': 'toBuy'}, {'_id': False}))
+        wishlist = wishlist + list(db.wishlist.find({'status': 'hold'}, {'_id': False}))
+        wishlist = wishlist + list(db.wishlist.find({'status': 'order'}, {'_id': False}))
     elif list_method == 'toBuy':
         wishlist = list(db.wishlist.find({'status': 'toBuy'}, {'_id': False}))
     elif list_method == 'hold':
