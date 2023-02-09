@@ -75,14 +75,16 @@ def register_check_id():
 #로그인하기
 @app.route("/user/login", methods=["POST"])   #login.html의 login() 에서 call
 def login():
-    # 회원정보 생성
+    # 사용자가 입력한 id, password
     user_id = request.form['user_id_give']
     user_pwd = request.form['user_pwd_give']
-    # 회원등록하기와 마찬가지로 암호화 
-    pwd_hash = bcrypt.generate_password_hash(user_pwd)
 
-    user = db.users.find_one({'user_id': user_id}, {'user_pwd': pwd_hash})
-    if user is None:
+    #db에 저장된 password와 비교
+    user = db.users.find_one({'user_id': user_id})
+    origin_pwd = user['user_pwd']
+    check_pwd = bcrypt.check_password_hash(origin_pwd, user_pwd)
+
+    if check_pwd is False:
         return jsonify({'msg': '아이디나 비밀번호가 잘못되었습니다!!', 'login': False})
 
     # Create the tokens we will be sending back to the user
@@ -160,7 +162,7 @@ def wishlist_listId_get():
 #POST API
 #db에 새로운 정보를 추가
 @app.route("/wishlist", methods=["POST"])
-# @jwt_required()          user_id를 db에 추가하는 부분 수정 필요. 
+# @jwt_required()       #user_id를 db에 추가하는 부분 수정 필요. 
 def wishlist_post():                              #받는 변수 : url, name, price, memo, status
     # current_user_id = get_jwt()['sub']            #로그인 회원 정보를 얻음
     # print(current_user_id)
