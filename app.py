@@ -5,15 +5,18 @@ import requests
 from bs4 import BeautifulSoup
 
 # login을 위한 모듈
-from flask_bcrypt import Bcrypt
 from datetime import datetime, timedelta, timezone 
 from flask_jwt_extended import *
+
+#password 암호화
+from flask_bcrypt import Bcrypt
+bcrypt = Bcrypt(app)
 
 #mongo db library
 from pymongo import MongoClient
 import certifi
 ca = certifi.where()
-client = MongoClient('mongodb+srv://test:sparta@Cluster0.kwrmlin.mongodb.net/?retryWrites=true&w=majority', 27017, tlsCAFile=ca)
+client = MongoClient('mongodb+srv://sayhong_db:happy*721@cluster0.cnaox23.mongodb.net/?retryWrites=true&w=majority', 27017, tlsCAFile=ca)
 db = client.dbsparta
 
 # 몽고DB TypeError
