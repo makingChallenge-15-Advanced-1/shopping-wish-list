@@ -282,15 +282,18 @@ function url_mod_certifi() {
 //box open&close 함수들
 function open_posting_box() {            //상품 등록 박스를 open
     $('#posting_box').show()
+    $(".shadow").show(); // 배경 어둡게
 }
 function close_posting_box() {           //상품 등록 박스를 close
     url_verifier = 'false'
     $('#posting_box').hide()
+    $(".shadow").hide();
 }
 
 function open_modify_box(listId) {         //상품 수정 박스를 open
     close_more_box()
     $('#modify_box').show()
+    $(".shadow").show(); // 배경 어둡게
     $('#modify_box').empty()
     $.ajax({                            //기존 정보를 로딩해서 박스에 뿌려줌
         type: 'GET',                    //받는 변수 : image, url, name, price, memo, status
@@ -356,12 +359,13 @@ function close_modify_box() {           //상품 수정 박스를 close
         showCancelButton: true,
         confirmButtonColor: '#C068A8',
         cancelButtonColor: '#D9D9D9',
-        confirmButtonText: '수정취소',
-        cancelButtonText: '계속수정'
+        confirmButtonText: '네',
+        cancelButtonText: '아니오'
     }).then((result) => {
         if (result.isConfirmed) {
             url_verifier = 'false'
             $('#modify_box').hide()
+            $(".shadow").hide();
         }
     })
 }
@@ -375,6 +379,7 @@ function close_delete_box() {           //상품 삭제 박스를 close
 
 function open_more_box(listId) {         //상품 수정 박스를 open
     $('#more_box').show()
+    $(".shadow").show(); // 배경 어둡게
     $('#more_box').empty()
     $.ajax({                            //기존 정보를 로딩해서 박스에 뿌려줌
         type: 'GET',                    //받는 변수 : image, url, name, price, memo, status
@@ -431,6 +436,7 @@ function open_more_box(listId) {         //상품 수정 박스를 open
 
 function close_more_box() {
     $('#more_box').hide()
+    $(".shadow").hide();
 }
 
 function logout(){
