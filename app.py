@@ -4,6 +4,11 @@ app = Flask(__name__)
 import requests
 from bs4 import BeautifulSoup
 
+# login을 위한 모듈
+import bcrypt
+from datetime import datetime, timedelta, timezone 
+from flask_jwt_extended import *
+
 from pymongo import MongoClient
 import certifi
 ca = certifi.where()
@@ -15,10 +20,87 @@ from bson.json_util import dumps
 client = MongoClient('mongodb+srv://test:sparta@Cluster0.kwrmlin.mongodb.net/?retryWrites=true&w=majority', 27017, tlsCAFile=ca)
 db = client.dbsparta
 
+# JWT 매니저 활성화
+app.config.update(DEBUG = True, JWT_SECRET_KEY = "spartateam" )
+# If true this will only allow the cookies that contain your JWTs to be sent
+# over https. In production, this should always be set to True
+app.config["JWT_COOKIE_SECURE"] = False     #Configure application to store JWTs in cookies
+app.config["JWT_TOKEN_LOCATION"] = ["cookies"]
+app.config['JWT_ACCESS_COOKIE_PATH'] = '/' # access cookie를 보관할 url (Frontend 기준)
+app.config['JWT_REFRESH_COOKIE_PATH'] = '/' # refresh cookie를 보관할 url (Frontend 기준)
+
+jwt = JWTManager(app)
+
 @app.route('/')
 def home():
+    return render_template('main.html')
+
+@app.route('/index')
+def index():
     return render_template('index.html')
 
+############################################
+#               로그인 API                 #
+############################################
+@app.route('/register')
+def open_register_page():
+    return render_template('register.html')
+
+#회원 등록
+@app.route("/user/register", methods=["POST"])      #register.html의 register()에서 call
+def register():
+    # 회원정보 생성
+    user_id = request.form['user_id_give']
+    user_pwd = request.form['user_pwd_give']
+
+    doc = {
+        'user_id' : user_id,
+        'user_pwd' : user_pwd
+    }
+    db.users.insert_one(doc)
+    return jsonify({'msg':'등록 완료'})
+
+# 동일한 user_id를 가진 회원이 없는지 확인
+@app.route("/user/user_id_check", methods=["GET"])      #register.html의 check_user_id()에서 call
+def register_check_id():
+    user_id = request.args.get('user_id')
+    check_id = db.users.find_one({'user_id':user_id})
+    if check_id is not None:
+        return jsonify({'result' : "fail"})
+    return jsonify({'result' : "success"})
+
+
+#로그인하기
+@app.route("/user/login", methods=["POST"])   #main.html의 login() 에서 call
+def login():
+    # 회원정보 생성
+    user_id = request.form['user_id_give']
+    user_pwd = request.form['user_pwd_give']
+    user = db.users.find_one({'user_id': user_id}, {'user_pwd': user_pwd})
+    if user is None:
+        return jsonify({'msg': '아이디나 비밀번호가 잘못되었습니다!!', 'login': False})
+
+    # Create the tokens we will be sending back to the user
+    access_token = create_access_token(identity=user_id, expires_delta=False)
+    refresh_token = create_refresh_token(identity=user_id)
+
+    response = jsonify({'msg':'로그인 성공', 'login': True})
+    set_access_cookies(response, access_token)
+    set_refresh_cookies(response, refresh_token)
+    print(access_token)
+    print(refresh_token)
+    return response, 200
+
+# 로그아웃
+@app.route('/token/remove', methods=['POST'])           #index.html의 logout()에서 call
+def logout():
+    response = jsonify({'msg':'로그아웃 성공', 'logout': True})
+    unset_jwt_cookies(response)     #delete the cookies in order to logout
+    return response, 200
+
+############################################
+#               위시리스트 API             #
+############################################
 
 #url에서 image 추출하는 함수
 def image_from_url(url_receive):
@@ -35,6 +117,7 @@ def image_from_url(url_receive):
     soup = BeautifulSoup(data.text, 'html.parser')
     image = soup.select_one('meta[property="og:image"]')['content']
     return image
+
 
 #GET API 
 #조건에 맞는 list를 return -> 아직 해결 안됨.(16:50)
