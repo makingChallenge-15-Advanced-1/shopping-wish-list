@@ -1,4 +1,5 @@
 var url_verifier = 'false';
+var rows; // open_modify_box에서 사용할 전역변수
 
 $(document).ready(function () {       //페이지 로딩 시 wishlist_get_all() 함수 호출
     wishlist_get_all();
@@ -15,12 +16,15 @@ function list_to_card(wishlist) {        //받은 list를 카드로 만들어 �
         let status = wishlist[i]['status']
         let listId = wishlist[i]['listId']
 
+        if (price === '') price = '-';
+        else price = Number(price).toLocaleString()
+
         let statusClass = ""
         //구매 상태 아이콘 지정
         if (status === 'toBuy') { // 구매예정
             statusClass = "status-toBuy";
         } else if (status === 'hold') { // 구매보류
-            statusClass = "status-hold";            
+            statusClass = "status-hold";
         } else if (status === 'order') { // 구매완료
             statusClass = "status-order";
         }
@@ -40,8 +44,9 @@ function list_to_card(wishlist) {        //받은 list를 카드로 만들어 �
                             </div>
                             <div class="card-body">
                                 <h4 class="card-title">${name}</h4>
-                                <p class="card-price" id="card_price">${price}</p>
+                                <p class="card-price" id="card_price">${price}<span>원</span></p>
                                 <p class="card-text" id="card_memo">${memo}</p>
+                                <input onclick="open_more_box(${listId})" type='button' class='btn-detail-pop' name='btn' value='더보기'>
                             </div>
                         </div>
                     </div>
@@ -53,18 +58,22 @@ function list_to_card(wishlist) {        //받은 list를 카드로 만들어 �
 
 function wishlist_get_all() {                //모든 정보를 보여줌
     $('#cards_box').empty()
+    $('#all').prop("checked", true)
     $.ajax({                        //ajax GET으로 list를 읽어와서 카드 생성
         type: 'GET',                //받는 변수 : image, url, name, price, memo, status, listId
         url: '/wishlist?list=all',
         data: {},
         success: function (response) {
             wishlist = response['wishlist']
+            user_id = response['user_id']
+            alert(user_id)
             list_to_card(wishlist)
         }
     })
 }
 function wishlist_get_toBuy() {          //당장구매 아이템만 보여줌
     $('#cards_box').empty()
+    $('#toBuy').prop("checked", true)
     $.ajax({                        //ajax GET으로 list를 읽어와서 카드 생성
         type: 'GET',                //받는 변수 : image, url, name, price, memo, status, listId
         url: '/wishlist?list=toBuy',
@@ -77,6 +86,7 @@ function wishlist_get_toBuy() {          //당장구매 아이템만 보여줌
 }
 function wishlist_get_hold() {          //보류 아이템만 보여줌
     $('#cards_box').empty()
+    $('#hold').prop("checked", true)
     $.ajax({                        //ajax GET으로 list를 읽어와서 카드 생성
         type: 'GET',                //받는 변수 : image, url, name, price, memo, status, listId
         url: '/wishlist?list=hold',
@@ -89,6 +99,7 @@ function wishlist_get_hold() {          //보류 아이템만 보여줌
 }
 function wishlist_get_order() {          //구매완료 아이템만 보여줌
     $('#cards_box').empty()
+    $('#order').prop("checked", true)
     $.ajax({                        //ajax GET으로 list를 읽어와서 카드 생성
         type: 'GET',                //받는 변수 : image, url, name, price, memo, status, listId
         url: '/wishlist?list=order',
@@ -107,7 +118,7 @@ function checkedAlert(msg) {
         icon: 'success',
         title: msg,
         showConfirmButton: false,
-        timer: 500
+        timer: 1500
     })
 }
 //alert ok창
@@ -142,7 +153,7 @@ function wishlist_post() {
         data: { url_give: url, name_give: name, price_give: price, memo_give: memo, status_give: status },
         success: function (response) {
             checkedAlert(response['msg'])
-            window.location.reload()
+            setTimeout(() => window.location.reload(), 1550);
         }
     });
 }
@@ -173,7 +184,7 @@ function wishlist_modify(listId) {
         data: { url_give: url, name_give: name, price_give: price, memo_give: memo, status_give: status, listId_give: listId },
         success: function (response) {
             checkedAlert(response['msg'])
-            window.location.reload()
+            setTimeout(() => window.location.reload(), 1550);
         }
     });
 }
@@ -187,7 +198,7 @@ function modifying_status(listId) {
         data: { status_give: status, listId_give: listId },
         success: function (response) {
             checkedAlert(response['msg'])
-            window.location.reload()
+            setTimeout(() => window.location.reload(), 1550);
         }
     });
 }
@@ -211,7 +222,7 @@ function wishlist_delete(listId) {
                 data: { listId_give: listId },
                 success: function (response) {
                     checkedAlert(response['msg'])
-                    window.location.reload()
+                    setTimeout(() => window.location.reload(), 1550);
                 }
             });
         }
@@ -278,16 +289,25 @@ function close_posting_box() {           //상품 등록 박스를 close
 }
 
 function open_modify_box(listId) {         //상품 수정 박스를 open
+    close_more_box()
     $('#modify_box').show()
     $('#modify_box').empty()
     $.ajax({                            //기존 정보를 로딩해서 박스에 뿌려줌
         type: 'GET',                    //받는 변수 : image, url, name, price, memo, status
         url: '/wishlist/{listId}?listId_give=' + listId,
+        async: false, // 전역 변수 rows 사용 위함
         data: {},
         success: function (response) {
             rows = response['listId_item']
         }
     })
+    let get_list = JSON.parse(rows)
+    let url = get_list["url"]
+    let name = get_list["name"]
+    let price = get_list["price"]
+    let memo = get_list["memo"]
+    let status = get_list["status"]
+
     let temp_html = `
                 <div class="card-title" style="display: flex;">
                     <h5>상품 수정하기</h5>
@@ -295,20 +315,22 @@ function open_modify_box(listId) {         //상품 수정 박스를 open
                 </div>
                 <div class="form-floating" id="url_box">
                     <label for="url_modify">URL</label>
-                    <input type="text" class="required form-url form-control" id="url_modify" placeholder="url">
-                    <button class="url-check" onclick="url_mod_certifi()">url 검증</button>
+                    <input type="text" class="required form-url form-control" id="url_modify" placeholder="url" value="${url}">
+                    <button class="url-check" onclick="url_mod_certifi()">URL 검증</button>
                 </div>
                 <div class="form-floating">
                     <label for="name_modify">상품명</label>
-                    <input type="text" class="required form-control" id="name_modify" placeholder="name">
+                    <input type="text" class="required form-control" id="name_modify" placeholder="name" value="${name}">
                 </div>
                 <div class="form-floating">
                     <label for="price_modify">가격</label>
-                    <input type="text" class="form-control" id="price_modify" placeholder="price" >
+                    <input type="text" class="form-control" id="price_modify" 
+                    oninput="this.value = this.value.replace(/\\D/g, '');"
+                    maxlength="15" placeholder="price" value="${price}">
                 </div>
                 <div class="form-floating">
                     <label for="memo_modify">메모</label>
-                    <textarea class="form-control" id="memo_modify" maxlength="100" placeholder="메모수정"></textarea>
+                    <textarea class="form-control" id="memo_modify" maxlength="100" placeholder="메모수정">${memo}</textarea>
                 </div>
                 <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
                     <input type="radio" class="btn-check" name="status" id="toBuy" value="toBuy" autocomplete="off">
@@ -324,10 +346,24 @@ function open_modify_box(listId) {         //상품 수정 박스를 open
                 </div>
             `
     $('#modify_box').append(temp_html)
+    $(`input[type=radio][id='${status}']`).prop("checked", true);
 }
 function close_modify_box() {           //상품 수정 박스를 close
-    url_verifier = 'false'
-    $('#modify_box').hide()
+    Swal.fire({
+        title: '수정을 취소 하시겠습니까?',
+        text: "수정한 항목이 있다면 반영되지 않습니다",
+        icon: 'info',
+        showCancelButton: true,
+        confirmButtonColor: '#C068A8',
+        cancelButtonColor: '#D9D9D9',
+        confirmButtonText: '수정취소',
+        cancelButtonText: '계속수정'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            url_verifier = 'false'
+            $('#modify_box').hide()
+        }
+    })
 }
 
 function open_delete_box() {            //상품 삭제 박스를 open
@@ -335,4 +371,76 @@ function open_delete_box() {            //상품 삭제 박스를 open
 }
 function close_delete_box() {           //상품 삭제 박스를 close
     $('#delete-box').hide()
+}
+
+function open_more_box(listId) {         //상품 수정 박스를 open
+    $('#more_box').show()
+    $('#more_box').empty()
+    $.ajax({                            //기존 정보를 로딩해서 박스에 뿌려줌
+        type: 'GET',                    //받는 변수 : image, url, name, price, memo, status
+        url: '/wishlist/{listId}?listId_give=' + listId,
+        async: false, // 전역 변수 rows 사용 위함
+        data: {},
+        success: function (response) {
+            rows = response['listId_item']
+        }
+    })
+    let get_list = JSON.parse(rows)
+    let image = get_list["image"]
+    let url = get_list["url"]
+    let name = get_list["name"]
+    let price = get_list["price"]
+    let memo = get_list["memo"]
+    let status = get_list["status"]
+
+    if (price === '') price = '-';
+    else price = Number(price).toLocaleString()
+
+    let temp_html = `
+                <div class="more-title" style="display: flex;">
+                    <h5>상품 상세보기</h5>
+                    <button onclick="close_more_box()" type="button" class="pop-close">닫기</button>
+                </div>
+                <div class="url-img">
+                    <img src="${image}" class="card-img-top embed-responsive-item" alt="링크이동">
+                </div>
+                <div class="form-floating" id="url_box">
+                    <label>URL</label>
+                    <a href="${url}" target="_blank"><p class="url-blue">${url}</p></a>
+                </div>
+                <div class="form-floating">
+                    <label>상품명</label>
+                    <h4 class="url-name">${name}</h4>
+                </div>
+                <div class="form-floating">
+                    <label>가격</label>
+                    <div class="url-price">${price}<span>원</span></div>
+                </div>
+                <div class="form-floating">
+                    <label for="memo_modify">메모</label>
+                    <p class="url-memo">${memo}</p>
+                </div>
+                <div class="url-status"><p class="status-${status}"></p></div>
+                <div class="mybtns">
+                    <button onclick="open_modify_box(${listId})" type="button" class="btn btn-dark">수정하기</button>
+                    <button onclick="close_more_box()" type="button" class="btn btn-outline-secondary">닫기</button>
+                </div>
+            `
+    $('#more_box').append(temp_html)
+}
+
+function close_more_box() {
+    $('#more_box').hide()
+}
+
+function logout(){
+    $.ajax({
+        type: 'POST',
+        url: '/token/remove',
+        data: {},
+        success: function (response) {
+            alert(response['msg'])
+            window.location.href='/'
+        }
+    });
 }
