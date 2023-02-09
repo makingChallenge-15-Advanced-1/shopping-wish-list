@@ -16,7 +16,7 @@ bcrypt = Bcrypt(app)
 from pymongo import MongoClient
 import certifi
 ca = certifi.where()
-client = MongoClient('mongodb+srv://sayhong_db:happy*721@cluster0.cnaox23.mongodb.net/?retryWrites=true&w=majority', 27017, tlsCAFile=ca)
+client = MongoClient('<db정보>', 27017, tlsCAFile=ca)
 db = client.dbsparta
 
 # 몽고DB TypeError
@@ -31,6 +31,8 @@ app.config["JWT_COOKIE_SECURE"] = False     #Configure application to store JWTs
 app.config["JWT_TOKEN_LOCATION"] = ["cookies"]
 app.config['JWT_ACCESS_COOKIE_PATH'] = '/' # access cookie를 보관할 url (Frontend 기준)
 app.config['JWT_REFRESH_COOKIE_PATH'] = '/' # refresh cookie를 보관할 url (Frontend 기준)
+
+app.config['JWT_HEADER_TYPE'] = None
 
 jwt = JWTManager(app)
 
@@ -136,15 +138,17 @@ def wishlist_get():
     
     list_method = request.args.get('list')
     if list_method == 'all':
-        wishlist = list(db.wishlist.find({}, {'_id': False}))
-    elif list_method == 'ready':
-        wishlist = list(db.wishlist.find({'status': 'ready'}, {'_id': False}))
-    elif list_method == 'refer':
-        wishlist = list(db.wishlist.find({'status': 'refer'}, {'_id': False}))
-    elif list_method == 'done':
-        wishlist = list(db.wishlist.find({'status': 'done'}, {'_id': False}))
+        wishlist = list(db.wishlist.find({'status': 'toBuy'}, {'_id': False}))
+        wishlist = wishlist + list(db.wishlist.find({'status': 'hold'}, {'_id': False}))
+        wishlist = wishlist + list(db.wishlist.find({'status': 'order'}, {'_id': False}))
+    elif list_method == 'toBuy':
+        wishlist = list(db.wishlist.find({'status': 'toBuy'}, {'_id': False}))
+    elif list_method == 'hold':
+        wishlist = list(db.wishlist.find({'status': 'hold'}, {'_id': False}))
+    elif list_method == 'order':
+        wishlist = list(db.wishlist.find({'status': 'order'}, {'_id': False}))
 
-    for item in wishlist:
+    for item in wishlist: # 문제 발생, wishlist가 정의되기 전에 사용됨. 
         url = item['url']
         image = image_from_url(url) 
         item['image'] = image
@@ -168,6 +172,7 @@ def wishlist_listId_get():
 def wishlist_post():                              #받는 변수 : url, name, price, memo, status
     # current_user_id = get_jwt()['sub']            #로그인 회원 정보를 얻음
     # print(current_user_id)
+    
     url_receive = request.form['url_give']          
     name_receive = request.form['name_give']        
     price_receive = request.form['price_give']
@@ -223,35 +228,6 @@ def wishlist_modify():
     }
     db.wishlist.update_one({'listId':int(listId_receive)},{'$set':doc})
     return jsonify({'msg':'수정 완료!'})
-
-# GET, POST사용해서 수정
-# @app.route("/wishlist/{listId}/status", methods=["GET", "POST"])
-# def wishlist_modify():
-#     if request.method == "GET":
-#         listId_receive = request.args.get('listId_give')
-#         listId_item = db.wishlist.find_one({'listId': int(listId_receive)})
-#         url = listId_item['url']
-#         image = image_from_url(url)
-#         listId_item['image'] = image
-#         return jsonify({'listId_item':listId_item})
-#     else:
-#         url_receive = request.form['url_give']          
-#         name_receive = request.form['name_give']        
-#         price_receive = request.form['price_give']
-#         memo_receive = request.form['memo_give']
-#         status_receive = request.form['status_give']
-#         listId_receive = request.form['listId_give']
-
-#         doc = {                                 #db 저장 : url, name, price, memo, status, listId
-#             'url': url_receive,
-#             'name' : name_receive,
-#             'price' : price_receive,
-#             'memo' : memo_receive,
-#             'status' : status_receive,
-#             'listId' : int(listId_receive)
-#         }
-#         db.wishlist.update_one({'listId':int(listId_receive)},{'$set':doc})
-#         return jsonify({'msg':'수정 완료!'})
 
 #listId에 해당하는 db의 status만 수정
 @app.route("/wishlist/{listId}/status", methods=["PUT"])    #받는 변수 : url, name, price, memo, status, listId
