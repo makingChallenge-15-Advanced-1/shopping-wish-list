@@ -432,3 +432,15 @@ function open_more_box(listId) {         //상품 수정 박스를 open
 function close_more_box() {
     $('#more_box').hide()
 }
+
+function logout(){
+    $.ajax({
+        type: 'POST',
+        url: '/token/remove',
+        data: {},
+        success: function (response) {
+            alert(response['msg'])
+            window.location.href='/'
+        }
+    });
+}
