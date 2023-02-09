@@ -92,8 +92,6 @@ def login():
     response = jsonify({'msg':'로그인 성공', 'login': True})
     set_access_cookies(response, access_token)
     set_refresh_cookies(response, refresh_token)
-    print(access_token)
-    print(refresh_token)
     return response, 200
 
 # 로그아웃
@@ -130,8 +128,8 @@ def image_from_url(url_receive):
 @app.route("/wishlist", methods=["GET"])
 @jwt_required(optional=True)
 def wishlist_get():
-    current_user_id = get_jwt()['sub']
-    print(current_user_id)
+    current_user_id = get_jwt()['sub']      #로그인 회원 정보를 얻음
+    
     list_method = request.args.get('list')
     if list_method == 'all':
         wishlist = list(db.wishlist.find({}, {'_id': False}))
@@ -162,14 +160,17 @@ def wishlist_listId_get():
 #POST API
 #db에 새로운 정보를 추가
 @app.route("/wishlist", methods=["POST"])
+# @jwt_required()          user_id를 db에 추가하는 부분 수정 필요. 
 def wishlist_post():                              #받는 변수 : url, name, price, memo, status
+    # current_user_id = get_jwt()['sub']            #로그인 회원 정보를 얻음
+    # print(current_user_id)
     url_receive = request.form['url_give']          
     name_receive = request.form['name_give']        
     price_receive = request.form['price_give']
     memo_receive = request.form['memo_give']
     status_receive = request.form['status_give']
 
-    all_wishlist = list(db.wishlist.find({}, {'_id': False}))         #37~50 : listId 부여
+    all_wishlist = list(db.wishlist.find({}, {'_id': False}))         #listId 부여
     sort_wishlist = sorted(all_wishlist, key=lambda d: d['listId'])
 
     if len(sort_wishlist) == 0:
@@ -190,7 +191,8 @@ def wishlist_post():                              #받는 변수 : url, name, pr
         'price' : price_receive,
         'memo' : memo_receive,
         'status' : status_receive,
-        'listId' : listId
+        'listId' : listId,
+        # 'user_id' : current_user_id
     }
     db.wishlist.insert_one(doc)
     return jsonify({'msg':'저장 완료!'})
