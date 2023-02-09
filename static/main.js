@@ -65,7 +65,8 @@ function wishlist_get_all() {                //모든 정보를 보여줌
         data: {},
         success: function (response) {
             wishlist = response['wishlist']
-            console.log(wishlist);
+            user_id = response['user_id']
+            alert(user_id)
             list_to_card(wishlist)
         }
     })
