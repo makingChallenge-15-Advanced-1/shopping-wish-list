@@ -80,6 +80,8 @@ def login():
     user_pwd = request.form['user_pwd_give']
 
     #db에 저장된 password와 비교
+    #같은 password를 입력해도 hash값을 다를 수 있으므로 user_pwd는 해쉬화 하지 않는다.
+    #check_password_hash 함수를 이용하여 hash된 값과 원래 값이 동일한 지 비교 가능하다. 
     user = db.users.find_one({'user_id': user_id})
     origin_pwd = user['user_pwd']
     check_pwd = bcrypt.check_password_hash(origin_pwd, user_pwd)
