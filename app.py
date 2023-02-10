@@ -46,15 +46,6 @@ def open_register_page():
 def open_findId_page():
     return render_template('findId.html')
 
-#전화번호로 사용자 정보 찾기
-@app.route("/user/find_by_phone", methods=["GET"]) 
-def find_user_by_phone():
-    user_phone_receive = request.args.get('user_phone_give')
-    user_info = db.users.find_one({'user_phone':user_phone_receive}, {'_id': False})
-    if user_info is not None:
-        print(user_info)
-        return jsonify({'result' : "success"})
-    return jsonify({'result' : "fail"})    
 
 ############################################
 #               로그인 API                 #
@@ -93,6 +84,16 @@ def register_check_phone():
     if check_phone is not None:
         return jsonify({'result' : "fail"})
     return jsonify({'result' : "success"})
+
+#전화번호로 사용자 id를 찾아 줌
+@app.route("/user/find_by_phone", methods=["GET"]) 
+def find_user_by_phone():
+    user_phone_receive = request.args.get('user_phone_give')
+    user_info = db.users.find_one({'user_phone':user_phone_receive}, {'_id': False})
+    if user_info is not None:
+        user_id = user_info['user_id']
+        return jsonify({'result' : "success", 'user_id':user_id})
+    return jsonify({'result' : "fail"})    
 
 #로그인하기
 @app.route("/user/login", methods=["POST"])   #login.html의 login() 에서 call
