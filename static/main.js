@@ -324,6 +324,7 @@ function open_modify_box(listId) {         //상품 수정 박스를 open
                     <input type="text" class="form-control" id="price_modify" 
                     oninput="this.value = this.value.replace(/\\D/g, '');"
                     maxlength="15" placeholder="price" value="${price}">
+                    <p class="txt-info">15자이내 숫자로 수정하세요.</p>
                 </div>
                 <div class="form-floating">
                     <label for="memo_modify">메모</label>
