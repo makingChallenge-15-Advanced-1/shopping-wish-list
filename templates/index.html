@@ -54,14 +54,14 @@
                         placeholder="최대 100자까지 가능합니다."></textarea>
                 </div>
 
-                <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
-                    <input type="radio" class="btn-check" name="status" id="toBuy" value="toBuy" autocomplete="off">
+                <div class="btn-group form-check" role="group" aria-label="Basic radio toggle button group">
+                    <input type="radio" class="btn-check" name="status" id="toBuy" value="toBuy" checked>
                     <label class="btn btn-outline-primary" for="toBuy">구매예정</label>
 
-                    <input type="radio" class="btn-check" name="status" id="hold" value="hold" autocomplete="off">
+                    <input type="radio" class="btn-check" name="status" id="hold" value="hold">
                     <label class="btn btn-outline-primary" for="hold">구매보류</label>
 
-                    <input type="radio" class="btn-check" name="status" id="order" value="order" autocomplete="off">
+                    <input type="radio" class="btn-check" name="status" id="order" value="order">
                     <label class="btn btn-outline-primary" for="order">구매완료</label>
                 </div>
 
@@ -71,7 +71,7 @@
                 </div>
             </div>
             <div class="mymodifier" id="modify_box"></div>
-            <div class="mymodifier" id="more_box"></div>
+            <div class="mymodifier detail" id="more_box"></div>
         </div>
         <div class="top-menu">
             <ul class="tab-nav">
@@ -90,7 +90,9 @@
         </div>
     </div>
     
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
     <script>
         //클릭한 메뉴 active 상태유지
