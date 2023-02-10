@@ -133,13 +133,13 @@ def wishlist_get():
     current_user_id = get_jwt()['sub']      #로그인 회원의 id
     list_method = request.args.get('list')
     if list_method == 'all':
-        wishlist = list(db.wishlist.find({},{'_id':False}))
+        wishlist = list(db.wishlist.find({'user_id' : current_user_id},{'_id':False}))
     elif list_method == 'toBuy':
-        wishlist = list(db.wishlist.find({'status': 'toBuy'}, {'_id': False}))
+        wishlist = list(db.wishlist.find({'user_id' : current_user_id, 'status': 'toBuy'}, {'_id': False}))
     elif list_method == 'hold':
-        wishlist = list(db.wishlist.find({'status': 'hold'}, {'_id': False}))
+        wishlist = list(db.wishlist.find({'user_id' : current_user_id, 'status': 'hold'}, {'_id': False}))
     elif list_method == 'order':
-        wishlist = list(db.wishlist.find({'status': 'order'}, {'_id': False}))
+        wishlist = list(db.wishlist.find({'user_id' : current_user_id, 'status': 'order'}, {'_id': False}))
 
     for item in wishlist:  
         url = item['url']
