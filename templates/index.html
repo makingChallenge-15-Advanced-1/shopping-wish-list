@@ -5,8 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&display=swap" rel="stylesheet">
 
@@ -20,14 +19,14 @@
 <body>
     <div class="mytitle">
 
-        <h1><b><span id="user_name"></span>의 쇼핑 찜바구니</b><img src="/static/img/img_shoppingBasket.png" alt="장바구니"></h1>
+        <h1><b><span id="user_name"></span>의 쇼핑 찜바구니</b><img src="/static/img/img_shoppingBasket.png" alt="Basket"></h1>
 
         <div class="shadow"></div> <!-- 팝업시 shadow 효과-->
         <button onclick="open_posting_box()">
             <b>찜 상품 추가</b>
         </button>
         <div class="container">
-            <div class="mypost" id="posting_box" style="overflow-y: auto;">
+            <div class="mypost" id="posting_box">
                 <div class="card-title">
                     <h5>상품 등록하기</h5>
                     <button onclick="close_posting_box()" type="button" class="pop-close">닫기</button>
@@ -70,18 +69,19 @@
                     <button onclick="close_posting_box()" type="button" class="btn btn-outline-secondary">취소</button>
                 </div>
             </div>
-            <div class="mymodifier" id="modify_box" style="overflow-y: auto;"></div>
-            <div class="mymodifier" id="more_box" style="overflow-y: auto;"></div>
+            <div class="mymodifier" id="modify_box"></div>
+            <div class="mymodifier" id="more_box"></div>
         </div>
         <div class="top-menu">
             <ul class="tab-nav">
-                <li onclick="wishlist_get_all()" class="all"><a href="#all" class="active">전체보기</a></li>
+                <li onclick="wishlist_get_all()" class="all"><a class="active">전체보기</a></li>
                 <li onclick="wishlist_get_toBuy()" class="to-buy"><a href="#toBuy">구매예정</a></li>
                 <li onclick="wishlist_get_hold()" class="hold"><a href="#hold">구매보류</a></li>
                 <li onclick="wishlist_get_order()" class="order"><a href="#order">구매완료</a></li>
             </ul>
-            <button onclick="logout()" type="button" class="btn btn-dark">로그아웃</button>
         </div>
+
+            <button onclick="logout()" type="button" class="btn btn-logout">로그아웃</button>
     </div>
 
     <div class="mycards">
@@ -89,9 +89,7 @@
         </div>
     </div>
     
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
     <script>
         //클릭한 메뉴 active 상태유지
@@ -100,9 +98,9 @@
                 menu[i].addEventListener("click",act);
                 function act(){
                     for( let j = 0; j < menu.length; j++){
-                        menu[j].removeAttribute("class","active");
+                        menu[j].removeAttribute('class','active');
                     }
-                    this.setAttribute("class","active");
+                    this.setAttribute('class','active');
                 }
             }
     </script>
