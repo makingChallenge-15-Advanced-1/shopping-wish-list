@@ -1,0 +1,109 @@
+<!doctype html>
+ <html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+            crossorigin="anonymous"></script>
+
+    <title>아이디 찾기</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            font-family: 'Gowun Dodum', sans-serif;
+        }
+
+        .mytitle {
+            width: 100%;
+            height: 250px;
+
+            background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://d1vcqlflm6aitx.cloudfront.net/images/800x100p/1557364192-work_while_you_study_banner.webp');
+            background-position: center;
+            background-size: cover;
+
+            color: white;
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .myIdfind {
+            width: 95%;
+            max-width: 500x;
+            margin: 20px auto 0px auto;
+            padding: 20px;
+            box-shadow: 0px 0px 3px 0px gray;
+        }
+
+        .mybtns {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+
+            margin-top: 20px;
+        }
+        .mybtns > button {
+            margin-right: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="mytitle">
+        <h1>휴대폰 번호로 찾기</h1>
+    </div>
+    <div class="myIdfind" id="find_box">
+        <div class="form-floating mb-3">
+            <input type="text" class="form-control" id="user_phone_input" maxlength="11" placeholder="phone_number">
+            <label for="user_phone_input">전화번호(- 없이 입력)</label>
+        </div>
+        <div class="mybtns">
+            <button onclick="find_with_phone()" type="button" class="btn btn-dark">찾기</button>
+        </div>
+    </div>
+    
+    <button onclick="window.location.href='/'" type="button" class="btn btn-primary btn-sm">로그인으로 돌아가기</button> 
+    <script>
+        var rows; // 전역변수
+        function find_with_phone() {
+            let user_phone = $('#user_phone_input').val() 
+            $.ajax({
+                type: 'GET',
+                url: '/find/userPhone?phone_give=' + user_phone,
+                async: false,
+                data: {},
+                success: function (response) {
+                    rows = response['user_phone_item']
+                    let a = JSON.parse(rows)
+                    console.log(a)
+                    console.log(a["user_id"])
+                    alert(a["user_id"])
+                }
+            });
+            // let get_info = JSON.parse(rows)
+            // let user_id = get_info["user_id"]
+            // $('#show-id').append(user_id)
+        }        
+
+        // 전화번호 자동 하이픈(-)
+        // const autoHyphen = (target) => {
+        //     target.value = target.value
+        //     .replace(/[^0-9]/g, '')
+        //     .replace(/^(\d{0,3})(\d{0,4})(\d{0,4})$/, `$1-$2-$3`);
+        // }
+
+    </script>
+</body>
+
+</html>
