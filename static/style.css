@@ -571,6 +571,7 @@ html { font-size:13px;
     top: 10px;
 }
 
+.mymodifier>.form-floating>label,
 .mymodifier.detail .form-floating label,
 .mypost>.form-floating>label {
     display: block;
@@ -582,6 +583,7 @@ html { font-size:13px;
 }
 
 .mymodifier>.form-floating>.form-control,
+.mymodifier.detail .form-floating .form-control,
 .mypost>.form-floating>.form-control {
     padding: 6px 8px 8px 8px;
     font-size: 1rem;
