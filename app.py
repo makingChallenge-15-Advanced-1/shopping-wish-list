@@ -42,6 +42,15 @@ def index():
 @app.route('/register')    #회원가입 page
 def open_register_page():
     return render_template('register.html')
+@app.route('/findId')       # 아이디 찾기 page
+def open_findId_page():
+    return render_template('findId.html')
+
+@app.route('/find/userPhone')
+def get_userPhone():
+    phone_receive = request.args.get('phone_give')
+    user_info = list(db.users.find({'user_phone':phone_receive},{'_id':False}))
+    return jsonify({'data':user_info})
 
 ############################################
 #               로그인 API                 #
@@ -53,10 +62,12 @@ def register():
     # 회원정보 생성
     user_id = request.form['user_id_give']
     user_pwd = request.form['user_pwd_give']
+    user_phone = request.form['user_phone_give']
     pwd_hash = bcrypt.generate_password_hash(user_pwd)   # 비밀번호 암호화
     doc = {
         'user_id' : user_id,
-        'user_pwd' : pwd_hash
+        'user_pwd' : pwd_hash,
+        'user_phone' : user_phone
     }
     db.users.insert_one(doc)        #db에 회원정보 등록
     return jsonify({'msg':'등록 완료'})
@@ -81,11 +92,15 @@ def login():
     #같은 password를 입력해도 hash값을 다를 수 있으므로 user_pwd는 해쉬화 하지 않는다.
     #check_password_hash 함수를 이용하여 hash된 값과 원래 값이 동일한 지 비교 가능하다. 
     user = db.users.find_one({'user_id': user_id})
+
+    if user is None:
+        return jsonify({'msg': '잘못된 아이디 입니다!!', 'login': False})
+
     origin_pwd = user['user_pwd']
     check_pwd = bcrypt.check_password_hash(origin_pwd, user_pwd)
 
     if check_pwd is False:
-        return jsonify({'msg': '아이디나 비밀번호가 잘못되었습니다!!', 'login': False})
+        return jsonify({'msg': '비밀번호가 잘못되었습니다!!', 'login': False})
 
     # Create the tokens we will be sending back to the user
     access_token = create_access_token(identity=user_id, expires_delta=False)

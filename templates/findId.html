@@ -39,7 +39,7 @@
 
         .myIdfind {
             width: 95%;
-            max-width: 500x;
+            max-width: 500px;
             margin: 20px auto 0px auto;
             padding: 20px;
             box-shadow: 0px 0px 3px 0px gray;
@@ -57,23 +57,7 @@
             margin-right: 10px;
         }
     </style>
-</head>
 
-<body>
-    <div class="mytitle">
-        <h1>휴대폰 번호로 찾기</h1>
-    </div>
-    <div class="myIdfind" id="find_box">
-        <div class="form-floating mb-3">
-            <input type="text" class="form-control" id="user_phone_input" maxlength="11" placeholder="phone_number">
-            <label for="user_phone_input">전화번호(- 없이 입력)</label>
-        </div>
-        <div class="mybtns">
-            <button onclick="find_with_phone()" type="button" class="btn btn-dark">찾기</button>
-        </div>
-    </div>
-    
-    <button onclick="window.location.href='/'" type="button" class="btn btn-primary btn-sm">로그인으로 돌아가기</button> 
     <script>
         var rows; // 전역변수
         function find_with_phone() {
@@ -104,6 +88,22 @@
         // }
 
     </script>
+</head>
+
+<body>
+    <div class="mytitle">
+        <h1>휴대폰 번호로 찾기</h1>
+    </div>
+    <div class="myIdfind" id="find_box">
+        <div class="form-floating mb-3">
+            <input type="text" class="form-control" id="user_phone_input" maxlength="11" placeholder="phone_number">
+            <label for="user_phone_input">전화번호(- 없이 입력)</label>
+        </div>
+        <div class="mybtns">
+            <button onclick="find_with_phone()" type="button" class="btn btn-dark">찾기</button>
+            <button onclick="window.location.href='/'" type="button" class="btn btn-dark">로그인으로 돌아가기</button> 
+        </div>
+    </div>
 </body>
 
 </html>
