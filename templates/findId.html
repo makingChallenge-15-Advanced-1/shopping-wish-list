@@ -61,23 +61,18 @@
     <script>
         var rows; // 전역변수
         function find_with_phone() {
-            let user_phone = $('#user_phone_input').val() 
+            let user_phone = $('#user_phone_input').val()
+
             $.ajax({
                 type: 'GET',
-                url: '/find/userPhone?phone_give=' + user_phone,
+                url: '/user/find_by_phone?user_phone_give=' + user_phone,
                 async: false,
                 data: {},
                 success: function (response) {
-                    rows = response['user_phone_item']
-                    let a = JSON.parse(rows)
-                    console.log(a)
-                    console.log(a["user_id"])
-                    alert(a["user_id"])
+                    find_result = response['result']
+                    alert(find_result)
                 }
             });
-            // let get_info = JSON.parse(rows)
-            // let user_id = get_info["user_id"]
-            // $('#show-id').append(user_id)
         }        
 
         // 전화번호 자동 하이픈(-)
