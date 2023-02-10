@@ -224,7 +224,7 @@ def wishlist_modify():
 def wishlist_modify_status():
     status_receive = request.form['status_give']
     listId_receive = request.form['listId_give']
-    db.wishlist.update_one({'listId':int(listId_receive)},{'$set':{'listId':listId_receive}})
+    db.wishlist.update_one({'listId':int(listId_receive)},{'$set':{'status':status_receive}})
     return jsonify({'msg':'수정 완료!'})
 
 #DELETE API
