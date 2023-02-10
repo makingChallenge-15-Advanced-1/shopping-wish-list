@@ -138,9 +138,7 @@ def wishlist_get():
     
     list_method = request.args.get('list')
     if list_method == 'all':
-        wishlist = list(db.wishlist.find({'status': 'toBuy'}, {'_id': False}))
-        wishlist = wishlist + list(db.wishlist.find({'status': 'hold'}, {'_id': False}))
-        wishlist = wishlist + list(db.wishlist.find({'status': 'order'}, {'_id': False}))
+        wishlist = list(db.wishlist.find({},{'_id':False}))
     elif list_method == 'toBuy':
         wishlist = list(db.wishlist.find({'status': 'toBuy'}, {'_id': False}))
     elif list_method == 'hold':
@@ -148,7 +146,7 @@ def wishlist_get():
     elif list_method == 'order':
         wishlist = list(db.wishlist.find({'status': 'order'}, {'_id': False}))
 
-    for item in wishlist: # 문제 발생, wishlist가 정의되기 전에 사용됨. 
+    for item in wishlist:  
         url = item['url']
         image = image_from_url(url) 
         item['image'] = image
