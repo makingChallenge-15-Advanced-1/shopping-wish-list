@@ -16,12 +16,8 @@ bcrypt = Bcrypt(app)
 from pymongo import MongoClient
 import certifi
 ca = certifi.where()
-client = MongoClient('<db정보>', 27017, tlsCAFile=ca)
+client = MongoClient('mongodb+srv://sayhong_db:happy*721@cluster0.cnaox23.mongodb.net/?retryWrites=true&w=majority', 27017, tlsCAFile=ca)
 db = client.dbsparta
-
-# 몽고DB TypeError
-# TypeError: Object of type ObjectId is not JSON serializable
-from bson.json_util import dumps
 
 # JWT 매니저 활성화
 app.config.update(DEBUG = True, JWT_SECRET_KEY = "spartateam" )
@@ -80,6 +76,7 @@ def login():
     # 사용자가 입력한 id, password
     user_id = request.form['user_id_give']
     user_pwd = request.form['user_pwd_give']
+    print(user_id, user_pwd)
 
     #db에 저장된 password와 비교
     #같은 password를 입력해도 hash값을 다를 수 있으므로 user_pwd는 해쉬화 하지 않는다.
@@ -156,11 +153,11 @@ def wishlist_get():
 @app.route("/wishlist/{listId}", methods=["GET"])
 def wishlist_listId_get():                             
     listId_receive = request.args.get('listId_give')
-    listId_item = db.wishlist.find_one({'listId': int(listId_receive)})
+    listId_item = db.wishlist.find_one({'listId': int(listId_receive)}, {'_id': False})
     url = listId_item['url']
     image = image_from_url(url)
     listId_item['image'] = image
-    return jsonify({'listId_item':dumps(listId_item)})
+    return jsonify({'listId_item':listId_item})
 
 
 #POST API

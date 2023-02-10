@@ -301,17 +301,13 @@ function open_modify_box(listId) {         //상품 수정 박스를 open
         async: false, // 전역 변수 rows 사용 위함
         data: {},
         success: function (response) {
-            rows = response['listId_item']
-        }
-    })
-    let get_list = JSON.parse(rows)
-    let url = get_list["url"]
-    let name = get_list["name"]
-    let price = get_list["price"]
-    let memo = get_list["memo"]
-    let status = get_list["status"]
-
-    let temp_html = `
+            let get_list = response['listId_item']
+            let url = get_list["url"]
+            let name = get_list["name"]
+            let price = get_list["price"]
+            let memo = get_list["memo"]
+            let status = get_list["status"]
+            let temp_html = `
                 <div class="card-title" style="display: flex;">
                     <h5>상품 수정하기</h5>
                     <button onclick="close_modify_box()" type="button" class="pop-close">닫기</button>
@@ -348,8 +344,10 @@ function open_modify_box(listId) {         //상품 수정 박스를 open
                     <button onclick="close_modify_box()" type="button" class="btn btn-outline-secondary">닫기</button>
                 </div>
             `
-    $('#modify_box').append(temp_html)
-    $(`input[type=radio][id='${status}']`).prop("checked", true);
+            $('#modify_box').append(temp_html)
+            $(`input[type=radio][id='${status}']`).prop("checked", true);
+        }
+    })
 }
 function close_modify_box() {           //상품 수정 박스를 close
     Swal.fire({
@@ -387,51 +385,50 @@ function open_more_box(listId) {         //상품 수정 박스를 open
         async: false, // 전역 변수 rows 사용 위함
         data: {},
         success: function (response) {
-            rows = response['listId_item']
+            let get_list = response['listId_item']
+            let image = get_list["image"]
+            let url = get_list["url"]
+            let name = get_list["name"]
+            let price = get_list["price"]
+            let memo = get_list["memo"]
+            let status = get_list["status"]
+
+            if (price === '') price = '-';
+            else price = Number(price).toLocaleString()
+
+            let temp_html = `
+            <div class="more-title" style="display: flex;">
+                <h5>상품 상세보기</h5>
+                <button onclick="close_more_box()" type="button" class="pop-close">닫기</button>
+            </div>
+            <div class="url-img">
+                <img src="${image}" class="card-img-top embed-responsive-item" alt="링크이동">
+            </div>
+            <div class="form-floating" id="url_box">
+                <label>URL</label>
+                <a href="${url}" target="_blank"><p class="url-blue">${url}</p></a>
+            </div>
+            <div class="form-floating">
+                <label>상품명</label>
+                <h4 class="url-name">${name}</h4>
+            </div>
+            <div class="form-floating">
+                <label>가격</label>
+                <div class="url-price">${price}<span>원</span></div>
+            </div>
+            <div class="form-floating">
+                <label for="memo_modify">메모</label>
+                <p class="url-memo">${memo}</p>
+            </div>
+            <div class="url-status"><p class="status-${status}"></p></div>
+            <div class="mybtns">
+                <button onclick="open_modify_box(${listId})" type="button" class="btn btn-dark">수정하기</button>
+                <button onclick="close_more_box()" type="button" class="btn btn-outline-secondary">닫기</button>
+            </div>
+        `
+        $('#more_box').append(temp_html)
         }
     })
-    let get_list = JSON.parse(rows)
-    let image = get_list["image"]
-    let url = get_list["url"]
-    let name = get_list["name"]
-    let price = get_list["price"]
-    let memo = get_list["memo"]
-    let status = get_list["status"]
-
-    if (price === '') price = '-';
-    else price = Number(price).toLocaleString()
-
-    let temp_html = `
-                <div class="more-title" style="display: flex;">
-                    <h5>상품 상세보기</h5>
-                    <button onclick="close_more_box()" type="button" class="pop-close">닫기</button>
-                </div>
-                <div class="url-img">
-                    <img src="${image}" class="card-img-top embed-responsive-item" alt="링크이동">
-                </div>
-                <div class="form-floating" id="url_box">
-                    <label>URL</label>
-                    <a href="${url}" target="_blank"><p class="url-blue">${url}</p></a>
-                </div>
-                <div class="form-floating">
-                    <label>상품명</label>
-                    <h4 class="url-name">${name}</h4>
-                </div>
-                <div class="form-floating">
-                    <label>가격</label>
-                    <div class="url-price">${price}<span>원</span></div>
-                </div>
-                <div class="form-floating">
-                    <label for="memo_modify">메모</label>
-                    <p class="url-memo">${memo}</p>
-                </div>
-                <div class="url-status"><p class="status-${status}"></p></div>
-                <div class="mybtns">
-                    <button onclick="open_modify_box(${listId})" type="button" class="btn btn-dark">수정하기</button>
-                    <button onclick="close_more_box()" type="button" class="btn btn-outline-secondary">닫기</button>
-                </div>
-            `
-    $('#more_box').append(temp_html)
 }
 
 function close_more_box() {
