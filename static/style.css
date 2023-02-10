@@ -503,13 +503,13 @@ top-menu>ul>li.to-buy>a:after,
     box-shadow: 0px 1px 4px rgb(0 0 0 / 30%);
     display: none;
     position: absolute;
-    top: 6.8rem;
+    top: 6.6rem;
     z-index: 1000;
     box-sizing: content-box;
     background-color: #FDFAFC;
     border-radius: 1rem;
     animation: swal2-show .3s;
-    height: 70vh;
+    height: 78vh;
 }
 
 .mymodifier>.card-title,
@@ -627,7 +627,7 @@ top-menu>ul>li.to-buy>a:after,
 
 .mymodifier>.form-floating>textarea.form-control,
 .mypost>.form-floating>textarea.form-control {
-    height: 80px;
+    height: 122px;
     clear: both;
 }
 
@@ -727,6 +727,14 @@ top-menu>ul>li.to-buy>a:after,
     background-color: #4C6FFD ;
     border-color: #4C6FFD ;
     box-shadow: 0px 0px 0px 4px #abbbff;
+}
+
+.scroll {
+    display: block;
+    padding-top: 10px;
+    overflow-y: auto;
+    clear: both;
+    height: 64vh;
 }
 
 .mybtns {
