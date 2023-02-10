@@ -16,7 +16,7 @@ bcrypt = Bcrypt(app)
 from pymongo import MongoClient
 import certifi
 ca = certifi.where()
-client = MongoClient('<db정보>', 27017, tlsCAFile=ca)
+client = MongoClient('mongodb+srv://test:sparta@Cluster0.kwrmlin.mongodb.net/?retryWrites=true&w=majority', 27017, tlsCAFile=ca)
 db = client.dbsparta
 
 # 몽고DB TypeError
@@ -160,7 +160,7 @@ def wishlist_listId_get():
     url = listId_item['url']
     image = image_from_url(url)
     listId_item['image'] = image
-    return jsonify({'listId_item':listId_item})
+    return jsonify({'listId_item':dumps(listId_item)})
 
 
 #POST API
