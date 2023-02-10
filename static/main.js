@@ -400,26 +400,28 @@ function open_more_box(listId) {         //상품 수정 박스를 open
                 <h5>상품 상세보기</h5>
                 <button onclick="close_more_box()" type="button" class="pop-close">닫기</button>
             </div>
-            <div class="url-img">
-                <img src="${image}" class="card-img-top embed-responsive-item" alt="링크이동">
-            </div>
-            <div class="form-floating" id="url_box">
-                <label>URL</label>
-                <a href="${url}" target="_blank"><p class="url-blue">${url}</p></a>
-            </div>
-            <div class="form-floating">
-                <label>상품명</label>
-                <h4 class="url-name">${name}</h4>
-            </div>
-            <div class="form-floating">
-                <label>가격</label>
-                <div class="url-price">${price}<span>원</span></div>
-            </div>
-            <div class="form-floating">
-                <label for="memo_modify">메모</label>
-                <p class="url-memo">${memo}</p>
-            </div>
-            <div class="url-status"><p class="status-${status}"></p></div>
+            <div class="scroll">
+                <div class="url-img">
+                    <img src="${image}" class="card-img-top embed-responsive-item" alt="링크이동">
+                </div>
+                <div class="form-floating" id="url_box">
+                    <label>URL</label>
+                    <a href="${url}" target="_blank"><p class="url-blue">${url}</p></a>
+                </div>
+                <div class="form-floating">
+                    <label>상품명</label>
+                    <h4 class="url-name">${name}</h4>
+                </div>
+                <div class="form-floating">
+                    <label>가격</label>
+                    <div class="url-price">${price}<span>원</span></div>
+                </div>
+                <div class="form-floating">
+                    <label for="memo_modify">메모</label>
+                    <p class="url-memo">${memo}</p>
+                </div>
+                <div class="url-status"><p class="status-${status}"></p></div>
+            </div>   
             <div class="mybtns">
                 <button onclick="open_modify_box(${listId})" type="button" class="btn btn-dark">수정하기</button>
                 <button onclick="close_more_box()" type="button" class="btn btn-outline-secondary">닫기</button>
