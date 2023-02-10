@@ -72,28 +72,22 @@
                 data: {},
                 success: function (response) {
                     find_result = response['result']
-                    if (find_result == "success"){
-                        alert(response['user_id'])      //일치하는 전화번호가 있는 경우 사용자 이름 띄움
+                    if (find_result == "success"){      //일치하는 전화번호가 있는 경우 비밀번호 재설정 page로 이동
+                        user_id = response['user_id']
+                        alert("비밀번호를 재설정 하세요!!")
+                        window.location.href='/reset_pwd?user_id='+user_id   //url에 user_id를 포함  
                     }else{
                         alert(find_result)      //일치하는 전화번호가 없는 경우 fail 띄움
                     }
                 }
             });
         }        
-
-        // 전화번호 자동 하이픈(-)
-        // const autoHyphen = (target) => {
-        //     target.value = target.value
-        //     .replace(/[^0-9]/g, '')
-        //     .replace(/^(\d{0,3})(\d{0,4})(\d{0,4})$/, `$1-$2-$3`);
-        // }
-
     </script>
 </head>
 
 <body>
     <div class="mytitle">
-        <h1>휴대폰 번호로 아이디 찾기</h1>
+        <h1>휴대폰 번호로 패스워드 찾기</h1>
     </div>
     <div class="myIdfind" id="find_box">
         <div class="form-floating mb-3">
@@ -101,7 +95,7 @@
             <label for="user_phone_input">전화번호(- 없이 입력)</label>
         </div>
         <div class="mybtns">
-            <button onclick="find_with_phone()" type="button" class="btn btn-dark">아이디 찾기</button>
+            <button onclick="find_with_phone()" type="button" class="btn btn-dark">본인 확인하기</button>
             <button onclick="window.location.href='/'" type="button" class="btn btn-dark">로그인으로 돌아가기</button> 
         </div>
     </div>

@@ -45,6 +45,12 @@ def open_register_page():
 @app.route('/findId')       # 아이디 찾기 page
 def open_findId_page():
     return render_template('findId.html')
+@app.route('/find_pwd')       #패스워드 찾기 page
+def open_find_pwd_page():
+    return render_template('find_pwd.html')
+@app.route('/reset_pwd')       #패스워드 찾기 page
+def open_reset_pwd_page():
+    return render_template('reset_pwd.html')
 
 
 ############################################
@@ -94,6 +100,15 @@ def find_user_by_phone():
         user_id = user_info['user_id']
         return jsonify({'result' : "success", 'user_id':user_id})
     return jsonify({'result' : "fail"})    
+
+#특정 user의 비밀번호를 수정
+@app.route("/user/{user_id}/pwd", methods=["PUT"])  
+def user_reset_pwd():
+    user_id = request.form['user_id_give']
+    new_user_pwd = request.form['user_pwd_give']
+    new_pwd_hash = bcrypt.generate_password_hash(new_user_pwd)   # 비밀번호 암호화
+    db.users.update_one({'user_id':user_id},{'$set':{'user_pwd':new_pwd_hash}})
+    return jsonify({'msg':'비밀번호 변경 완료!!'})
 
 #로그인하기
 @app.route("/user/login", methods=["POST"])   #login.html의 login() 에서 call

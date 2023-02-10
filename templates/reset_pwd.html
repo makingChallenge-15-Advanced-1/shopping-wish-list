@@ -37,7 +37,7 @@
             justify-content: center;
         }
 
-        .myIdfind {
+        .my_pwd_reset {
             width: 95%;
             max-width: 500px;
             margin: 20px auto 0px auto;
@@ -59,49 +59,55 @@
     </style>
 
     <script>
-        var rows; // 전역변수
+        function check_reset_pwd() {
+            let user_pwd = $('#user_pwd_input').val()
+            let re_user_pwd = $('#re_user_pwd_input').val()
 
-        //전화번호로 사용자 id를 찾아주는 함수
-        function find_with_phone() {
-            let user_phone = $('#user_phone_input').val()
+             if (user_pwd == ""){
+                alert("사용하실 비밀번호를 입력해 주세요!!")
+            } else if (user_pwd != re_user_pwd){
+                alert("비밀번호 재확인란에 동일한 비밀번호를 입력해 주세요!!")
+            } else {
+                reset_pwd(user_pwd)
+            }
+            return
+        }
 
-            $.ajax({
-                type: 'GET',
-                url: '/user/find_by_phone?user_phone_give=' + user_phone,
-                async: false,
-                data: {},
+        function reset_pwd(user_pwd){
+            //url에서 user_id를 받아오는 부분
+            let query = window.location.search;
+            let param = new URLSearchParams(query);
+            let user_id = param.get('user_id');
+
+            $.ajax({                                 //변수: url, name, price, memo, status, listId
+                type: 'PUT',
+                url: '/user/{user_id}/pwd',
+                data: {user_id_give: user_id, user_pwd_give:user_pwd},
                 success: function (response) {
-                    find_result = response['result']
-                    if (find_result == "success"){
-                        alert(response['user_id'])      //일치하는 전화번호가 있는 경우 사용자 이름 띄움
-                    }else{
-                        alert(find_result)      //일치하는 전화번호가 없는 경우 fail 띄움
-                    }
+                    alert(response['msg'])
+                    window.location.href='/'
                 }
-            });
-        }        
-
-        // 전화번호 자동 하이픈(-)
-        // const autoHyphen = (target) => {
-        //     target.value = target.value
-        //     .replace(/[^0-9]/g, '')
-        //     .replace(/^(\d{0,3})(\d{0,4})(\d{0,4})$/, `$1-$2-$3`);
-        // }
-
+             });
+            return
+        }
     </script>
 </head>
 
 <body>
     <div class="mytitle">
-        <h1>휴대폰 번호로 아이디 찾기</h1>
+        <h1>패스워드 재설정하기</h1>
     </div>
-    <div class="myIdfind" id="find_box">
+    <div class="my_pwd_reset" id="reset_box">
         <div class="form-floating mb-3">
-            <input type="text" class="form-control" id="user_phone_input" maxlength="11" placeholder="phone_number">
-            <label for="user_phone_input">전화번호(- 없이 입력)</label>
+            <input type="text" class="form-control" id="user_pwd_input" placeholder="name@example.com">
+            <label for="user_pwd_input">password</label>
+        </div>
+        <div class="form-floating mb-3">
+            <input type="text" class="form-control" id="re_user_pwd_input" placeholder="name@example.com">
+            <label for="re_user_pwd_input">비밀번호 재확인</label>
         </div>
         <div class="mybtns">
-            <button onclick="find_with_phone()" type="button" class="btn btn-dark">아이디 찾기</button>
+            <button onclick="check_reset_pwd()" type="button" class="btn btn-dark">확인</button>
             <button onclick="window.location.href='/'" type="button" class="btn btn-dark">로그인으로 돌아가기</button> 
         </div>
     </div>
