@@ -44,8 +44,9 @@
                 </div>
                 <div class="form-floating">
                     <label for="price_input">가격</label>
-                    <input type="text" class="form-control" id="price_input" placeholder="price">
-                    <p></p>
+                    <input type="text" class="form-control" id="price_input" placeholder="price"
+                    oninput="this.value = this.value.replace(/\D/g, '');" maxlength="15" >
+                    <p class="txt-info">15자내로 숫자만 입력하세요.</p>
                 </div>
                 <div class="form-floating">
                     <label for="memo_input">메모</label>

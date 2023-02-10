@@ -582,6 +582,12 @@ top-menu>ul>li.to-buy>a:after,
     font-size: .8rem;
 }
 
+.mymodifier>.form-floating>.txt-info,
+.mypost>.form-floating>.txt-info {
+    color: #0000FF;
+    font-size: .8rem;
+}
+
 .mymodifier>.form-floating>.form-url,
 .mypost>.form-floating>.form-url {
     width: calc(100% - 4.1rem);
