@@ -1,40 +1,106 @@
-* {
-  font-family: 'Gowun Dodum', sans-serif;
-}
-
-.mytitle {
-  width: 100%;
-  height: 250px;
-
-  background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://d1vcqlflm6aitx.cloudfront.net/images/800x100p/1557364192-work_while_you_study_banner.webp');
-  background-position: center;
-  background-size: cover;
-
-  color: white;
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
 
 .mylogin {
   width: 95%;
   max-width: 500px;
-  margin: 20px auto 0px auto;
+    margin: 3rem auto;
   padding: 20px;
-  box-shadow: 0px 0px 3px 0px gray;
+  border-radius: 16px;
+  background-color: #FCFCFE;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.25);
 }
 
-.mybtns {
+.mylogin>.mybtns {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
 
   margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid #D9D9D9;
 }
 
 .mybtns>button {
   margin-right: 10px;
+}
+
+.mylogin .form-floating {
+    margin: 5px auto 8px auto;
+}
+
+.mylogin .form-floating label {
+    display: block;
+    position: initial;
+    font-size: 14px;
+    color: #000000;
+    font-weight: 400;
+    padding: 0 0 4px 0;
+}
+
+.mylogin .form-floating .form-control {
+  padding: 6px 8px 8px 8px;
+    font-size: 1rem;
+    border: 1px solid #3733FF;
+    border-radius: 8px;
+    height: calc(2.85rem + 2px);
+}
+
+.mylogin .btn-dark {
+    color: #ffffff;
+    background-color: #7D5EE2 !important;
+    border-color: #7D5EE2 !important;
+}
+
+.mylogin .btn-login-front {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 130px;
+    height: 130px;
+    border-radius: 0.8rem;
+    margin: 6px 0;
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: .2rem;
+}
+
+.mylogin .txt-box {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    font-size: 14px;
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid #D9D9D9;
+}
+.mylogin .txt-box ul {
+    list-style: none;
+    padding:0;
+}
+
+.mylogin .btn-txt {
+    background-color: transparent;
+    color: #5830DC;
+    font-weight: 700;
+    font-size: .96rem;
+    padding: 6px 8px;
+    margin: 10px 6px 0 0;
+    border: 1px solid #fff;
+    border-radius: 8px;
+    letter-spacing: -.03rem;
+}
+.mylogin .btn-txt:hover,
+.mylogin .btn-txt:active {
+    color:#fff;
+    border:1px solid #5830DC;
+    border-radius: 8px;
+    background-color: #5830DC;
+}
+
+.mylogin .btn-outline-dark {
+    color:#4C4C4C;
+    border: 1px solid #4C4C4C;
+    border-radius: 8px;
+    background-color: #ffffff;
 }
