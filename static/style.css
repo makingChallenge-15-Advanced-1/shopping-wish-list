@@ -168,7 +168,7 @@ html { font-size:13px;
 
 .top-menu>ul>li.to-buy>a.active,
 .top-menu>ul>li.to-buy>a:hover,
-top-menu>ul>li.to-buy>a:after,
+.top-menu>ul>li.to-buy>a:after,
 .top-menu>ul>li.to-buy>a:active {
     background-image: url(/static/img/icon_tobuy.png);
     background-repeat: no-repeat;
@@ -319,7 +319,7 @@ top-menu>ul>li.to-buy>a:after,
 }
 
 .mycards {
-    margin: 0 auto;
+    margin: 0 auto 40px auto;
     width: 95%;
     max-width: 1300px;
 }
@@ -509,7 +509,26 @@ top-menu>ul>li.to-buy>a:after,
     background-color: #FDFAFC;
     border-radius: 1rem;
     animation: swal2-show .3s;
+    height: 600px;
+}
+
+ .mymodifier.detail {
+    width: 100%;
+    max-width: 600px;
+    left: calc(48% - 300px);
+    padding: 30px;
+    box-shadow: 0px 1px 4px rgb(0 0 0 / 30%);
+    display: none;
+    position: absolute;
+    top: 6.6rem;
+    z-index: 1000;
+    box-sizing: content-box;
+    background-color: #FDFAFC;
+    border-radius: 1rem;
+    animation: swal2-show .3s;
     height: 78vh;
+    min-height: 600px;
+    overflow: hidden;
 }
 
 .mymodifier>.card-title,
@@ -552,7 +571,7 @@ top-menu>ul>li.to-buy>a:after,
     top: 10px;
 }
 
-.mymodifier>.form-floating>label,
+.mymodifier.detail .form-floating label,
 .mypost>.form-floating>label {
     display: block;
     position: initial;
@@ -593,14 +612,14 @@ top-menu>ul>li.to-buy>a:after,
     width: calc(100% - 4.1rem);
 }
 
-.mymodifier>.url-img {
+.mymodifier.detail>.url-img {
     padding-top: 0.4rem;
     height:fit-content;
     object-fit: cover;
 }
 
-.mymodifier .form-floating .url-blue {
-    color:#0d6efd;
+.mymodifier.detail .form-floating .url-blue {
+    color: #004fc0;
     word-break: break-all;
 }
 
@@ -633,7 +652,7 @@ top-menu>ul>li.to-buy>a:after,
 
 .mymodifier>.form-floating>textarea.form-control,
 .mypost>.form-floating>textarea.form-control {
-    height: 122px;
+    height: 58px;
     clear: both;
 }
 
@@ -735,12 +754,12 @@ top-menu>ul>li.to-buy>a:after,
     box-shadow: 0px 0px 0px 4px #abbbff;
 }
 
-.scroll {
+.mymodifier.detail>.scroll {
     display: block;
     padding-top: 10px;
     overflow-y: auto;
-    clear: both;
     height: 64vh;
+    min-height: 490px;
 }
 
 .mybtns {
