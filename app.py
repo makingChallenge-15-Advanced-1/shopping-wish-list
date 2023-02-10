@@ -76,7 +76,6 @@ def login():
     # 사용자가 입력한 id, password
     user_id = request.form['user_id_give']
     user_pwd = request.form['user_pwd_give']
-    print(user_id, user_pwd)
 
     #db에 저장된 password와 비교
     #같은 password를 입력해도 hash값을 다를 수 있으므로 user_pwd는 해쉬화 하지 않는다.
@@ -131,8 +130,7 @@ def image_from_url(url_receive):
 @app.route("/wishlist", methods=["GET"])
 @jwt_required(optional=True)
 def wishlist_get():
-    current_user_id = get_jwt()['sub']      #로그인 회원 정보를 얻음
-    
+    current_user_id = get_jwt()['sub']      #로그인 회원의 id
     list_method = request.args.get('list')
     if list_method == 'all':
         wishlist = list(db.wishlist.find({},{'_id':False}))
@@ -147,7 +145,7 @@ def wishlist_get():
         url = item['url']
         image = image_from_url(url) 
         item['image'] = image
-    return jsonify({'wishlist':wishlist, 'user_id':current_user_id})
+    return jsonify({'wishlist':wishlist, 'current_user_id':current_user_id})
 
 #해당 번호의 db 정보를 return
 @app.route("/wishlist/{listId}", methods=["GET"])
@@ -163,11 +161,8 @@ def wishlist_listId_get():
 #POST API
 #db에 새로운 정보를 추가
 @app.route("/wishlist", methods=["POST"])
-# @jwt_required()       #user_id를 db에 추가하는 부분 수정 필요. 
 def wishlist_post():                              #받는 변수 : url, name, price, memo, status
-    # current_user_id = get_jwt()['sub']            #로그인 회원 정보를 얻음
-    # print(current_user_id)
-    
+    current_user = request.form['current_user_give']
     url_receive = request.form['url_give']          
     name_receive = request.form['name_give']        
     price_receive = request.form['price_give']
@@ -196,7 +191,7 @@ def wishlist_post():                              #받는 변수 : url, name, pr
         'memo' : memo_receive,
         'status' : status_receive,
         'listId' : listId,
-        # 'user_id' : current_user_id
+        'user_id' : current_user
     }
     db.wishlist.insert_one(doc)
     return jsonify({'msg':'저장 완료!'})
