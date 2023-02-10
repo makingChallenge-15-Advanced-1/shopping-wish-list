@@ -1,18 +1,18 @@
 <!doctype html>
- <html lang="en">
+<html lang="en">
 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
             crossorigin="anonymous"></script>
 
-    <title>아이디 찾기</title>
+    <title>아이디/패스워드 찾기</title>
 
     <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
 
@@ -63,7 +63,7 @@
             let user_pwd = $('#user_pwd_input').val()
             let re_user_pwd = $('#re_user_pwd_input').val()
 
-             if (user_pwd == ""){
+            if (user_pwd == ""){
                 alert("사용하실 비밀번호를 입력해 주세요!!")
             } else if (user_pwd != re_user_pwd){
                 alert("비밀번호 재확인란에 동일한 비밀번호를 입력해 주세요!!")
@@ -87,7 +87,7 @@
                     alert(response['msg'])
                     window.location.href='/'
                 }
-             });
+            });
             return
         }
     </script>
