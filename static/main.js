@@ -1,5 +1,4 @@
 var url_verifier = 'false';
-var rows; // open_modify_box에서 사용할 전역변수
 
 $(document).ready(function () {       //페이지 로딩 시 wishlist_get_all() 함수 호출
     wishlist_get_all();
@@ -65,12 +64,13 @@ function wishlist_get_all() {                //모든 정보를 보여줌
         data: {},
         success: function (response) {
             wishlist = response['wishlist']
-            user_id = response['user_id']
-            $('#user_name').text(user_id);
+            current_user_id = response['current_user_id']
+            $('#user_name').text(current_user_id)
             list_to_card(wishlist)
         }
     })
 }
+
 function wishlist_get_toBuy() {          //당장구매 아이템만 보여줌
     $('#cards_box').empty()
     $('#toBuy').prop("checked", true)
@@ -132,8 +132,7 @@ function wishlist_post() {
     let name = $('#name_input').val()
     let price = $('#price_input').val()
     let memo = $('#memo_input').val()
-    // let status = $('#status_input').val()
-    // let test = $('#status_btn').val()
+    let current_user = $('#user_name').text()
     let status = $("input[type=radio][name=status]:checked").val(); // 상태 변경 (수정)
 
     let alertMsg = "";
@@ -150,7 +149,7 @@ function wishlist_post() {
     $.ajax({
         type: 'POST',
         url: '/wishlist',
-        data: { url_give: url, name_give: name, price_give: price, memo_give: memo, status_give: status },
+        data: {current_user_give:current_user, url_give: url, name_give: name, price_give: price, memo_give: memo, status_give: status },
         success: function (response) {
             checkedAlert(response['msg'])
             setTimeout(() => window.location.reload(), 1550);
