@@ -5,58 +5,17 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
             crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&display=swap" rel="stylesheet">
 
-    <title>아이디/패스워드 찾기</title>
 
-    <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
+    <title>나의 쇼핑 찜바구니 : 아이디/비밀번호 찾기</title>
 
-    <style>
-        * {
-            font-family: 'Gowun Dodum', sans-serif;
-        }
-
-        .mytitle {
-            width: 100%;
-            height: 250px;
-
-            background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://d1vcqlflm6aitx.cloudfront.net/images/800x100p/1557364192-work_while_you_study_banner.webp');
-            background-position: center;
-            background-size: cover;
-
-            color: white;
-
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .myIdfind {
-            width: 95%;
-            max-width: 500px;
-            margin: 20px auto 0px auto;
-            padding: 20px;
-            box-shadow: 0px 0px 3px 0px gray;
-        }
-
-        .mybtns {
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            justify-content: center;
-
-            margin-top: 20px;
-        }
-        .mybtns > button {
-            margin-right: 10px;
-        }
-    </style>
+    <link rel="stylesheet" href="/static/style.css">
+    <link rel="stylesheet" href="/static/style_register.css">
 
     <script>
         //전화번호로 사용자 id를 찾아주는 함수
@@ -81,7 +40,7 @@
                     }
                 }
             });
-        }        
+        }
 
         // 전화번호 자동 하이픈(-)
         // const autoHyphen = (target) => {
@@ -94,17 +53,17 @@
 </head>
 
 <body>
-    <div class="mytitle">
-        <h1>휴대폰 번호로 아이디 찾기</h1>
+    <div class="mytitle membership">
+        <h1><b>아이디 찾기</b><img src="/static/img/img_login.png" alt="membership"></h1>
     </div>
-    <div class="myIdfind" id="find_box">
+    <div class="myid-find" id="find_box">
         <div class="form-floating mb-3">
+            <label for="user_phone_input">휴대폰번호( - 없이 입력)</label>
             <input type="text" class="form-control" id="user_phone_input" maxlength="11" placeholder="phone_number">
-            <label for="user_phone_input">전화번호(- 없이 입력)</label>
         </div>
         <div class="mybtns">
-            <button onclick="find_with_phone()" type="button" class="btn btn-dark">아이디 찾기</button>
-            <button onclick="window.location.href='/'" type="button" class="btn btn-dark">로그인으로 돌아가기</button> 
+            <button onclick="find_with_phone()" type="button" class="btn btn-dark">비밀번호 찾기</button>
+            <button onclick="window.location.href='/'" type="button" class="btn btn-outline-dark">로그인 화면</button>
         </div>
     </div>
 </body>
