@@ -1,22 +1,35 @@
-function register() {
+function check_register() {
   let user_id = $('#user_id_input').val()
   let user_pwd = $('#user_pwd_input').val()
   let re_user_pwd = $('#re_user_pwd_input').val()
   let user_phone = $('#user_phone_input').val()
-  let check_result = check_user_id(user_id)['responseJSON']['result'] //user_id가 이미 존재 하는 것이 아닌지 check
-  
+  let check_id = check_user_id(user_id)['responseJSON']['result'] //user_id가 이미 존재 하는 것이 아닌지 check
+  let check_phone = check_user_phone(user_phone)['responseJSON']['result']
 
-  if (user_id == "" || user_pwd == "" || re_user_pwd == "") {
-    alert("모든 칸을 입력해 주세요!!")
-    return
-  } else if (user_pwd != re_user_pwd) {
-    alert("비밀번호를 다시 확인해 주세요!")
-    return
-  } else if (check_result == 'fail') {
+  if (user_id == ""){
+    alert("사용하실 아이디를 입력해 주세요!!")
+  } else if (user_pwd == ""){
+    alert("사용하실 비밀번호를 입력해 주세요!!")
+  } else if (user_pwd != re_user_pwd){
+    alert("비밀번호 재확인란에 동일한 비밀번호를 입력해 주세요!!")
+  } else if (user_phone == ""){
+    alert("사용자의 휴대전화 번호를 입력해 주세요!!")
+  } else if (check_id == 'fail') {
     alert("이미 존재하는 아이디 입니다!!")
     return
+  } else if (check_phone == 'fail') {
+    alert("동일한 전화번호가 이미 등록되어 있습니다!!")
+    return
+  } else {
+    register()
   }
+}
 
+function register() {
+  let user_id = $('#user_id_input').val()
+  let user_pwd = $('#user_pwd_input').val()
+  let user_phone = $('#user_phone_input').val()
+  
   $.ajax({
     type: 'POST',
     url: '/user/register',
@@ -34,6 +47,18 @@ function check_user_id(user_id) {
   return $.ajax({
     type: 'GET',
     url: '/user/user_id_check?user_id=' + user_id,
+    data: {},
+    async: false,
+    success: function (response) {
+    }
+  });
+}
+
+//폰 번호의 중복이 있는지 check하는 함수
+function check_user_phone(user_phone) {
+  return $.ajax({
+    type: 'GET',
+    url: '/user/user_phone_check?user_phone=' + user_phone,
     data: {},
     async: false,
     success: function (response) {

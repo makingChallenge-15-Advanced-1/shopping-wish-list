@@ -81,6 +81,15 @@ def register_check_id():
         return jsonify({'result' : "fail"})
     return jsonify({'result' : "success"})
 
+#동일한 폰 번호를 가진 회원이 없는지 확인
+@app.route("/user/user_phone_check", methods=["GET"])      #register.html의 check_user_id()에서 call
+def register_check_phone():
+    user_phone = request.args.get('user_phone')
+    check_phone = db.users.find_one({'user_phone':user_phone})
+    if check_phone is not None:
+        return jsonify({'result' : "fail"})
+    return jsonify({'result' : "success"})
+
 #로그인하기
 @app.route("/user/login", methods=["POST"])   #login.html의 login() 에서 call
 def login():
