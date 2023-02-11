@@ -3,6 +3,7 @@ function check_register() {
   let user_pwd = $('#user_pwd_input').val()
   let re_user_pwd = $('#re_user_pwd_input').val()
   let user_phone = $('#user_phone_input').val()
+  let regExp_phone = phone_certifi(user_phone)
   let check_id = check_user_id(user_id)['responseJSON']['result'] //user_id가 이미 존재 하는 것이 아닌지 check
   let check_phone = check_user_phone(user_phone)['responseJSON']['result']
 
@@ -14,6 +15,9 @@ function check_register() {
     alert("비밀번호 재확인란에 동일한 비밀번호를 입력해 주세요!!")
   } else if (user_phone == ""){
     alert("사용자의 휴대전화 번호를 입력해 주세요!!")
+  } else if (!regExp_phone) {
+    alert("휴대폰 번호를 다시 확인해 주세요!!")
+    return
   } else if (check_id == 'fail') {
     alert("이미 존재하는 아이디 입니다!!")
     return
@@ -64,4 +68,10 @@ function check_user_phone(user_phone) {
     success: function (response) {
     }
   });
+}
+
+function phone_certifi(user_phone) {
+  let regex = /^(01[016789]{1})([0-9]{3,4})([0-9]{4})$/
+  let result = regex.test(user_phone) ? true : false
+  return result
 }
