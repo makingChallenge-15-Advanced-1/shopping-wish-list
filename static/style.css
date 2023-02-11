@@ -656,6 +656,7 @@ html { font-size:13px;
 .mypost>.form-floating>textarea.form-control {
     height: 58px;
     clear: both;
+    resize: none;
 }
 
 .mymodifier>.form-floating>textarea::placeholder,
