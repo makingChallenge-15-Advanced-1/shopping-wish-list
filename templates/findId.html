@@ -21,8 +21,8 @@
         //전화번호로 사용자 id를 찾아주는 함수
         function find_with_phone() {
             let user_phone = $('#user_phone_input').val()
-            // 숫자인지 확인
-            if (isNaN(user_phone) == false){
+            // 숫자가 아닐때 경고, 인수가 숫자이면 False
+            if (isNaN(user_phone) !== false){
                 alert("숫자를 입력해 주세요!")
                 return
             }
