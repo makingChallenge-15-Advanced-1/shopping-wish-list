@@ -104,3 +104,9 @@
     border-radius: 8px;
     background-color: #ffffff;
 }
+
+.mylogin .eye-icon {
+  cursor: pointer;
+  float: right;
+  margin: 2px;
+}
