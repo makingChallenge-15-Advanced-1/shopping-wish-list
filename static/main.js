@@ -58,6 +58,7 @@ function list_to_card(wishlist) {        //받은 list를 카드로 만들어 �
 
 function wishlist_get_all() {                //모든 정보를 보여줌
     $('#cards_box').empty()
+    $('#spinner-div').show();   // 로딩화면
     $.ajax({                        //ajax GET으로 list를 읽어와서 카드 생성
         type: 'GET',                //받는 변수 : image, url, name, price, memo, status, listId
         url: '/wishlist?list=all',
@@ -67,12 +68,16 @@ function wishlist_get_all() {                //모든 정보를 보여줌
             current_user_id = response['current_user_id']
             $('#user_name').text(current_user_id)
             list_to_card(wishlist)
+        },
+        complete: function () {
+            $('#spinner-div').hide();   // 로딩화면 감추기
         }
     })
 }
 
 function wishlist_get_toBuy() {          //당장구매 아이템만 보여줌
     $('#cards_box').empty()
+    $('#spinner-div').show();   // 로딩화면
     $('#toBuy').prop("checked", true)
     $.ajax({                        //ajax GET으로 list를 읽어와서 카드 생성
         type: 'GET',                //받는 변수 : image, url, name, price, memo, status, listId
@@ -81,11 +86,15 @@ function wishlist_get_toBuy() {          //당장구매 아이템만 보여줌
         success: function (response) {
             wishlist = response['wishlist']
             list_to_card(wishlist)
+        },
+        complete: function () {
+            $('#spinner-div').hide();   // 로딩화면 감추기
         }
     })
 }
 function wishlist_get_hold() {          //보류 아이템만 보여줌
     $('#cards_box').empty()
+    $('#spinner-div').show();   // 로딩화면
     $('#hold').prop("checked", true)
     $.ajax({                        //ajax GET으로 list를 읽어와서 카드 생성
         type: 'GET',                //받는 변수 : image, url, name, price, memo, status, listId
@@ -94,11 +103,15 @@ function wishlist_get_hold() {          //보류 아이템만 보여줌
         success: function (response) {
             wishlist = response['wishlist']
             list_to_card(wishlist)
+        },
+        complete: function () {
+            $('#spinner-div').hide();   // 로딩화면 감추기
         }
     })
 }
 function wishlist_get_order() {          //구매완료 아이템만 보여줌
     $('#cards_box').empty()
+    $('#spinner-div').show();   // 로딩화면
     $('#order').prop("checked", true)
     $.ajax({                        //ajax GET으로 list를 읽어와서 카드 생성
         type: 'GET',                //받는 변수 : image, url, name, price, memo, status, listId
@@ -107,6 +120,9 @@ function wishlist_get_order() {          //구매완료 아이템만 보여줌
         success: function (response) {
             wishlist = response['wishlist']
             list_to_card(wishlist)
+        },
+        complete: function () {
+            $('#spinner-div').hide();   // 로딩화면 감추기
         }
     })
 }

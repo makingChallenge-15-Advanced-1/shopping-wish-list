@@ -21,10 +21,18 @@
 
         <h1><b><span id="user_name"></span>의 쇼핑 찜바구니</b><img src="/static/img/img_shoppingBasket.png" alt="Basket"></h1>
 
-        <div class="shadow"></div> <!-- 팝업시 shadow 효과-->
+        <!-- 로딩화면 -->
+        <div id="spinner-div" class="pt-5">
+            <div class="spinner-border text-primary" role="status">
+            </div>
+        </div>
+        <!-- 팝업시 shadow 효과-->
+        <div class="shadow"></div>
+        <!-- 상품추가 버튼 -->
         <button onclick="open_posting_box()">
             <b>찜 상품 추가</b>
         </button>
+        <!-- 등록 팝업 -->
         <div class="container">
             <div class="mypost" id="posting_box">
                 <div class="card-title">
@@ -70,9 +78,13 @@
                     <button onclick="close_posting_box()" type="button" class="btn btn-outline-secondary">취소</button>
                 </div>
             </div>
+            <!-- 수정 팝업 -->
             <div class="mymodifier" id="modify_box"></div>
+            <!-- 더보기 팝업 -->
             <div class="mymodifier detail" id="more_box"></div>
         </div>
+
+        <!-- 상태별 모아보기 메뉴 -->
         <div class="top-menu">
             <ul class="tab-nav">
                 <li onclick="wishlist_get_all()" class="all"><a class="active">전체보기</a></li>
@@ -82,7 +94,7 @@
             </ul>
         </div>
 
-            <button onclick="logout()" type="button" class="btn btn-logout">로그아웃</button>
+        <button onclick="logout()" type="button" class="btn btn-logout">로그아웃</button>
     </div>
 
     <div class="mycards">
