@@ -2,6 +2,7 @@ var url_verifier = 'false';
 
 $(document).ready(function () {       //페이지 로딩 시 wishlist_get_all() 함수 호출
     wishlist_get_all();
+    checkboxChange();
 });
 
 // DB 정보를 표시해 주는 함수들
@@ -446,5 +447,12 @@ function logout(){
             alert(response['msg'])
             window.location.href='/'
         }
+    });
+}
+
+function checkboxChange() {
+    $('input[type=radio][name="status"]').change(function () {
+        let radio_status = this.value
+        $(`input[type=radio][id='${radio_status}']`).prop("checked", true);
     });
 }
