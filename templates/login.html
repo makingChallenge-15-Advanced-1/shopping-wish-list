@@ -28,11 +28,13 @@
             <div class="col-8">
                 <div class="form-floating">
                     <label for="user_id_input">아이디</label>
-                    <input type="text" class="form-control" id="user_id_input">
+                    <input type="text" class="form-control" id="user_id_input"
+                     oninput="this.value = this.value.replace(/\s/g, '');" >
                 </div>
                 <div class="form-floating mb-3">
                     <label for="user_pwd_input">비밀번호</label>
-                    <input type="password" class="form-control" id="user_pwd_input">
+                    <input type="password" class="form-control" id="user_pwd_input"
+                     oninput="this.value = this.value.replace(/\s/g, '');" >
                     <!-- 비밀번호 보임/숨김 -->
                     <img src="../static/img/eye_hide.png" class="eye-icon" id="eye_icon">
                 </div>

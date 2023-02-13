@@ -26,15 +26,18 @@
         <div class="myregister" id="register_box">
             <div class="form-floating mb-3">
                 <label for="user_id_input">아이디</label>
-                <input type="text" class="form-control" id="user_id_input" placeholder="name@example.com">
+                <input type="text" class="form-control" id="user_id_input" 
+                 oninput="this.value = this.value.replace(/\s/g, '');" placeholder="name@example.com">
             </div>
             <div class="form-floating mb-3">
                 <label for="user_pwd_input">비밀번호</label>
-                <input type="text" class="form-control" id="user_pwd_input" placeholder="name@example.com">
+                <input type="text" class="form-control" id="user_pwd_input"
+                 oninput="this.value = this.value.replace(/\s/g, '');">
             </div>
             <div class="form-floating mb-3">
                 <label for="re_user_pwd_input">비밀번호 재확인</label>
-                <input type="text" class="form-control" id="re_user_pwd_input" placeholder="name@example.com">
+                <input type="text" class="form-control" id="re_user_pwd_input"
+                 oninput="this.value = this.value.replace(/\s/g, '');">
             </div>
             <div class="form-floating mb-3">
                 <label for="user_phone_input">휴대폰 번호(- 없이 입력)</label>
