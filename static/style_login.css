@@ -1,11 +1,117 @@
+body {
+    background-color: #ecd5e6;
+    overflow-x: hidden;
+    min-width: 768px;
+}
+
+.mytitle.bglogin {
+    height: 540px;
+    background-color: #ecd5e6;
+    background-image: url(/static/img/img_shadow.png);
+    background-repeat: no-repeat;
+    background-position: center 98%;
+}
+
+.mytitle.bglogin>h1>b {
+    position: relative;
+    top: 180px;
+    left: calc(50% - 9rem);
+    min-width: 600px;
+    color: #C068A8;
+    text-shadow: 0 1px 5px white;
+}
+
+.ani-img01>img.bag {
+    position: absolute;
+    top: 2.5rem;
+    left: calc(50% - 11rem);
+    animation: mybag 3s infinite ease-out alternate;
+    z-index:106;
+}
+@keyframes mybag {
+    from{
+        transform: translatey(0px) rotate( 5deg );
+    }
+    to{
+        transform: translatey(-10px) rotate( 12deg );
+    }
+}
+
+.ani-img01>img.heart {
+    position: absolute;
+    top: 9.7rem;
+    left: calc(50% - 17rem);
+    animation: myheart 1.2s ease infinite;
+    z-index: 106;
+}
+@keyframes myheart {
+  0% {
+    transform: scale(1, 1);
+  }
+  50% {
+    transform: scale(1.1, 1.1);
+  }
+  100% {
+    transform: scale(1, 1);
+  }
+}
+
+.ani-img01>img.tag {
+    position: absolute;
+    top: 16rem;
+    left: calc(50% + 10rem);
+    animation: mytag 1s infinite;
+    animation-direction:alternate;
+    z-index:106;
+}
+@-webkit-keyframes mytag {
+    from{
+        left:calc(50% + 10.1rem);
+        transform: rotate( 5deg );
+    }
+    to{
+        left:calc(50% + 9.9rem);
+        transform: rotate( 12deg );
+    }
+}
+
+.ani-img02>img.basket {
+    position: absolute;
+    top: 7.9rem;
+    left: calc(50% - 10.2rem);
+    animation: up-down 2s infinite ease-out alternate;
+    z-index:103;
+}
+    @keyframes up-down{
+      from{
+        transform: translatey(0px);
+      }
+      to{
+        transform: translatey(-10px);
+      }
+    }
+
+.bg-img02>img.cloud02 {
+    position: absolute;
+    top: 12.2rem;
+    left: calc(50% +  4rem);
+    z-index: 105;
+}
+
+.bg-img01>img.cloud01 {
+    position: absolute;
+    top: 17rem;
+    left: calc(50% - 13rem);
+    z-index:100;
+}
 
 .mylogin {
   width: 95%;
   max-width: 500px;
-    margin: 3rem auto;
+    margin: -6rem auto 3rem auto;
   padding: 20px;
   border-radius: 16px;
-  background-color: #FCFCFE;
+  background-color: #ffffff;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.25);
 }
 
@@ -106,7 +212,9 @@
 }
 
 .mylogin .eye-icon {
-  cursor: pointer;
-  float: right;
-  margin: 2px;
+    cursor: pointer;
+    position: absolute;
+    top: 38px;
+    right: 14px;
+    opacity: 0.5;
 }
