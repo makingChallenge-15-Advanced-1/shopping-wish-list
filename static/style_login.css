@@ -151,6 +151,10 @@ body {
     height: calc(2.85rem + 2px);
 }
 
+#user_pwd_input{
+    padding-right: 45px;
+}
+
 .mylogin .btn-dark {
     color: #ffffff;
     background-color: #7D5EE2 !important;
