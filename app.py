@@ -16,7 +16,7 @@ bcrypt = Bcrypt(app)
 from pymongo import MongoClient
 import certifi
 ca = certifi.where()
-client = MongoClient('<db 정보를 입력하세요>', 27017, tlsCAFile=ca)
+client = MongoClient('mongodb+srv://test:sparta@Cluster0.kwrmlin.mongodb.net/?retryWrites=true&w=majority', 27017, tlsCAFile=ca)
 db = client.dbsparta
 
 # JWT 매니저 활성화
